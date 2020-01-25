@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyAHXYi06OsfdHBZTE7vwrvSeftTnRIkw-0",
+    authDomain: "monopoly-deal-dev.firebaseapp.com",
+    databaseURL: "https://monopoly-deal-dev.firebaseio.com",
+    projectId: "monopoly-deal-dev",
+    storageBucket: "monopoly-deal-dev.appspot.com",
+    messagingSenderId: "481788836201",
+    appId: "1:481788836201:web:6572b5ce6c8f422d56e5f8"
+  }
 };
 
 /*

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "monopoly-deal-game"
+    "default": "monopoly-deal-dev",
+    "production": "monopoly-deal-game"
   }
 }
