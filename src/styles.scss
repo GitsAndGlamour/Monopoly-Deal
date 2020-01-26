@@ -9,7 +9,7 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 @import 'src/assets/sass/layout.scss';
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -27,7 +27,7 @@ $monopoly-deal-theme: mat-light-theme($monopoly-deal-primary, $monopoly-deal-acc
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $monopoly-deal-typography: mat-typography-config(
-        $font-family: 'Raleway, sans-serif',
+        $font-family: 'Nunito, sans-serif',
         $headline: mat-typography-level(32px, 48px, 700),
         $body-1: mat-typography-level(16px, 24px, 500)
 );
@@ -72,7 +72,7 @@ $monopoly-railroad: $monopoly-black;
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Raleway, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
 .mat-success {
   background-color: mat-color($mat-green, 200);
@@ -87,6 +87,21 @@ body { margin: 0; font-family: Raleway, "Helvetica Neue", sans-serif; }
 .mat-hint {
   background-color: mat-color($mat-amber, 600);
   color: $monopoly-white;
+}
+
+.mat-red {
+  background-color: mat-color($mat-red, 600);
+  color: $monopoly-white;
+}
+
+.mat-white {
+  background-color: $monopoly-white;
+  color: $monopoly-black;
+}
+
+.mat-signup {
+  background-color: $monopoly-white;
+  color: $monopoly-select-red;
 }
 
 /* Card Colors */

@@ -12,7 +12,7 @@ import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
-  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],
+  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: GameListComponent },
       { path: 'rules', component: GameRulesComponent },
@@ -21,14 +21,14 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent,
     children: [
       { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
-      { path: 'signup', component: RegistrationComponent, data: { auth: 'signup'} },
-      { path: 'login', component: RegistrationComponent, data: { auth: 'login'} },
+      { path: 'signup', component: RegistrationComponent, data: { tab: 0} },
+      { path: 'login', component: RegistrationComponent, data: { tab: 1} },
       { path: 'about', component: AboutComponent },
     ]},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

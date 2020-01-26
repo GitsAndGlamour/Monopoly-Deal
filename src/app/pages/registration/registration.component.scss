@@ -1,0 +1,15 @@
+img {
+  align-self: center;
+}
+mat-card {
+  width: 30%;
+  margin: auto;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
