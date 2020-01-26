@@ -12,6 +12,10 @@ export class Profile {
     declinedFriendInvites: User[];
     online: boolean;
 
+    constructor(props) {
+        Object.assign(this, {}, props);
+    }
+
     static blank(user: User, username: string): Profile {
         return {
             uid: user.uid,

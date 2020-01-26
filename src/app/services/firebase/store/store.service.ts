@@ -14,30 +14,54 @@ export class StoreService<T> {
   constructor(private firestore: AngularFirestore) { }
 
   async getCollection(collection: string): Promise<T[]> {
-    const ref = await this.firestore.collection<T>(collection).get().toPromise();
-    return ref.docs.map<T>(doc => doc.data() as T);
+    try {
+      const ref = await this.firestore.collection<T>(collection).get().toPromise();
+      return ref.docs.map<T>(doc => doc.data() as T);
+    } catch (error) {
+      return [];
+    }
   }
 
   async getCollectionWhere(collection: string, clause: Clause): Promise<T[]> {
-    const ref = await this.firestore.collection<T>(collection, ref => ref.where(clause.fieldPath, clause.opStr, clause.value))
-        .get().toPromise();
-    return ref.docs.map<T>(doc => doc.data() as T);
+    try {
+      const ref = await this.firestore.collection<T>(collection, ref => ref.where(clause.fieldPath, clause.opStr, clause.value))
+          .get().toPromise();
+      return ref.docs.map<T>(doc => doc.data() as T);
+    } catch (error) {
+      return [];
+    }
   }
 
   async getDocument(collection: string, document: string): Promise<T> {
-    const ref = await this.firestore.collection(collection).doc(document).get().toPromise();
-    return ref.data() as T;
+    try {
+      const ref = await this.firestore.collection(collection).doc(document).get().toPromise();
+      return ref.data() as T;
+    } catch (error) {
+      return null;
+    }
   }
 
   async addDocument(collection: string, document: string, data: T): Promise<void> {
-    return await this.firestore.collection<T>(collection).doc(document).set(data);
+    try {
+      return await this.firestore.collection<T>(collection).doc(document).set(data);
+    } catch (error) {
+      return;
+    }
   }
 
   async updateDocument(collection: string, document: string, data: Partial<T>): Promise<void> {
-    return await this.firestore.collection<T>(collection).doc<T>(document).update(data);
+    try {
+      return await this.firestore.collection<T>(collection).doc<T>(document).update(data);
+    } catch (error) {
+      return;
+    }
   }
 
   async removeDocument(collection: string, document: string): Promise<void> {
-    return await this.firestore.collection<T>(collection).doc(document).delete();
+    try {
+      return await this.firestore.collection<T>(collection).doc(document).delete();
+    } catch (error) {
+      return;
+    }
   }
 }

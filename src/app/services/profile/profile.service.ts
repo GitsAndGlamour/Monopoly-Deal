@@ -30,4 +30,17 @@ export class ProfileService {
     const profile: Profile = await this.storage.getDocument('profiles', user.uid);
     return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends.map(friend => friend.uid ) })
   }
+
+  async create(profile: Profile): Promise<void> {
+    return await this.storage.addDocument(this.collection, profile.uid, profile);
+  }
+
+  async usernames(): Promise<string[]> {
+    const profiles = await this.storage.getCollection(this.collection);
+    return profiles ? profiles.map(profile => profile.username) : [];
+  }
+
+  async usernameExists(value: string): Promise<Profile[]> {
+    return this.storage.getCollectionWhere(this.collection, { fieldPath: 'username', opStr: '==', value });
+  }
 }

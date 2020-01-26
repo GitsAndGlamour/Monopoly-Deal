@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/firebase/auth/auth.service';
-import {StoreService} from '../../services/firebase/store/store.service';
 import {Profile} from '../../classes/profile';
+import {ProfileService} from '../../services/profile/profile.service';
+import {UsernameValidator} from '../../validators/username.validator';
 
 @Component({
   selector: 'app-registration',
@@ -14,11 +15,30 @@ export class RegistrationComponent implements OnInit {
   tab: number;
   form: FormGroup;
   constructor(private route: ActivatedRoute, private builder: FormBuilder, private auth: AuthService, private router: Router,
-              private profileStorage: StoreService<Profile>) {
+              private profileService: ProfileService, private usernameValidator: UsernameValidator) {
     this.tab = route.snapshot.data.tab;
     this.form = this.builder.group({
-      0: this.builder.group({email: '', password: '', displayName: '', username: ''}),
-      1: this.builder.group({email: '', password: ''})
+      0: this.builder.group({
+        email: new FormControl('', [
+          Validators.minLength(5),
+          Validators.email
+        ]),
+        password: new FormControl('', [
+          Validators.minLength(8),
+          Validators.pattern('^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$')
+        ]),
+        username: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.pattern('[A-Za-z0-9]*$'),
+        ],
+        [this.usernameValidator.usernameValidator()]
+        ),
+        displayName: new FormControl('', [
+          Validators.minLength(4),
+          Validators.pattern('[A-Za-z0-9.]+(?: +[A-Za-z0-9.]+)*$')]),
+      }),
+      1: this.builder.group({email: new FormControl('', [Validators.email]), password: ''})
     })
   }
 
@@ -30,87 +50,35 @@ export class RegistrationComponent implements OnInit {
     this.form.reset();
   }
 
+  get signUp() {
+    return this.form.get('0');
+  }
+
+  get logIn() {
+    return this.form.get('1');
+  }
+
   async submit() {
+    if (this.form.errors) {
+      console.log('errors');
+    }
     const {email, password, displayName, username} = this.form.get(this.tab.toString()).value;
     if (this.tab === 0) {
       await this.auth.signUp(email, password, displayName)
           .then(() => {
             const user = this.auth.localUser;
-            this.profileStorage.addDocument('profiles', user.uid, Profile.blank(user, username.toLowerCase()));
+            const profile = new Profile(Profile.blank(user, username.toLowerCase()));
+            this.profileService.create(profile);
           })
           .then(() => this.router.navigate(['/lobby']));
+      console.log('signUp');
     } else {
       await this.auth.signIn(email, password).then(() => this.router.navigate(['/lobby']));
+      console.log('signIn');
     }
   }
 
-  async validateSignUpInputs(email, password, displayName, username) {
-    if (displayName && username) {
-      const isValidUsername = await this.validateUsername(username);
-      const isValidDisplayName = await this.validateDisplayName(displayName);
-      const isValidLogin = await this.validateLogInInputs(email, password);
-      return isValidUsername && isValidDisplayName && isValidLogin;
-    } else {
-      alert('Please fill out all fields.');
-      return false;
-    }
-  }
-
-  validateLogInInputs(email, password) {
-    if (email && password) {
-      const isValidEmail = this.validateEmail(email);
-      const isValidPassword = this.validatePassword(password);
-      if(isValidEmail && isValidPassword) {
-        return true;
-      } else {
-        alert('Please enter a valid e-mail address and password.');
-      }
-    } else {
-      alert('Please enter an e-mail address and password.');
-      return false;
-    }
-  }
-
-  async validateUsername(value: string): Promise<boolean> {
-    const regExValid = RegExp(`([a-zA-z0-9]{3,25})`).test(value);
-    if (regExValid) {
-      const results = await this.profileStorage.getCollectionWhere('profiles', { fieldPath: 'username', opStr: '==', value });
-      if(!results || !results.length) {
-        return true;
-      } else {
-        alert('The username provided is already taken.');
-        return false;
-      }
-    }
-    alert('Your username is not valid. Alphanumeric characters only. The username must be between 4 and 24 characters.')
-    return false;
-  }
-
-  validateEmail(value: string): boolean {
-    if (!!RegExp(``).test(value)) {
-      return true;
-    }
-    alert('Your e-mail address must be valid to continue. Please try again.');
-    return false;
-  }
-
-  validatePassword(value: string): boolean {
-    if (!!RegExp(``).test(value)) {
-      return true;
-    }
-    alert('Password should be at least one capital letter, one small letter, one number and 8 character length.');
-    return false;
-  }
-
-  async validateDisplayName(value: string): Promise<boolean> {
-    if (!!RegExp(``).test(value)) {
-      if (!RegExp(``).test(value)) {
-        return true;
-      }
-      alert('Bad words are not allowed.');
-      return false;
-    }
-    alert('Display name must contain at least 4 and no more than 24 characters. A space in between is optional. Bad words are not allowed.');
-    return false;
+  log() {
+    console.log(this.signUp.get('username').errors);
   }
 }

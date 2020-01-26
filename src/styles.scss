@@ -76,8 +76,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
 .mat-success {
-  background-color: mat-color($mat-green, 200);
-  color: $monopoly-white;
+  color: mat-color($mat-green, 400);
 }
 
 .mat-info {

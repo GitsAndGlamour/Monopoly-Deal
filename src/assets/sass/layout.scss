@@ -3,16 +3,16 @@
 }
 
 .flex-row {
-  display: flex;
-  flex-direction: row;
+  display: flex !important;
+  flex-direction: row !important;
 }
 
 .flex-space-between {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 
 .flex-end {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 
 .flex-1 {
@@ -31,3 +31,8 @@
   margin-left: 0 !important;
 }
 
+/* One-offs */
+
+#username .mat-form-field-infix {
+  display: flex !important; // Makes the green check next to validated name appear on the right side of the input field instead of below the input text.
+}
