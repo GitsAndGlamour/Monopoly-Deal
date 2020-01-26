@@ -2,12 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/material.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/dealBreaker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/debtCollector.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/depositedToBank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/doubleTheRent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/forcedDeal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/hotel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/house.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/itsMyBirthday.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/justSayNo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/multicoloredRentCard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/passGo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType1And2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType3And4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType5And6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType7And8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType7andRailroad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentTypeUtilityAndRailroad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/slyDeal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/property/propertyWildCardBody.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/card/property/propertyWildCardHeader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/money/currency.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/sass/layout.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +69,9 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/pages" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$" />
@@ -76,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579992023040</updated>
       <workItem from="1579992024720" duration="329000" />
-      <workItem from="1579995125847" duration="1027000" />
+      <workItem from="1579995125847" duration="8964000" />
     </task>
     <servers />
   </component>
@@ -100,13 +124,13 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1638" height="261" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1579995683619" />
-    <state x="489" y="279" width="701" height="514" key="find.popup" timestamp="1579995404705">
+    <state x="489" y="279" width="701" height="514" key="find.popup" timestamp="1580001699843">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1579995404705" />
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1579996052583">
+    <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580001699843" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1580003609630">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1579996052583" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580003609630" />
   </component>
 </project>

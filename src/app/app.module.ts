@@ -10,10 +10,24 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
+import {WelcomeComponent} from './pages/welcome/welcome.component';
+import {LobbyComponent} from './pages/lobby/lobby.component';
+import {GameComponent} from './pages/game/game.component';
+import {GameListComponent} from './pages/game-list/game-list.component';
+import {GameRulesComponent} from './pages/game-rules/game-rules.component';
+import {RegistrationComponent} from './pages/registration/registration.component';
+import {AboutComponent} from './pages/about/about.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent,
+    LobbyComponent,
+    GameComponent,
+    GameListComponent,
+    GameRulesComponent,
+    RegistrationComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

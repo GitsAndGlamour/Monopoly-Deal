@@ -1,1 +1,204 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+@import 'src/assets/sass/layout.scss';
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$monopoly-deal-primary: mat-palette($mat-blue, 600, 800, 900);
+$monopoly-deal-accent: mat-palette($mat-blue-gray, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$monopoly-deal-warn: mat-palette($mat-deep-orange, 600);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$monopoly-deal-theme: mat-light-theme($monopoly-deal-primary, $monopoly-deal-accent, $monopoly-deal-warn);
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$monopoly-deal-typography: mat-typography-config(
+        $font-family: 'Raleway, sans-serif',
+        $headline: mat-typography-level(32px, 48px, 700),
+        $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($monopoly-deal-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($monopoly-deal-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($monopoly-deal-typography);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($monopoly-deal-theme);
+
+/* Standardized Colors */
+$monopoly-black: #000;
+$monopoly-white: mat-color($mat-gray, A100);
+$monopoly-select-red: mat-color($mat-red, 600);
+$monopoly-one: mat-color($mat-amber, 100);
+$monopoly-two: mat-color($mat-orange, 200);
+$monopoly-three: mat-color($mat-green, 200);
+$monopoly-four: mat-color($mat-blue, 200);
+$monopoly-five: mat-color($mat-indigo, 200);
+$monopoly-ten: mat-color($mat-amber, 500);
+$monopoly-property: $monopoly-white;
+/* Property Colors */
+
+$monopoly-brown: mat-color($mat-brown, 500);
+$monopoly-light-blue: mat-color($mat-light-blue, 50);
+$monopoly-pink: mat-color($mat-pink, 600);
+$monopoly-orange: mat-color($mat-orange, 600);
+$monopoly-red: mat-color($mat-red, 500);
+$monopoly-yellow: mat-color($mat-yellow, 500);
+$monopoly-green: mat-color($mat-green, 600);
+$monopoly-dark-blue: mat-color($mat-blue, 700);
+$monopoly-utility: mat-color($mat-light-green, 200);
+$monopoly-railroad: $monopoly-black;
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Raleway, "Helvetica Neue", sans-serif; }
+
+.mat-success {
+  background-color: mat-color($mat-green, 200);
+  color: $monopoly-white;
+}
+
+.mat-info {
+  background-color: mat-color($mat-blue, A200);
+  color: $monopoly-white;
+}
+
+.mat-hint {
+  background-color: mat-color($mat-amber, 600);
+  color: $monopoly-white;
+}
+
+/* Card Colors */
+
+.mat-one {
+  background-color: $monopoly-one;
+  color: $monopoly-black
+}
+
+.mat-two {
+  background-color: $monopoly-two;
+  color: $monopoly-black
+}
+
+.mat-three {
+  background-color: $monopoly-three;
+  color: $monopoly-black
+}
+
+.mat-four {
+  background-color: $monopoly-four;
+  color: $monopoly-black
+}
+
+.mat-five {
+  background-color: $monopoly-five;
+  color: $monopoly-black
+}
+
+.mat-ten {
+  background-color: $monopoly-ten;
+  color: $monopoly-black
+}
+
+.mat-property {
+  background-color: $monopoly-white;
+  color: $monopoly-black
+}
+
+/* Property Colors */
+
+.mat-property-brown {
+  background-color: $monopoly-brown;
+  color: $monopoly-black
+}
+
+.mat-property-light-blue {
+  background-color: $monopoly-light-blue;
+  color: $monopoly-black
+}
+
+.mat-property-pink {
+  background-color: $monopoly-pink;
+  color: $monopoly-black
+}
+
+.mat-property-orange {
+  background-color: $monopoly-orange;
+  color: $monopoly-black
+}
+
+.mat-property-red {
+  background-color: $monopoly-red;
+  color: $monopoly-black
+}
+
+.mat-property-yellow {
+  background-color: $monopoly-yellow;
+  color: $monopoly-black
+}
+
+.mat-property-green {
+  background-color: $monopoly-green;
+  color: $monopoly-black
+}
+
+.mat-property-dark-blue {
+  background-color: $monopoly-dark-blue;
+  color: $monopoly-black
+}
+
+.mat-property-utility {
+  background-color: $monopoly-utility;
+  color: $monopoly-black
+}
+
+.mat-property-railroad {
+  background-color: $monopoly-black;
+  color: $monopoly-white;
+}
+
+/* Game Features */
+.mat-selected-card {
+  filter: darken($monopoly-black, 15%);
+}
+
+.mat-toggle-property-card-selected-property {
+  border: 3px solid $monopoly-white;
+}
+
+.mat-property-card-highlight-rent-value {
+  border: $monopoly-select-red;
+  border-radius: 10px;
+}
+
+.mat-deposited-action-card-overlay {
+  filter: darken($monopoly-black, 15%);
+  height: 200px; /* or whatever, equal to the image you want 'watermarked' */
+  width: 200px; /* as above */
+  background-image: url(assets/img/card/action/depositedToBank.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
