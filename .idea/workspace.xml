@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/dealBreaker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/debtCollector.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/depositedToBank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/doubleTheRent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/forcedDeal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/hotel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/house.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/itsMyBirthday.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/justSayNo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/multicoloredRentCard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/passGo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType1And2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType3And4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType5And6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType7And8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentType7andRailroad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/rentTypeUtilityAndRailroad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/action/slyDeal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/property/propertyWildCardBody.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/card/property/propertyWildCardHeader.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/money/currency.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/sass/layout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
-    </list>
+    <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/services/auth" />
       <recent name="$PROJECT_DIR$/src/app/pages" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -100,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579992023040</updated>
       <workItem from="1579992024720" duration="329000" />
-      <workItem from="1579995125847" duration="8964000" />
+      <workItem from="1579995125847" duration="9250000" />
     </task>
     <servers />
   </component>
