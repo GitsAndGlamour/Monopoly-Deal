@@ -12,6 +12,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 @import 'src/assets/sass/layout.scss';
+@import 'src/assets/sass/game.scss';
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -84,7 +85,7 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
   color: $monopoly-white;
 }
 
-.mat-hint {
+.mat-highlight {
   background-color: mat-color($mat-amber, 600);
   color: $monopoly-white;
 }

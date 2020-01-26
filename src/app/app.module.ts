@@ -17,6 +17,9 @@ import {GameListComponent} from './pages/game-list/game-list.component';
 import {GameRulesComponent} from './pages/game-rules/game-rules.component';
 import {RegistrationComponent} from './pages/registration/registration.component';
 import {AboutComponent} from './pages/about/about.component';
+import {ComponentModule} from './components/component.module';
+import {CreateGameComponent} from './pages/game-list/create-game/create-game.component';
+import {ProfileComponent} from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,11 @@ import {AboutComponent} from './pages/about/about.component';
     LobbyComponent,
     GameComponent,
     GameListComponent,
+    CreateGameComponent,
     GameRulesComponent,
     RegistrationComponent,
     AboutComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +44,10 @@ import {AboutComponent} from './pages/about/about.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ComponentModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateGameComponent]
 })
 export class AppModule { }

@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">Create New Game</mat-toolbar>
+<form [formGroup]="form">
+    <mat-list>
+        <mat-list-item class="flex-row">
+            <mat-form-field class="flex-row-item">
+                <input matInput placeholder="Game Name" formControlName="name">
+            </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="flex-row flex-space-between">
+            <mat-form-field class="flex-1 flex-row-item">
+                <input type="number" min="2" max="8" matInput placeholder="Seats" formControlName="seats">
+            </mat-form-field>
+            <mat-form-field class="flex-1 flex-row-item">
+                <input type="number" min="0" max="7" matInput placeholder="Bots" formControlName="bots">
+            </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="flex-row flex-space-between">
+            <mat-slide-toggle color="warn" class="flex-1 flex-row-item" formControlName="ranked">Ranked</mat-slide-toggle>
+            <mat-slide-toggle color="warn" class="flex-1 flex-row-item" formControlName="friends">Friends Only</mat-slide-toggle>
+        </mat-list-item>
+        <mat-list-item class="flex-row flex-space-between">
+            <mat-slide-toggle color="warn" class="flex-1 flex-row-item" formControlName="public">Public</mat-slide-toggle>
+            <mat-slide-toggle color="warn" class="flex-1 flex-row-item" formControlName="viewable">Viewable</mat-slide-toggle>
+        </mat-list-item>
+        <mat-list-item id="invitees">
+            <mat-form-field>
+                <mat-chip-list #chipList aria-label="Invite friends">
+                    <mat-chip
+                            *ngFor="let friend of friends"
+                            [selectable]="true"
+                            [removable]="true"
+                            (removed)="remove(friend)">
+                        {{friend}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                            placeholder="Invite friends..."
+                            #friendInput
+                            formControlName="invitees"
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="true"
+                            (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let friend of filteredFriends | async" [value]="friend">
+                        {{friend}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </mat-list-item>
+    </mat-list>
+    <div class="flex-row flex-end">
+        <button mat-button>Clear</button>
+        <button mat-raised-button color="red" (click)="submit($event)">Play!</button>
+    </div>
+</form>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth/auth.service';
+import {AuthService} from '../../services/firebase/auth/auth.service';
+import {StoreService} from '../../services/firebase/store/store.service';
+import {Profile} from '../../classes/profile';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-lobby',
@@ -8,13 +11,14 @@ import {AuthService} from '../../services/auth/auth.service';
 })
 export class LobbyComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private profileStorage: StoreService<Profile>, private router: Router) { }
 
   ngOnInit() {
   }
 
   async signOut() {
-    await this.auth.signOut();
+    await this.profileStorage.updateDocument('profiles', this.auth.localUser.uid, { online: false });
+    await this.auth.signOut().then(() => this.router.navigate(['/']));
   }
 
 }

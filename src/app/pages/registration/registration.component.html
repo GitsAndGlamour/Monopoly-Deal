@@ -11,15 +11,19 @@
                     <div class="form-group">
                         <mat-form-field>
                             <span matPrefix><mat-icon color="accent">email</mat-icon>&nbsp;</span>
-                            <input matInput type="email" placeholder="E-mail" formControlName="email">
+                            <input matInput type="email" placeholder="E-mail" formControlName="email" [required]="tab === 0">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field hintLabel="Numbers and lowercase characters only. 20 characters max.">
                             <span matPrefix><mat-icon color="accent">person</mat-icon>&nbsp;</span>
-                            <input matInput type="text" placeholder="Display Name" formControlName="display">
+                            <input matInput type="text" placeholder="Username" formControlName="username" [required]="tab === 0">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field hintLabel="Alphanumeric characters only. 20 characters max.">
+                            <span matPrefix><mat-icon color="accent">person</mat-icon>&nbsp;</span>
+                            <input matInput type="text" placeholder="Display Name" formControlName="displayName" [required]="tab === 0">
+                        </mat-form-field>
+                        <mat-form-field hintLabel="At least one capital letter, one lowercase letter, and one number. Must be at least 8 characters long.">
                             <span matPrefix><mat-icon color="accent">lock</mat-icon>&nbsp;</span>
-                            <input matInput type="password" placeholder="Password" formControlName="password">
+                            <input matInput type="password" placeholder="Password" formControlName="password" [required]="tab === 0">
                         </mat-form-field>
                     </div>
                 </mat-tab>
@@ -27,11 +31,11 @@
                     <div class="form-group">
                         <mat-form-field>
                             <span matPrefix><mat-icon color="accent">email</mat-icon>&nbsp;</span>
-                            <input matInput type="email" placeholder="E-mail" formControlName="email">
+                            <input matInput type="email" placeholder="E-mail" formControlName="email" [required]="tab === 1">
                         </mat-form-field>
                         <mat-form-field>
                             <span matPrefix><mat-icon color="accent">lock</mat-icon>&nbsp;</span>
-                            <input matInput type="password" placeholder="Password" formControlName="password">
+                            <input matInput type="password" placeholder="Password" formControlName="password" [required]="tab === 1">
                         </mat-form-field>
                     </div>
                 </mat-tab>

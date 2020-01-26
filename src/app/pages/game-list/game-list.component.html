@@ -1,1 +1,11 @@
-<p>game-list works!</p>
+<div id="container">
+    <div id="header">
+        <h3>Lobby</h3>
+        <span><button mat-raised-button color="warn" (click)="openBottomSheet()">Create a new game</button></span>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let game of games">
+            <mat-expansion-panel-header></mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

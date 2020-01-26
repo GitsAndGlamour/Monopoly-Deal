@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./public",
-    "types": []
+    "types": [],
+    "allowSyntheticDefaultImports": true
   },
   "files": [
     "src/main.ts",

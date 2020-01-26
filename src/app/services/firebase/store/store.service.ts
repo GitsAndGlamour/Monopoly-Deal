@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
+import WhereFilterOp = firebase.firestore.WhereFilterOp;
+import FieldPath = firebase.firestore.FieldPath;
+
+export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, value: string | string[]};
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +15,12 @@ export class StoreService<T> {
 
   async getCollection(collection: string): Promise<T[]> {
     const ref = await this.firestore.collection<T>(collection).get().toPromise();
+    return ref.docs.map<T>(doc => doc.data() as T);
+  }
+
+  async getCollectionWhere(collection: string, clause: Clause): Promise<T[]> {
+    const ref = await this.firestore.collection<T>(collection, ref => ref.where(clause.fieldPath, clause.opStr, clause.value))
+        .get().toPromise();
     return ref.docs.map<T>(doc => doc.data() as T);
   }
 

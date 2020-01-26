@@ -11,7 +11,6 @@ export class AuthService {
   user: User;
   constructor(private firebase: AngularFireAuth, private userStorage: StoreService<User>) {
     firebase.authState.subscribe((user: User) => {
-      console.log('authState', user);
       this.user = user;
       this.localUser = user;
     });
@@ -46,18 +45,16 @@ export class AuthService {
     return await this.userStorage.getDocument('users', this.localUser.uid);
   }
 
-  async createUserData(user: User, display: string): Promise<void> {
-    console.log('createUserData', user);
-    const data = {
+  async createUserData(user: User, displayName: string): Promise<void> {
+    const data: User = {
       uid: user.uid,
-      display,
+      displayName,
       email: user.email,
     } as unknown as User;
     return await this.userStorage.addDocument('users', user.uid, data);
   }
 
   async updateUserData(user: User): Promise<void> {
-    console.log('updateUserData', user);
     const data = {
       email: user.email,
     } as unknown as User;
@@ -75,7 +72,6 @@ export class AuthService {
   }
 
   async signUp(email: string, password: string, displayName: string): Promise<void> {
-    console.log('signUp');
     return await this.firebase.auth.createUserWithEmailAndPassword(email, password)
         .then((credential: UserCredential) => this.createUserData(credential.user, displayName))
         .then(() => this.signIn(email, password))
@@ -85,7 +81,6 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string): Promise<void> {
-    console.log('signIn');
     return await this.firebase.auth.signInWithEmailAndPassword(email, password)
         .then((credential: UserCredential) => this.updateUserData(credential.user))
         .then(() => this.sendEmailVerification(email))
@@ -97,7 +92,6 @@ export class AuthService {
   async resetPassword(): Promise<void> {
     const email = prompt('Enter the e-mail address associated with your account and we\'ll e-mail you a link with ' +
         'instructions to reset your password.');
-    console.log(email);
     if (email) {
       return await this.firebase.auth.sendPasswordResetEmail(email)
           .then(() => {
