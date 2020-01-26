@@ -46,10 +46,11 @@ export class AuthService {
     return await this.userStorage.getDocument('users', this.localUser.uid);
   }
 
-  async createUserData(user: User): Promise<void> {
+  async createUserData(user: User, display: string): Promise<void> {
     console.log('createUserData', user);
     const data = {
       uid: user.uid,
+      display,
       email: user.email,
     } as unknown as User;
     return await this.userStorage.addDocument('users', user.uid, data);
@@ -73,10 +74,10 @@ export class AuthService {
     return this.authenticated ? this.user : this.firebase.auth.currentUser;
   }
 
-  async signUp(email: string, password: string): Promise<void> {
+  async signUp(email: string, password: string, displayName: string): Promise<void> {
     console.log('signUp');
     return await this.firebase.auth.createUserWithEmailAndPassword(email, password)
-        .then((credential: UserCredential) => this.createUserData(credential.user))
+        .then((credential: UserCredential) => this.createUserData(credential.user, displayName))
         .then(() => this.signIn(email, password))
         .catch(error => {
           alert(error.message);
