@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   get localUser(): User {
-    const item = localStorage.getItem('polymeets_user');
+    const item = localStorage.getItem('monopoly_user');
     if (item) {
       return JSON.parse(item);
     }
@@ -35,11 +35,11 @@ export class AuthService {
   }
 
   set localUser(user: User) {
-    localStorage.setItem('polymeets_user', JSON.stringify(user));
+    localStorage.setItem('monopoly_user', JSON.stringify(user));
   }
 
   clearLocalUser() {
-    localStorage.removeItem('polymeets_user');
+    localStorage.removeItem('monopoly_user');
   }
 
   async getUserData(): Promise<User> {
@@ -50,7 +50,6 @@ export class AuthService {
     console.log('createUserData', user);
     const data = {
       uid: user.uid,
-      name: user.displayName,
       email: user.email,
     } as unknown as User;
     return await this.userStorage.addDocument('users', user.uid, data);
@@ -59,7 +58,6 @@ export class AuthService {
   async updateUserData(user: User): Promise<void> {
     console.log('updateUserData', user);
     const data = {
-      name: user.displayName,
       email: user.email,
     } as unknown as User;
     return await this.userStorage.updateDocument('users', user.uid, data);
