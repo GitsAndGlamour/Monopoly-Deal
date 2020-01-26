@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/guards/auth.guard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579992023040</updated>
       <workItem from="1579992024720" duration="329000" />
-      <workItem from="1579995125847" duration="9417000" />
+      <workItem from="1579995125847" duration="10229000" />
     </task>
     <servers />
   </component>
@@ -104,9 +105,9 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580005085606" />
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1580004977600">
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1580005115910">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580004977600" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580005115910" />
   </component>
 </project>

@@ -7,11 +7,12 @@ import {GameListComponent} from './pages/game-list/game-list.component';
 import {GameRulesComponent} from './pages/game-rules/game-rules.component';
 import {RegistrationComponent} from './pages/registration/registration.component';
 import {AboutComponent} from './pages/about/about.component';
+import {AuthGuard} from './guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
-  { path: 'lobby', component: LobbyComponent,
+  { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
+  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],
     children: [
       { path: '', component: GameListComponent },
       { path: 'rules', component: GameRulesComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
