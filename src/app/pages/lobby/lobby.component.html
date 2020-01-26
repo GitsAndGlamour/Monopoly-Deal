@@ -1,2 +1,9 @@
-<p>lobby works!</p>
+<mat-toolbar color="primary">
+    <img src="assets/img/logo.png" height="55">
+    <button mat-flat-button color="primary" routerLink="about">About</button>
+    <button mat-flat-button color="primary" routerLink="rules">Rules</button>
+    <button mat-flat-button color="primary" routerLink="lobby">Lobby</button>
+    <span class="spacer"></span>
+    <button mat-flat-button color="signup" (click)="signOut()">Sign Out</button>
+</mat-toolbar>
 <router-outlet></router-outlet>

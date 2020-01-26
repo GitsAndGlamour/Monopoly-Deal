@@ -8,6 +8,7 @@ import {GameRulesComponent} from './pages/game-rules/game-rules.component';
 import {RegistrationComponent} from './pages/registration/registration.component';
 import {AboutComponent} from './pages/about/about.component';
 import {AuthGuard} from './guards/auth.guard';
+import {WelcomeGuard} from './guards/welcome.guard';
 
 
 const routes: Routes = [
@@ -17,8 +18,10 @@ const routes: Routes = [
       { path: '', component: GameListComponent },
       { path: 'rules', component: GameRulesComponent },
       { path: 'game/:game', component: GameComponent },
+      { path: 'about', component: AboutComponent },
+
     ] },
-  { path: 'welcome', component: WelcomeComponent,
+  { path: 'welcome', component: WelcomeComponent, canActivate: [WelcomeGuard],
     children: [
       { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
       { path: 'signup', component: RegistrationComponent, data: { tab: 0} },

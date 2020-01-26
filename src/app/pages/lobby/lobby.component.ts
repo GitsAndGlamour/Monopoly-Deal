@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-lobby',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LobbyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  async signOut() {
+    await this.auth.signOut();
   }
 
 }
