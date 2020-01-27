@@ -213,8 +213,8 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
 .mat-deposited-action-card-overlay {
   filter: darken($monopoly-black, 15%);
-  height: 200px; /* or whatever, equal to the image you want 'watermarked' */
-  width: 200px; /* as above */
+  height: 200px;
+  width: 200px;
   background-image: url(assets/img/card/action/depositedToBank.png);
   background-position: 0 0;
   background-repeat: no-repeat;
