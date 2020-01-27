@@ -4,7 +4,7 @@ import {Game} from '../../classes/game';
 import {User} from 'firebase';
 import {GameService} from '../../services/game/game.service';
 import {ProfileService} from '../../services/profile/profile.service';
-import {Profile} from '../../classes/profile';
+import {IProfile, Profile} from '../../classes/profile';
 
 @Injectable({ providedIn: 'root' })
 export class GameListResolver implements Resolve<Game[]> {
@@ -16,7 +16,7 @@ export class GameListResolver implements Resolve<Game[]> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class FriendListResolver implements Resolve<Profile[]> {
+export class FriendListResolver implements Resolve<IProfile[]> {
   constructor(private service: ProfileService) {}
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -25,7 +25,7 @@ export class FriendListResolver implements Resolve<Profile[]> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class OnlineListResolver implements Resolve<Profile[]> {
+export class OnlineListResolver implements Resolve<IProfile[]> {
   constructor(private service: ProfileService) {}
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

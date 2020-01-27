@@ -18,6 +18,7 @@ export class StoreService<T> {
       const ref = await this.firestore.collection<T>(collection).get().toPromise();
       return ref.docs.map<T>(doc => doc.data() as T);
     } catch (error) {
+      console.log(error);
       return [];
     }
   }
@@ -28,6 +29,7 @@ export class StoreService<T> {
           .get().toPromise();
       return ref.docs.map<T>(doc => doc.data() as T);
     } catch (error) {
+      console.log(error);
       return [];
     }
   }
@@ -37,14 +39,17 @@ export class StoreService<T> {
       const ref = await this.firestore.collection(collection).doc(document).get().toPromise();
       return ref.data() as T;
     } catch (error) {
+      console.log(error);
       return null;
     }
   }
 
   async addDocument(collection: string, document: string, data: T): Promise<void> {
     try {
+      console.log(collection, document, data);
       return await this.firestore.collection<T>(collection).doc(document).set(data);
     } catch (error) {
+      console.log(error);
       return;
     }
   }
@@ -53,6 +58,7 @@ export class StoreService<T> {
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(data);
     } catch (error) {
+      console.log(error);
       return;
     }
   }
@@ -61,6 +67,7 @@ export class StoreService<T> {
     try {
       return await this.firestore.collection<T>(collection).doc(document).delete();
     } catch (error) {
+      console.log(error);
       return;
     }
   }

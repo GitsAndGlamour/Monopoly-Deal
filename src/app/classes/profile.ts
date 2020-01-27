@@ -1,11 +1,24 @@
 import {User} from 'firebase';
-import {Preferences} from './preferences';
+import {IPreferences, Preferences} from './preferences';
+import {Base, IBase} from './base';
 
-export class Profile {
+export interface  IProfile extends IBase {
     uid: string;
     displayName: string;
     username: string;
-    preferences: Preferences;
+    preferences: IPreferences;
+    friends: User[];
+    pendingFriends: User[];
+    friendInvitesSent: User[];
+    declinedFriendInvites: User[];
+    online: boolean;
+}
+
+export class Profile extends Base implements IProfile {
+    uid: string;
+    displayName: string;
+    username: string;
+    preferences: IPreferences;
     friends: User[];
     pendingFriends: User[];
     friendInvitesSent: User[];
@@ -13,20 +26,22 @@ export class Profile {
     online: boolean;
 
     constructor(props) {
+        super(props);
         Object.assign(this, {}, props);
     }
 
-    static blank(user: User, username: string): Profile {
+    static blank(props): IProfile {
         return {
-            uid: user.uid,
-            displayName: user.displayName,
-            username,
+            uid: props.uid,
+            displayName: props.displayName,
+            username: props.username,
             preferences: Preferences.blank,
             friends: [],
             pendingFriends: [],
             friendInvitesSent: [],
             declinedFriendInvites: [],
             online: true,
+            created: new Date()
         }
     }
 }

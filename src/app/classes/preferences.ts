@@ -3,7 +3,11 @@ export enum InvitePreference {
     ANYONE = 'Anyone',
 }
 
-export class Preferences {
+export interface IPreferences {
+    invites: InvitePreference;
+}
+
+export class Preferences implements IPreferences {
     invites: InvitePreference;
 
     static get blank(): Preferences {

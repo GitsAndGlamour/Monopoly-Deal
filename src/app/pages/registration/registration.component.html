@@ -1,43 +1,43 @@
 <div id="container">
     <mat-card class="mat-elevation-z4">
-        <form [formGroup]="form" [noValidate]="false" (ngSubmit)="submit()">
+        <form [formGroup]="form" [noValidate]="false" (ngSubmit)="submit()" (change)="log()">
             <mat-card-header>
                 <mat-card-title>
-                    <img src="assets/img/logo.png" height="220">
+                    <img src="assets/img/logo.png" height="175">
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                     <mat-tab-group [selectedIndex]="tab" (selectedTabChange)="toggle()">
                         <mat-tab label="Sign Up" formGroupName="0">
                             <div class="form-group">
-                                <mat-form-field>
-                                    <span matPrefix><mat-icon color="accent">email</mat-icon>&nbsp;</span>
+                                <mat-form-field appearance="outline">
+                                    <span class="input-icon" matPrefix><mat-icon color="gold">email</mat-icon></span>
                                     <input matInput type="email" placeholder="E-mail" formControlName="email">
                                 </mat-form-field>
-                                <mat-form-field id="username" [color]="!signUp.get('username').errors ? 'primary' : 'warn'" hintLabel="Alphanumeric characters only. Alpha characters will be converted to lowercase. 20 characters max.">
-                                    <span matPrefix><mat-icon color="accent">person</mat-icon>&nbsp;</span>
-                                    <input matInput type="text" [placeholder]="'Username' + (!!signUp.get('username').pending ? ' (checking availability...)' : '')" formControlName="username" (keyup)="log()">
+                                <mat-form-field appearance="outline" id="username" [color]="!signUp.get('username').errors ? 'primary' : 'warn'" hintLabel="Alphanumeric characters only. Alpha characters will be converted to lowercase. 20 characters max.">
+                                    <span class="input-icon" matPrefix><mat-icon color="gold">person</mat-icon></span>
+                                    <input matInput type="text" [placeholder]="'Username' + (!!signUp.get('username').pending ? ' (checking availability...)' : '')" formControlName="username">
                                     <mat-icon matsuffix *ngIf="!signUp.get('username').errors" color="success">check_circle</mat-icon>
                                 </mat-form-field>
                                 <mat-error *ngIf="!!signUp.get('username').errors?.usernameTaken">Username already exists!</mat-error>
-                                <mat-form-field hintLabel="Alphanumeric characters, spaces( ), and periods(.) allowed. 20 characters max.">
-                                    <span matPrefix><mat-icon color="accent">person</mat-icon>&nbsp;</span>
+                                <mat-form-field appearance="outline" hintLabel="Alphanumeric characters, spaces( ), and periods(.) allowed. 20 characters max.">
+                                    <span class="input-icon" matPrefix><mat-icon color="gold">person</mat-icon></span>
                                     <input matInput type="text" placeholder="Display Name" formControlName="displayName">
                                 </mat-form-field>
-                                <mat-form-field hintLabel="At least one capital letter, one lowercase letter, one number, and one special character. Must be at least 8 characters long.">
-                                    <span matPrefix><mat-icon color="accent">lock</mat-icon>&nbsp;</span>
+                                <mat-form-field appearance="outline" hintLabel="At least one capital letter, one lowercase letter, one number, and one special character. Must be at least 8 characters long.">
+                                    <span class="input-icon" matPrefix><mat-icon color="gold">lock</mat-icon></span>
                                     <input matInput type="password" placeholder="Password" formControlName="password">
                                 </mat-form-field>
                             </div>
                         </mat-tab>
                         <mat-tab label="Login" formGroupName="1">
                             <div class="form-group">
-                                <mat-form-field>
-                                    <span matPrefix><mat-icon color="accent">email</mat-icon>&nbsp;</span>
+                                <mat-form-field appearance="outline">
+                                    <span matPrefix><mat-icon color="gold">email</mat-icon>&nbsp;&nbsp;&nbsp;</span>
                                     <input matInput type="email" placeholder="E-mail" formControlName="email" [required]="tab === 1">
                                 </mat-form-field>
-                                <mat-form-field>
-                                    <span matPrefix><mat-icon color="accent">lock</mat-icon>&nbsp;</span>
+                                <mat-form-field appearance="outline">
+                                    <span matPrefix><mat-icon color="gold">lock</mat-icon>&nbsp;&nbsp;&nbsp;</span>
                                     <input matInput type="password" placeholder="Password" formControlName="password" [required]="tab === 1">
                                 </mat-form-field>
                             </div>
@@ -46,7 +46,7 @@
             </mat-card-content>
             <mat-card-actions class="flex-row flex-end">
                 <button type="reset" mat-button>Clear</button>
-                <button type="submit" mat-raised-button color="red" [disabled]="form.invalid">Go!</button>
+                <button type="submit" mat-raised-button color="red" [disabled]="!!form.errors">Go!</button>
             </mat-card-actions>
         </form>
     </mat-card>

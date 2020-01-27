@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/firebase/auth/auth.service';
-import {Profile} from '../../classes/profile';
+import {IProfile, Profile} from '../../classes/profile';
 import {ProfileService} from '../../services/profile/profile.service';
 import {UsernameValidator} from '../../validators/username.validator';
+import {DISPLAY_NAME_REGEX, PASSWORD_REGEX, USERNAME_REGEX} from '../../helpers/constants';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +19,7 @@ export class RegistrationComponent implements OnInit {
               private profileService: ProfileService, private usernameValidator: UsernameValidator) {
     this.tab = route.snapshot.data.tab;
     this.form = this.builder.group({
+      // Sign Up
       0: this.builder.group({
         email: new FormControl('', [
           Validators.minLength(5),
@@ -25,20 +27,24 @@ export class RegistrationComponent implements OnInit {
         ]),
         password: new FormControl('', [
           Validators.minLength(8),
-          Validators.pattern('^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$')
+          Validators.pattern(PASSWORD_REGEX)
         ]),
         username: new FormControl('', [
           Validators.required,
           Validators.minLength(4),
-          Validators.pattern('[A-Za-z0-9]*$'),
+          Validators.pattern(USERNAME_REGEX),
         ],
         [this.usernameValidator.usernameValidator()]
         ),
         displayName: new FormControl('', [
           Validators.minLength(4),
-          Validators.pattern('[A-Za-z0-9.]+(?: +[A-Za-z0-9.]+)*$')]),
+          Validators.pattern(DISPLAY_NAME_REGEX)]),
       }),
-      1: this.builder.group({email: new FormControl('', [Validators.email]), password: ''})
+      // Log In
+      1: this.builder.group({
+        email: new FormControl('', [Validators.email]),
+        password: new FormControl('', [Validators.required])
+      })
     })
   }
 
@@ -64,21 +70,16 @@ export class RegistrationComponent implements OnInit {
     }
     const {email, password, displayName, username} = this.form.get(this.tab.toString()).value;
     if (this.tab === 0) {
-      await this.auth.signUp(email, password, displayName)
-          .then(() => {
-            const user = this.auth.localUser;
-            const profile = new Profile(Profile.blank(user, username.toLowerCase()));
-            this.profileService.create(profile);
-          })
+      await this.auth.signUp(email, password, displayName);
+      const profile = new Profile(Profile.blank(Object.assign({}, this.auth.localUser, {displayName, username})));
+      await this.profileService.create(profile)
           .then(() => this.router.navigate(['/lobby']));
-      console.log('signUp');
     } else {
       await this.auth.signIn(email, password).then(() => this.router.navigate(['/lobby']));
-      console.log('signIn');
     }
   }
 
   log() {
-    console.log(this.signUp.get('username').errors);
+    console.log(this.form);
   }
 }

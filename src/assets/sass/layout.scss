@@ -11,6 +11,10 @@
   justify-content: space-between !important;
 }
 
+.flex-center {
+  justify-content: center !important;
+}
+
 .flex-end {
   justify-content: flex-end !important;
 }
@@ -29,6 +33,25 @@
 
 .flex-row-item:first-of-type {
   margin-left: 0 !important;
+}
+
+/**
+  Color styling
+ */
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border: 1.75px solid black;
+  border-radius: 10px;
+}
+
+.mat-form-field-outline-thick:hover {
+  opacity: 0.5;
+}
+
+.input-icon mat-icon {
+  margin-right: 0.5rem !important;
+  text-shadow: #81c784;
 }
 
 /* One-offs */

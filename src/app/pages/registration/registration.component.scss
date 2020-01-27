@@ -1,7 +1,10 @@
 img {
   align-self: center;
+  margin: 0 10% !important;
 }
 mat-card {
+  background-color: #c8e6c9;
+  border: 10px solid white;
   width: 30%;
   margin: auto;
   .form-group {
@@ -16,6 +19,6 @@ mat-card {
 }
 #container {
   background-color: #cfd8dc;
-  padding-top: 3%;
+  padding: 2% 0;
   height: 100vh;
 }

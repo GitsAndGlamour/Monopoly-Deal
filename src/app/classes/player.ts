@@ -1,11 +1,19 @@
-import {Base} from './base';
+import {Base, IBase} from './base';
 import {User} from 'firebase';
-import {Game} from './game';
+import {IGame} from './game';
 
-export class Player extends Base {
+export interface IPlayer extends IBase {
     user?: User;
     name: string;
     position: number;
-    game: Game;
+    game: IGame;
+    owner: boolean;
+}
+
+export class Player extends Base implements IPlayer {
+    user?: User;
+    name: string;
+    position: number;
+    game: IGame;
     owner: boolean;
 }

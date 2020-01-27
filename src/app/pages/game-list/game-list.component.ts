@@ -16,9 +16,9 @@ export class GameListComponent implements OnInit {
   friends: Profile[];
   online: Profile[];
   constructor(private route: ActivatedRoute, private service: GameService, private _bottomSheet: MatBottomSheet) {
-    this.games = route.snapshot.data.games;
-    this.friends = route.snapshot.data.friends;
-    this.online = route.snapshot.data.online;
+    this.games = route.snapshot.data.games ? route.snapshot.data.games.map(game => new Game(game)) : [];
+    this.friends = route.snapshot.data.friends ? route.snapshot.data.friends.map(friends => new Profile(friends)) : [];
+    this.online = route.snapshot.data.online ? route.snapshot.data.online.map(online => new Profile(online)) : [];
   }
 
   ngOnInit() {

@@ -1,46 +1,49 @@
 import {User} from 'firebase';
 import { Injectable } from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
-import {Profile} from '../../classes/profile';
+import {IProfile} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  collection: 'profiles';
-  constructor(private storage: StoreService<Profile>, private auth: AuthService) {
+  constructor(private storage: StoreService<IProfile>, private auth: AuthService) {
   }
 
-  async profile(): Promise<Profile> {
+  async profile(): Promise<IProfile> {
     const user: User = this.auth.localUser;
-    return this.storage.getDocument(this.collection, user.uid);
+    return this.storage.getDocument('profiles', user.uid);
   }
 
   async profiles() {
-    return this.storage.getCollection(this.collection);
+    return this.storage.getCollection('profiles');
   }
 
-  async online(): Promise<Profile[]> {
-    return this.storage.getCollectionWhere(this.collection, { fieldPath: 'online', opStr: '==', value: 'true'})
+  async online(): Promise<IProfile[]> {
+    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: 'true'})
   }
 
-  async friends(): Promise<Profile[]> {
+  async friends(): Promise<IProfile[]> {
     const user = this.auth.localUser;
-    const profile: Profile = await this.storage.getDocument('profiles', user.uid);
-    return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends.map(friend => friend.uid ) })
+    const profile: IProfile = await this.storage.getDocument('profiles', user.uid);
+    if (!!profile) {
+      return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends.map(friend => friend.uid ) })
+    }
+    return [];
   }
 
-  async create(profile: Profile): Promise<void> {
-    return await this.storage.addDocument(this.collection, profile.uid, profile);
+  async create(profile: IProfile): Promise<void> {
+    const data = Object.assign({}, profile) as unknown as IProfile;
+    return await this.storage.addDocument('profiles', profile.uid, data);
   }
 
   async usernames(): Promise<string[]> {
-    const profiles = await this.storage.getCollection(this.collection);
+    const profiles = await this.storage.getCollection('profiles');
     return profiles ? profiles.map(profile => profile.username) : [];
   }
 
-  async usernameExists(value: string): Promise<Profile[]> {
-    return this.storage.getCollectionWhere(this.collection, { fieldPath: 'username', opStr: '==', value });
+  async usernameExists(value: string): Promise<IProfile[]> {
+    return await this.storage.getCollectionWhere('profiles', { fieldPath: 'username', opStr: '==', value });
   }
 }

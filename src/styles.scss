@@ -89,6 +89,10 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
   color: $monopoly-white;
 }
 
+.mat-gold {
+  color: mat-color($mat-amber, 600);
+}
+
 .mat-red {
   background-color: mat-color($mat-red, 600);
   color: $monopoly-white;

@@ -3,26 +3,18 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {User} from 'firebase';
 import UserCredential = firebase.auth.UserCredential;
 import {StoreService} from '../store/store.service';
+import {UserService} from '../../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User;
-  constructor(private firebase: AngularFireAuth, private userStorage: StoreService<User>) {
+  constructor(private firebase: AngularFireAuth, private userService: UserService) {
     firebase.authState.subscribe((user: User) => {
       this.user = user;
       this.localUser = user;
     });
-  }
-
-  // Returns active authentication which can be subscribed to
-  get state(): any {
-    return this.firebase.auth;
-  }
-
-  get auth() {
-    return null;
   }
 
   get localUser(): User {
@@ -41,24 +33,12 @@ export class AuthService {
     localStorage.removeItem('monopoly_user');
   }
 
-  async getUserData(): Promise<User> {
-    return await this.userStorage.getDocument('users', this.localUser.uid);
-  }
-
   async createUserData(user: User, displayName: string): Promise<void> {
-    const data: User = {
-      uid: user.uid,
-      displayName,
-      email: user.email,
-    } as unknown as User;
-    return await this.userStorage.addDocument('users', user.uid, data);
+    return this.userService.create({displayName, ...user});
   }
 
   async updateUserData(user: User): Promise<void> {
-    const data = {
-      email: user.email,
-    } as unknown as User;
-    return await this.userStorage.updateDocument('users', user.uid, data);
+    return this.userService.update(user);
   }
 
   // Returns true if user is logged in
