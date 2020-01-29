@@ -1,5 +1,5 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Game} from '../../classes/game';
 import {GameService} from '../../services/game/game.service';
 

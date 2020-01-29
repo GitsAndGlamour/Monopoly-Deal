@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import WhereFilterOp = firebase.firestore.WhereFilterOp;
 import FieldPath = firebase.firestore.FieldPath;
@@ -11,7 +11,7 @@ export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, va
 })
 export class StoreService<T> {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(public firestore: AngularFirestore) { }
 
   async getCollection(collection: string): Promise<T[]> {
     try {
@@ -46,7 +46,6 @@ export class StoreService<T> {
 
   async addDocument(collection: string, document: string, data: T): Promise<void> {
     try {
-      console.log(collection, document, data);
       return await this.firestore.collection<T>(collection).doc(document).set(data);
     } catch (error) {
       console.log(error);

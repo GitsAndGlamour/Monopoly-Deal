@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/firebase/auth/auth.service';
 import {StoreService} from '../../services/firebase/store/store.service';
 import {Profile} from '../../classes/profile';

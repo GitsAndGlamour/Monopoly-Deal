@@ -1,19 +1,19 @@
 import {Base, IBase} from './base';
-import {User} from 'firebase';
-import {IGame} from './game';
+import {IGameReadOnly} from './game';
+import {IProfileReadOnly} from './profile';
 
 export interface IPlayer extends IBase {
-    user?: User;
+    user?: IProfileReadOnly;
     name: string;
     position: number;
-    game: IGame;
+    game: IGameReadOnly;
     owner: boolean;
 }
 
 export class Player extends Base implements IPlayer {
-    user?: User;
+    user?: IProfileReadOnly;
     name: string;
     position: number;
-    game: IGame;
+    game: IGameReadOnly;
     owner: boolean;
 }

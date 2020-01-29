@@ -1,5 +1,5 @@
 import {User} from 'firebase';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 
 @Injectable({
@@ -7,15 +7,15 @@ import {StoreService} from '../firebase/store/store.service';
 })
 export class UserService {
 
-  constructor(private storage: StoreService<User>) { }
+  constructor(public storage: StoreService<User>) { }
 
   async create(user: User): Promise<void> {
     const data = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-    } as unknown as User;
-    return await this.storage.addDocument('users', user.uid, data)
+    } as unknown as User; // casting to unknown before User due to passing in a partial instance of the actual object.
+    return await this.storage.addDocument('users', user.uid, data);
   }
 
   async update(user: User): Promise<void> {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LobbyComponent} from './pages/lobby/lobby.component';
 import {GameComponent} from './pages/game/game.component';
 import {WelcomeComponent} from './pages/welcome/welcome.component';
@@ -15,7 +15,7 @@ import {ProfileResolver} from './pages/lobby/lobby.resolver';
 import {ProfileComponent} from './pages/profile/profile.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
   { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], resolve: { profile: ProfileResolver },
     children: [

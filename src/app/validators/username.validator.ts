@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
-import { Observable, timer } from 'rxjs';
-import { map, switchMap  } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {AbstractControl, AsyncValidatorFn} from '@angular/forms';
+import {Observable, timer} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 import {ProfileService} from '../services/profile/profile.service';
 
 @Injectable({
@@ -26,10 +26,9 @@ export class UsernameValidator {
         return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
             return this.searchUsername(control.value.toLowerCase())
                 .pipe(
-                    map(res => {
-                        console.log(res);
+                    map((res: boolean) => {
                         // if username is already taken
-                        if (res.length > 0) {
+                        if (!!res) {
                             // return error
                             return { 'usernameTaken': true};
                         }

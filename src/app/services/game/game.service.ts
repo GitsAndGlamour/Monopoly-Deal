@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 import {Game} from '../../classes/game';
 

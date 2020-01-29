@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./public/spec",
+    "allowSyntheticDefaultImports": true,
     "types": [
       "jasmine",
       "node"

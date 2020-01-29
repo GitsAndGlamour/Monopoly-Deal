@@ -1,9 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ProfileResolver } from './lobby.resolver';
+import {ProfileResolver} from './lobby.resolver';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ServiceSpecModule} from '../../services/service.spec.module';
 
 describe('ProfileResolver', () => {
-    beforeEach(() => TestBed.configureTestingModule({}));
+    beforeEach(() => TestBed.configureTestingModule({
+        imports: [ServiceSpecModule],
+    }));
 
     it('should be created', () => {
         const service: ProfileResolver = TestBed.get(ProfileResolver);

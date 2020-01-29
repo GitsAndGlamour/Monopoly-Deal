@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DeckComponent } from './deck.component';
+import {DeckComponent} from './deck.component';
+import {PagesSpecModule} from '../../../../pages/pages.spec.module';
 
 describe('DeckComponent', () => {
   let component: DeckComponent;
@@ -8,7 +9,7 @@ describe('DeckComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeckComponent ]
+      imports: [PagesSpecModule],
     })
     .compileComponents();
   }));

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/firebase/auth/auth.service';
-import {IProfile, Profile} from '../../classes/profile';
+import {Profile} from '../../classes/profile';
 import {ProfileService} from '../../services/profile/profile.service';
 import {UsernameValidator} from '../../validators/username.validator';
 import {DISPLAY_NAME_REGEX, PASSWORD_REGEX, USERNAME_REGEX} from '../../helpers/constants';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Profile} from '../../classes/profile';
 import {ActivatedRoute} from '@angular/router';
 
@@ -16,5 +16,4 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

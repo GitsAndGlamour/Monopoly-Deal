@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {User} from 'firebase';
-import UserCredential = firebase.auth.UserCredential;
-import {StoreService} from '../store/store.service';
 import {UserService} from '../../user/user.service';
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User;
-  constructor(private firebase: AngularFireAuth, private userService: UserService) {
+  constructor(public firebase: AngularFireAuth, public userService: UserService) {
     firebase.authState.subscribe((user: User) => {
       this.user = user;
       this.localUser = user;

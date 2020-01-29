@@ -23,6 +23,10 @@ export interface IGame extends IBase {
     ranked: boolean;
 }
 
+export type IGameReadOnly = Omit<IGame, 'owner' | 'seats' | 'bots' | 'public' | 'viewable' | 'friends' | 'players' | 'invitees' | 'ranked'>;
+
+export type IGameWrite = Omit<IGame, 'id' | 'ranked' | 'status' | 'owner' | 'created'>;
+
 export class Game extends Base implements IGame {
     id: number;
     name: string;

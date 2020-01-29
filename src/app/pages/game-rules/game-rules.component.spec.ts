@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GameRulesComponent } from './game-rules.component';
+import {GameRulesComponent} from './game-rules.component';
+import {PagesSpecModule} from '../pages.spec.module';
 
 describe('GameRulesComponent', () => {
   let component: GameRulesComponent;
@@ -8,7 +9,7 @@ describe('GameRulesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameRulesComponent ]
+      imports: [PagesSpecModule],
     })
     .compileComponents();
   }));

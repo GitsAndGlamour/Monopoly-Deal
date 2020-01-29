@@ -1,10 +1,9 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Game} from '../../classes/game';
-import {User} from 'firebase';
 import {GameService} from '../../services/game/game.service';
 import {ProfileService} from '../../services/profile/profile.service';
-import {IProfile, Profile} from '../../classes/profile';
+import {IProfile} from '../../classes/profile';
 
 @Injectable({ providedIn: 'root' })
 export class GameListResolver implements Resolve<Game[]> {

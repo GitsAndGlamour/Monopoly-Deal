@@ -1,5 +1,5 @@
 import {User} from 'firebase';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 import {IProfile} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
@@ -8,7 +8,7 @@ import {AuthService} from '../firebase/auth/auth.service';
   providedIn: 'root'
 })
 export class ProfileService {
-  constructor(private storage: StoreService<IProfile>, private auth: AuthService) {
+  constructor(public storage: StoreService<IProfile>, public auth: AuthService) {
   }
 
   async profile(): Promise<IProfile> {
@@ -43,7 +43,8 @@ export class ProfileService {
     return profiles ? profiles.map(profile => profile.username) : [];
   }
 
-  async usernameExists(value: string): Promise<IProfile[]> {
-    return await this.storage.getCollectionWhere('profiles', { fieldPath: 'username', opStr: '==', value });
+  async usernameExists(value: string): Promise<boolean> {
+    const results = await this.storage.getCollectionWhere('profiles', {fieldPath: 'username', opStr: '==', value});
+    return results && results.length > 0;
   }
 }

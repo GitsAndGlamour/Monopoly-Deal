@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LobbyComponent } from './lobby.component';
+import {LobbyComponent} from './lobby.component';
+import {PagesSpecModule} from '../pages.spec.module';
 
 describe('LobbyComponent', () => {
   let component: LobbyComponent;
@@ -8,7 +9,7 @@ describe('LobbyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LobbyComponent ]
+      imports: [PagesSpecModule],
     })
     .compileComponents();
   }));

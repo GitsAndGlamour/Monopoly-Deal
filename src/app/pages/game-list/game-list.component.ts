@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Game} from '../../classes/game';
 import {ActivatedRoute} from '@angular/router';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';

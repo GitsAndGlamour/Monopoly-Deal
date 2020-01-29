@@ -1,28 +1,33 @@
-import {User} from 'firebase';
 import {IPreferences, Preferences} from './preferences';
 import {Base, IBase} from './base';
 
 export interface  IProfile extends IBase {
     uid: string;
-    displayName: string;
     username: string;
-    preferences: IPreferences;
-    friends: User[];
-    pendingFriends: User[];
-    friendInvitesSent: User[];
-    declinedFriendInvites: User[];
+    displayName: string;
     online: boolean;
+    friends: IProfileReadOnly[];
+    pendingFriends: IProfileReadOnly[];
+    friendInvitesSent: IProfileReadOnly[];
+    declinedFriendInvites: IProfileReadOnly[];
+    preferences: IPreferences;
 }
+
+export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences'>;
+
+export type IProfileWrite = Omit<IProfileReadOnly, 'uid' | 'username' | 'online'>;
+
+export type IProfileFriendWrite = Omit<IProfileWrite, 'displayName' | 'preferences'>;
 
 export class Profile extends Base implements IProfile {
     uid: string;
     displayName: string;
     username: string;
     preferences: IPreferences;
-    friends: User[];
-    pendingFriends: User[];
-    friendInvitesSent: User[];
-    declinedFriendInvites: User[];
+    friends: IProfileReadOnly[];
+    pendingFriends: IProfileReadOnly[];
+    friendInvitesSent: IProfileReadOnly[];
+    declinedFriendInvites: IProfileReadOnly[];
     online: boolean;
 
     constructor(props) {
@@ -33,8 +38,8 @@ export class Profile extends Base implements IProfile {
     static blank(props): IProfile {
         return {
             uid: props.uid,
-            displayName: props.displayName,
             username: props.username,
+            displayName: props.displayName,
             preferences: Preferences.blank,
             friends: [],
             pendingFriends: [],

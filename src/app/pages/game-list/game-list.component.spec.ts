@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GameListComponent } from './game-list.component';
+import {GameListComponent} from './game-list.component';
+import {PagesSpecModule} from '../pages.spec.module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 describe('GameListComponent', () => {
   let component: GameListComponent;
@@ -8,7 +10,7 @@ describe('GameListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameListComponent ]
+      imports: [PagesSpecModule, MatExpansionModule],
     })
     .compileComponents();
   }));
