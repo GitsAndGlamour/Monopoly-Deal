@@ -1,3 +1,24 @@
-<mat-list>
-    <mat-list-item *ngFor="let friend of profile.friends">{{friend.}}</mat-list-item>
-</mat-list>
+<div id="container">
+    <mat-card id="action-header" class="mat-elevation-z5">
+        <mat-card-header>
+            <img mat-card-avatar *ngIf="profile.image" [src]="profile?.image">
+            <img mat-card-avatar *ngIf="!profile.image" src="assets/img/layout/person.svg">
+            <mat-card-title><small>Display Name:</small> {{profile.displayName}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-title>
+            <mat-card-subtitle><small>Username:</small> {{profile.username}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p><small>Member Since:</small> {{profile._created | date}}</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="mat-elevation-z5">
+        <mat-toolbar  color="primary">
+            <h2 class="card-header-title">Friends</h2>
+        </mat-toolbar>
+        <mat-card-content class="profile-card">
+            <h3 id="no-friend-prompt" *ngIf="!profile.friends.length">You have no friends! :( <button mat-raised-button color="red" (click)="addFriend()">Make some!</button></h3>
+            <mat-list>
+                <mat-list-item *ngFor="let friend of friends">{{friend.displayName}} ({{friend.username}})</mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -9,15 +9,19 @@ import {RegistrationComponent} from './pages/registration/registration.component
 import {AboutComponent} from './pages/about/about.component';
 import {AuthGuard} from './guards/auth.guard';
 import {WelcomeGuard} from './guards/welcome.guard';
-import {FriendListResolver, GameListResolver, OnlineListResolver} from './pages/game-list/game-list.resolver';
-import {GameResolver} from './pages/game/game.resolver';
-import {ProfileResolver} from './pages/lobby/lobby.resolver';
 import {ProfileComponent} from './pages/profile/profile.component';
+import {
+  FriendListResolver,
+  OnlineListResolver,
+  ProfileListResolver,
+  ProfileResolver
+} from './resolvers/profile.resolver';
+import {GameListResolver, GameResolver} from './resolvers/game.resolver';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
-  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], resolve: { profile: ProfileResolver },
+  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], resolve: { profile: ProfileResolver, profiles: ProfileListResolver, friends: FriendListResolver },
     children: [
       { path: '', component: GameListComponent, resolve: { games: GameListResolver, friends: FriendListResolver, online: OnlineListResolver } },
       { path: 'rules', component: GameRulesComponent },

@@ -1,7 +1,7 @@
 import {User} from 'firebase';
 import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
-import {IProfile} from '../../classes/profile';
+import {IProfile, IProfileReadOnly} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
 
 @Injectable({
@@ -20,17 +20,27 @@ export class ProfileService {
     return this.storage.getCollection('profiles');
   }
 
-  async online(): Promise<IProfile[]> {
+  async online(): Promise<IProfileReadOnly[]> {
     return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: 'true'})
   }
 
-  async friends(): Promise<IProfile[]> {
+  async friends(): Promise<IProfileReadOnly[]> {
     const user = this.auth.localUser;
     const profile: IProfile = await this.storage.getDocument('profiles', user.uid);
     if (!!profile) {
-      return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends.map(friend => friend.uid ) })
+      return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends })
     }
     return [];
+  }
+
+  async addFriend(uid: string): Promise<void> {
+    const user = this.auth.localUser;
+    await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid);
+  }
+
+  async addFriends(uidList: string[]): Promise<void> {
+    const user = this.auth.localUser;
+    await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uidList);
   }
 
   async create(profile: IProfile): Promise<void> {

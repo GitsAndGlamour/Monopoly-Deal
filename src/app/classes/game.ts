@@ -1,4 +1,3 @@
-import {IPlayer} from './player';
 import {Base, IBase} from './base';
 
 export enum GameStatus {
@@ -11,14 +10,14 @@ export enum GameStatus {
 export interface IGame extends IBase {
     id: number;
     name: string;
-    owner: IPlayer;
+    owner: string;
     seats: number;
     bots: number;
     public: boolean;
     viewable: boolean;
     friends: boolean;
-    players: IPlayer[];
-    invitees: IPlayer[];
+    players: string[];
+    invitees: string[];
     status: GameStatus;
     ranked: boolean;
 }
@@ -30,14 +29,14 @@ export type IGameWrite = Omit<IGame, 'id' | 'ranked' | 'status' | 'owner' | 'cre
 export class Game extends Base implements IGame {
     id: number;
     name: string;
-    owner: IPlayer;
+    owner: string; // Profile ID
     seats: number;
     bots: number;
     public: boolean;
     viewable: boolean;
     friends: boolean;
-    players: IPlayer[];
-    invitees: IPlayer[];
+    players: string[]; // Profile IDs
+    invitees: string[]; // Profile IDs
     status: GameStatus;
     ranked: boolean;
 

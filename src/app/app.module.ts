@@ -20,6 +20,7 @@ import {AboutComponent} from './pages/about/about.component';
 import {ComponentModule} from './components/component.module';
 import {CreateGameComponent} from './pages/game-list/create-game/create-game.component';
 import {ProfileComponent} from './pages/profile/profile.component';
+import {AddFriendComponent} from './pages/profile/add-friend/add-friend.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ProfileComponent} from './pages/profile/profile.component';
     RegistrationComponent,
     AboutComponent,
     ProfileComponent,
+    AddFriendComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,6 @@ import {ProfileComponent} from './pages/profile/profile.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateGameComponent]
+  entryComponents: [CreateGameComponent, AddFriendComponent]
 })
 export class AppModule { }

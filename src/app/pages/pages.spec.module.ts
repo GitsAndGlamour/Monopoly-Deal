@@ -20,6 +20,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {GameListComponent} from './game-list/game-list.component';
 import {DeckComponent} from '../components/game/deck/deck/deck.component';
+import { AddFriendComponent } from './profile/add-friend/add-friend.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {DeckComponent} from '../components/game/deck/deck/deck.component';
         ProfileComponent,
         DeckComponent,
         CreateGameComponent,
+        AddFriendComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

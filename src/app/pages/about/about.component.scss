@@ -1,0 +1,16 @@
+.header-image {
+  width: 80vw;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 0 5%;
+}
+#container {
+  padding: 1% 5%;
+  mat-toolbar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    h1 {
+      color: white;
+    }
+  }
+}

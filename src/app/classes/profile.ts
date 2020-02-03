@@ -6,16 +6,16 @@ export interface  IProfile extends IBase {
     username: string;
     displayName: string;
     online: boolean;
-    friends: IProfileReadOnly[];
-    pendingFriends: IProfileReadOnly[];
-    friendInvitesSent: IProfileReadOnly[];
-    declinedFriendInvites: IProfileReadOnly[];
+    friends: string[]; // Profile IDs
+    pendingFriends: string[]; // Profile IDs
+    friendInvitesSent: string[]; // Profile IDs
+    declinedFriendInvites: string[]; // Profile IDs
     preferences: IPreferences;
 }
 
-export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences'>;
+export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences' | 'online'>;
 
-export type IProfileWrite = Omit<IProfileReadOnly, 'uid' | 'username' | 'online'>;
+export type IProfileWrite = Omit<string, 'uid' | 'username'>;
 
 export type IProfileFriendWrite = Omit<IProfileWrite, 'displayName' | 'preferences'>;
 
@@ -24,11 +24,12 @@ export class Profile extends Base implements IProfile {
     displayName: string;
     username: string;
     preferences: IPreferences;
-    friends: IProfileReadOnly[];
-    pendingFriends: IProfileReadOnly[];
-    friendInvitesSent: IProfileReadOnly[];
-    declinedFriendInvites: IProfileReadOnly[];
+    friends: string[]; // Profile IDs
+    pendingFriends: string[]; // Profile IDs
+    friendInvitesSent: string[]; // Profile IDs
+    declinedFriendInvites: string[]; // Profile IDs
     online: boolean;
+    image: string;
 
     constructor(props) {
         super(props);

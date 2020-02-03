@@ -3,17 +3,17 @@ import {IGameReadOnly} from './game';
 import {IProfileReadOnly} from './profile';
 
 export interface IPlayer extends IBase {
-    user?: IProfileReadOnly;
+    user?: string; // Profile ID
     name: string;
     position: number;
-    game: IGameReadOnly;
+    game: string; // Game ID
     owner: boolean;
 }
 
 export class Player extends Base implements IPlayer {
-    user?: IProfileReadOnly;
+    user?: string; // Profile ID
     name: string;
     position: number;
-    game: IGameReadOnly;
+    game: string; // Game ID
     owner: boolean;
 }

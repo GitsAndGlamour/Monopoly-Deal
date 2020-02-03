@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ProfileResolver} from './lobby.resolver';
+import {ProfileResolver} from '../../resolvers/lobby.resolver';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ServiceSpecModule} from '../../services/service.spec.module';
 
