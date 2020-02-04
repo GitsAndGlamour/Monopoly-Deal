@@ -34,4 +34,8 @@ export class LobbyComponent implements OnInit {
         .then(() => this.router.navigate(['/']));
   }
 
+  async markNotificationsAsRead() {
+    await this.notificationService.markAllAsRead();
+  }
+
 }

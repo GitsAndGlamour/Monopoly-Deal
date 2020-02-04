@@ -46,13 +46,27 @@ export class NotificationService {
     async sendInvite(game: IGame, invitee: string) {
         const id = await this.storage.getId('notifications');
         const profile = await this.profileService.profile();
-        const invite = {
+        const invite: INotification = {
             id,
             link: `game/${game.id}`,
             type: NotificationType.INVITE,
             message: `You have a game invite from ${profile.displayName} for ${game.name}!`,
             status: NotificationStatus.NEW
         };
-        await this.profileService.addNotification(invitee, invite);
+        const notifications = await this.notifications();
+        notifications[invite.id] = invite;
+        await this.profileService.addNotification(invitee, notifications);
+    }
+
+    async markAllAsRead() {
+        let notifications: { [p: string]: INotification } = {};
+        const profile = await this.profileService.profile();
+        notifications = profile.notifications;
+        if (profile && profile.notifications && profile.notifications) {
+            Object.keys(profile.notifications)
+                .filter(key => notifications[key].status === NotificationStatus.NEW)
+                .map(key => notifications[key].status = NotificationStatus.READ)
+        }
+        await this.profileService.updateNotifications(notifications);
     }
 }

@@ -81,9 +81,13 @@ export class ProfileService {
     await this.storage.updateDocument('profiles', user.uid, { preferences: { token }} as unknown as IProfile)
   }
 
-  async addNotification(invitee: string, notification: INotification) {
-    console.log(invitee, notification);
-    await this.storage.updateDocument('profiles', invitee, { notifications: { [notification.id]: notification }});
+  async addNotification(invitee: string, notifications: { [p: string]: INotification }) {
+    await this.storage.updateDocument('profiles', invitee, { notifications } as unknown);
+  }
+
+  async updateNotifications(notifications: { [p: string]: INotification }) {
+    const user = this.auth.localUser;
+    await this.storage.updateDocument('profiles', user.uid, { notifications } as unknown);
   }
 
   async showOffline() {

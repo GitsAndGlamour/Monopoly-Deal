@@ -22,6 +22,7 @@ import {CreateGameComponent} from './pages/game-list/create-game/create-game.com
 import {ProfileComponent} from './pages/profile/profile.component';
 import {AddFriendComponent} from './pages/profile/add-friend/add-friend.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -37,19 +38,20 @@ import {HttpClientModule} from '@angular/common/http';
     ProfileComponent,
     AddFriendComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ComponentModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        ComponentModule,
+        MatBadgeModule,
+    ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [CreateGameComponent, AddFriendComponent]
