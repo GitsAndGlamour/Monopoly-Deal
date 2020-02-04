@@ -23,7 +23,7 @@
                         <mat-panel-title>{{game.name}}</mat-panel-title>
                         <mat-panel-description class="flex-space-between">
                             <mat-chip-list>
-                                <mat-chip *ngIf="game.status === statuses.READY" selected color="warn">{{game.seats - game.players.length - game.bots}} seat(s) available!</mat-chip>
+                                <mat-chip *ngIf="game.status === statuses.READY" selected color="warn">{{availableSeating(game)}} seat(s) available!</mat-chip>
                                 <mat-chip *ngIf="game.status !== statuses.READY" selected color="warn">{{game.status}}</mat-chip>
                             </mat-chip-list>
                             <div>
@@ -42,9 +42,9 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <div class="flex-row flex-end expansion-action-panel">
-                        <button mat-raised-button>Watch</button>
+                        <button mat-raised-button [routerLink]="['game', game.id]" [queryParams]="{action:'watch'}">Watch</button>
                         &nbsp;
-                        <button mat-raised-button color="warn">Play!</button>
+                        <button mat-raised-button [routerLink]="['game', game.id]" color="warn" [queryParams]="{action:'play'}">Play!</button>
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>

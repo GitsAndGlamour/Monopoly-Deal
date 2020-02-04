@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
     this.profile = new Profile(this.route.parent.snapshot.data.profile);
     this.profiles = this.route.parent.snapshot.data.profiles;
     this.friends = this.route.parent.snapshot.data.friends;
-    console.log(this.profile, this.profiles, this.friends);
   }
 
   ngOnInit() {
@@ -44,10 +43,6 @@ export class ProfileComponent implements OnInit {
   async removeFriend(uid: string) {
     await this.service.removeFriend(uid);
     this.friends = await this.service.friends();
-  }
-
-  popupProfile(uid: string) {
-    console.log('popupProfile');
   }
 
   async updateToken() {

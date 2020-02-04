@@ -67,3 +67,7 @@
 #username .mat-form-field-infix {
   display: flex !important; // Makes the green check next to validated name appear on the right side of the input field instead of below the input text.
 }
+
+.mat-menu-panel {
+  margin-top: 1rem;
+}

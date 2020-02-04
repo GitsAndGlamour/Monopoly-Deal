@@ -4,6 +4,8 @@ import {StoreService} from '../firebase/store/store.service';
 import {IProfile, IProfileReadOnly} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
 import {TokenPreference} from '../../classes/preferences';
+import {INotification} from '../../classes/notification';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,11 @@ export class ProfileService {
   async profile(): Promise<IProfile> {
     const user: User = this.auth.localUser;
     return this.storage.getDocument('profiles', user.uid);
+  }
+
+  profileChanges(): Observable<any> {
+    const user: User = this.auth.localUser;
+    return this.storage.getDocumentChanges('profiles', user.uid);
   }
 
   async profiles() {
@@ -72,5 +79,14 @@ export class ProfileService {
   async updateToken(token: TokenPreference) {
     const user = this.auth.localUser;
     await this.storage.updateDocument('profiles', user.uid, { preferences: { token }} as unknown as IProfile)
+  }
+
+  async addNotification(invitee: string, notification: INotification) {
+    console.log(invitee, notification);
+    await this.storage.updateDocument('profiles', invitee, { notifications: { [notification.id]: notification }});
+  }
+
+  async showOffline() {
+    await this.storage.updateDocument('profiles', this.auth.localUser.uid, { online: false });
   }
 }

@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export const ICON_LIST = [
     'bot',
     'friend',
+    'game',
     'public',
     'ranked',
     'viewable',

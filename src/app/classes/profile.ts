@@ -1,5 +1,6 @@
 import {IPreferences, Preferences} from './preferences';
 import {Base, IBase} from './base';
+import {INotification} from './notification';
 
 export interface  IProfile extends IBase {
     uid: string;
@@ -11,13 +12,14 @@ export interface  IProfile extends IBase {
     friendInvitesSent: string[]; // Profile IDs
     declinedFriendInvites: string[]; // Profile IDs
     preferences: IPreferences;
+    notifications: {[p: string]: INotification};
 }
 
-export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences' | 'online'>;
+export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences' | 'online' | 'notifications'>;
 
-export type IProfileWrite = Omit<string, 'uid' | 'username'>;
+export type IProfileWrite = Omit<string, 'uid' | 'username' | 'notifications'>;
 
-export type IProfileFriendWrite = Omit<IProfileWrite, 'displayName' | 'preferences'>;
+export type IProfileFriendWrite = Omit<IProfileWrite, 'displayName' | 'preferences' | 'notifications'>;
 
 export class Profile extends Base implements IProfile {
     uid: string;
@@ -30,6 +32,7 @@ export class Profile extends Base implements IProfile {
     declinedFriendInvites: string[]; // Profile IDs
     online: boolean;
     image: string;
+    notifications: {[p: string]: INotification};
 
     constructor(props) {
         super(props);
@@ -47,7 +50,8 @@ export class Profile extends Base implements IProfile {
             friendInvitesSent: [],
             declinedFriendInvites: [],
             online: true,
-            created: new Date()
+            created: new Date(),
+            notifications: {}
         }
     }
 }

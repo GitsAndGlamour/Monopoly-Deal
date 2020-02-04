@@ -6,8 +6,9 @@ import {MatAutocomplete} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {IProfile, IProfileReadOnly} from '../../../classes/profile';
 import {map, startWith} from 'rxjs/operators';
-import {GameStatus, IGame} from '../../../classes/game';
+import {GameStatus, IGame, InvitationStatus} from '../../../classes/game';
 import {GameService} from '../../../services/game/game.service';
+import {ReadyGameStatusTrigger} from '../../../triggers/game/ready-game-status.trigger';
 
 @Component({
   selector: 'app-create-game',
@@ -25,7 +26,7 @@ export class CreateGameComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<CreateGameComponent>, private builder: FormBuilder,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: { index: number, friends: IProfileReadOnly[], profile: IProfile },
-              private service: GameService) {
+              private service: GameService, private trigger: ReadyGameStatusTrigger) {
     this.form = this.builder.group({
       name: `Game #${data.index}`,
       seats: 2,
@@ -53,17 +54,18 @@ export class CreateGameComponent implements OnInit {
       created: new Date(),
       friends: this.form.get('friends').value,
       id: await this.service.generateId(),
-      invitees: this.friends.map(friend => friend.uid),
+      invitees: this.friends.map(friend => ({profile: friend.uid, status: InvitationStatus.SENT, created: new Date()})),
       name: this.form.get('name').value,
       owner: this.data.profile.uid,
-      players: [this.data.profile.uid],
+      players: [],
       public: this.form.get('public').value,
       ranked: this.form.get('ranked').value,
       seats: this.form.get('seats').value,
       status: GameStatus.READY,
       viewable: this.form.get('viewable').value
     };
-    this.service.create(game);
+    console.log(game);
+    await this.trigger.execute(game);
   }
 
   remove(profile: IProfileReadOnly): void {

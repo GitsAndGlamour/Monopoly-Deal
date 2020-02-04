@@ -2,72 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/helpers/functions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/bot.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/friend.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/public.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/ranked.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/unviewable.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/viewable.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Airplane.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Bomb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Bow and Arrow.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Car.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Cat.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Chess Piece.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Cog.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Happy Face.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/High Heel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Horse.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Iron.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Lantern.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Money Face.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Mr. Monopoly.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Needle and Thread.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Penguin.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Poop.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Purse.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Sack of Money.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Ship.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Sneaker.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Theatre Faces.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Top Hat.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/tokens/Train.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_broke_shrug.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_cane_stand.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_cash_bag.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_cash_run.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_chance_taken.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_circle_head.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_dollar_eyes.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/util/mr_monopoly/mr_monopoly_outline_head.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/notification/notification.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/triggers/game/ready-game-status.trigger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/triggers/status.trigger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/icons/game.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/classes/game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/game.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/preferences.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/preferences.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/about/about.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/about/about.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/player.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/player.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/profile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/create-game/create-game.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/game-rules/game-rules.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-rules/game-rules.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/game/game.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game/game.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/registration/registration.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/registration/registration.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/registration/registration.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/registration/registration.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/registration/registration.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/registration/registration.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/resolvers/game.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/resolvers/game.resolver.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/game/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/game/game.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/profile/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/profile/profile.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/tokens/scottish_terrier.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/tokens/Scottish Terrier.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/util/icon/icon.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/util/icon/icon.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/triggers/create-game.trigger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/notification.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/sass/layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/sass/layout.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +53,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last.edited.regexp" value="Joh" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img/tokens" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img/icons" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -110,19 +65,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/img/util/mr_monopoly" />
-      <recent name="$PROJECT_DIR$/src/assets/img/util" />
-      <recent name="$PROJECT_DIR$/src/app/resolvers" />
-      <recent name="$PROJECT_DIR$/src/assets/img/layout" />
-      <recent name="$PROJECT_DIR$/src/test/mock/firebase" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/img/icons" />
       <recent name="$PROJECT_DIR$/src/assets/img/tokens" />
       <recent name="$PROJECT_DIR$/src/app/pages/profile/img" />
       <recent name="$PROJECT_DIR$/src/test/mock" />
       <recent name="$PROJECT_DIR$/src/app/validators" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/triggers/game" />
       <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/assets/img/util/mr_monopoly" />
+      <recent name="$PROJECT_DIR$/src/assets/img/util" />
+      <recent name="$PROJECT_DIR$/src/app/resolvers" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Angluar CLI Server">
@@ -182,7 +137,7 @@
       <workItem from="1580255923137" duration="12000" />
       <workItem from="1580255945121" duration="2834000" />
       <workItem from="1580260133713" duration="35714000" />
-      <workItem from="1580826664218" duration="7381000" />
+      <workItem from="1580826664218" duration="21779000" />
     </task>
     <servers />
   </component>
@@ -199,10 +154,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="528" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580160111642" />
-    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1580779751002">
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1580842716739">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580779751002" />
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580842716739" />
     <state x="528" y="260" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580255193535">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -211,25 +166,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="627" y="298" key="FileChooserDialogImpl/0.23.1680.1027@0.23.1680.1027" timestamp="1580115575704" />
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1580829958487">
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1580853667842">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1580829958487" />
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1580853667842" />
     <state width="1638" height="275" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565213" />
-    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1580829958485">
+    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1580853667841">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1580829958485" />
+    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1580853667841" />
     <state width="1638" height="275" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1580829958485">
+    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1580853667840">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1580829958485" />
+    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1580853667840" />
     <state width="1638" height="275" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1580829958486">
+    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1580853667842">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1580829958486" />
+    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1580853667842" />
     <state width="1638" height="275" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565212" />
     <state width="1638" height="344" key="GridCell.Tab.1.bottom" timestamp="1580255304622">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -316,24 +271,24 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1580073386671" />
-    <state x="622" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580833178113">
+    <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580852791729">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1580162899417" />
-    <state x="622" y="455" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1580833178113" />
-    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1580835718853">
+    <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1580852791729" />
+    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1580853411956">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1580835718853" />
+    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1580853411956" />
     <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580118196594" />
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog" timestamp="1580168307747">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1580168307747" />
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1580834490017">
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1580853955028">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1580834490017" />
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1580853955028" />
     <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580140561318" />
   </component>
 </project>

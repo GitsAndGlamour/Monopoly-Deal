@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import WhereFilterOp = firebase.firestore.WhereFilterOp;
 import FieldPath = firebase.firestore.FieldPath;
 import FieldValue = firebase.firestore.FieldValue;
+import {Observable} from 'rxjs';
 
 export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, value: string | string[] | boolean };
 
@@ -13,6 +14,10 @@ export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, va
 export class StoreService<T> {
 
   constructor(public firestore: AngularFirestore) { }
+
+  getDocumentChanges(collection: string, document: string): Observable<any> {
+    return this.firestore.collection<T>(collection).doc(document).valueChanges()
+  }
 
   async getId(collection: string): Promise<string> {
     try {

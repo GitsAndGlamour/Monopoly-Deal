@@ -4,6 +4,22 @@
     <button mat-flat-button color="primary" routerLink="rules">Rules</button>
     <button mat-flat-button color="primary" routerLink="/lobby">Lobby</button>
     <span class="spacer"></span>
+    <mat-chip-list><mat-chip [matMenuTriggerFor]="notificationMenu">{{notifications?.length || 0}} Notifications</mat-chip></mat-chip-list>
+    <mat-menu #notificationMenu="matMenu">
+        <mat-list>
+            <mat-list-item [routerLink]="notification.link" *ngFor="let notification of notifications">
+                <ng-container [ngSwitch]="notification.type">
+                    <mat-icon mat-list-avatar *ngSwitchCase="notificationTypes.INVITE" svgIcon="game"></mat-icon>
+                    <mat-icon mat-list-avatar *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
+                    <mat-icon mat-list-avatar *ngSwitchCase="notificationTypes.FRIEND">people_alt</mat-icon>
+                </ng-container>
+                &nbsp;
+                <span>{{notification.message}}</span>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item *ngIf="!notifications.length">You have no notifications!</mat-list-item>
+        </mat-list>
+    </mat-menu>
     <button mat-flat-button color="primary" routerLink="profile">Profile</button>
     <button mat-flat-button color="signup" (click)="signOut()">Sign Out</button>
 </mat-toolbar>
