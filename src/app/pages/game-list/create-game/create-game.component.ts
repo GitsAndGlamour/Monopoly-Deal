@@ -1,11 +1,13 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatAutocomplete} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
-import {User} from 'firebase';
-import {MatChipInputEvent} from '@angular/material/chips';
+import {IProfile, IProfileReadOnly} from '../../../classes/profile';
+import {map, startWith} from 'rxjs/operators';
+import {GameStatus, IGame} from '../../../classes/game';
+import {GameService} from '../../../services/game/game.service';
 
 @Component({
   selector: 'app-create-game',
@@ -15,14 +17,15 @@ import {MatChipInputEvent} from '@angular/material/chips';
 export class CreateGameComponent implements OnInit {
   form: FormGroup;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredFriends: Observable<string[]>;
-  friends: User[] = [];
-  allFriends: User[];
+  filteredFriends: Observable<IProfileReadOnly[]>;
+  friends: IProfileReadOnly[] = [];
+  allFriends: IProfileReadOnly[] = this.data.friends;
   @ViewChild('friendInput', {static: false}) friendInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+
   constructor(private _bottomSheetRef: MatBottomSheetRef<CreateGameComponent>, private builder: FormBuilder,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {index: number, friends: User[]}) {
-    this.allFriends = data.friends || [];
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: { index: number, friends: IProfileReadOnly[], profile: IProfile },
+              private service: GameService) {
     this.form = this.builder.group({
       name: `Game #${data.index}`,
       seats: 2,
@@ -32,44 +35,63 @@ export class CreateGameComponent implements OnInit {
       viewable: true,
       ranked: false,
       friends: false,
-    })
+    });
+    this.filteredFriends = this.form.get('invitees').valueChanges.pipe(
+        startWith(null),
+        map((friend: IProfileReadOnly | null) => friend ? this._filter(friend) : this.allFriends));
   }
 
   ngOnInit() {
   }
 
-  submit(event: MouseEvent): void {
+  async submit(event: MouseEvent): Promise<void> {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
+
+    const game: IGame = {
+      bots: this.form.get('bots').value,
+      created: new Date(),
+      friends: this.form.get('friends').value,
+      id: await this.service.generateId(),
+      invitees: this.friends.map(friend => friend.uid),
+      name: this.form.get('name').value,
+      owner: this.data.profile.uid,
+      players: [this.data.profile.uid],
+      public: this.form.get('public').value,
+      ranked: this.form.get('ranked').value,
+      seats: this.form.get('seats').value,
+      status: GameStatus.READY,
+      viewable: this.form.get('viewable').value
+    };
+    this.service.create(game);
   }
 
-  add(event: MatChipInputEvent): void {
-    // Add friend only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-
-      this.form.get('invitees').setValue(null);
-    }
-  }
-
-  remove(friend: User): void {
-    const index = this.friends.indexOf(friend);
+  remove(profile: IProfileReadOnly): void {
+    const index = this.friends.indexOf(profile);
 
     if (index >= 0) {
       this.friends.splice(index, 1);
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.friends.push(event.option.value);
-    this.friendInput.nativeElement.value = '';
-    this.form.get('invitees').setValue(null);
+  selected(friend: IProfileReadOnly): void {
+    if (!this.friends.some(selected => selected.username === friend.username)) {
+      this.friends.push(friend);
+      this.friendInput.nativeElement.value = '';
+      this.form.get('invitees').setValue(null);
+    }
   }
 
-  private _filter(value: string): User[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFriends.filter(friend => friend.displayName.toLowerCase().indexOf(filterValue) === 0);
+  private _filter(value: IProfileReadOnly): IProfileReadOnly[] {
+    if (value) {
+      const displayNameFilterValue = value.displayName ? value.displayName.toLowerCase() : '';
+      const usernameFilterValue = value.username ? value.username.toLowerCase() : '';
+      return this.allFriends.filter(friend => (
+          friend.displayName.toLowerCase().indexOf(displayNameFilterValue) === 0 ||
+          friend.username.toLowerCase().indexOf(usernameFilterValue) === 0) &&
+          !this.friends.some(selected => friend.username === selected.username)
+      );
+    }
   }
 }
 

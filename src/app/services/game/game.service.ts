@@ -1,21 +1,27 @@
 import moment from 'moment';
 import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
-import {Game} from '../../classes/game';
+import {IGame} from '../../classes/game';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  collection = 'games';
-  constructor(private storage: StoreService<Game>) { }
+  constructor(private storage: StoreService<IGame>) { }
 
-  async games(): Promise<Game[]> {
-    return this.storage.getCollectionWhere(this.collection,
-        { fieldPath: 'created', opStr: '>=', value: moment().subtract(1, 'days').from(moment.now()).toString()})
+  async games(): Promise<IGame[]> {
+    return this.storage.getCollection('games');
   }
 
-  async game(id: string): Promise<Game> {
-    return this.storage.getDocument(this.collection, id);
+  async game(id: string): Promise<IGame> {
+    return this.storage.getDocument('games', id);
+  }
+
+  async generateId(): Promise<string> {
+    return this.storage.getId('games');
+  }
+
+  async create(game: IGame): Promise<void> {
+    return this.storage.addDocument('games', game.id, game);
   }
 }

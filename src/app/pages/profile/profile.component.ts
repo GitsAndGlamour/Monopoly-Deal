@@ -4,6 +4,9 @@ import {ActivatedRoute} from '@angular/router';
 import {ProfileService} from '../../services/profile/profile.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddFriendComponent} from './add-friend/add-friend.component';
+import {TokenPreference} from '../../classes/preferences';
+import {getEnumValues} from '../../helpers/functions';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +17,9 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
   profiles: IProfileReadOnly[];
   friends: IProfileReadOnly[];
+  token: TokenPreference;
+  tokens: TokenPreference[] = getEnumValues(TokenPreference);
+  tokenCtrl = new FormControl(TokenPreference.MR_MONOPOLY);
   constructor(private route: ActivatedRoute, private service: ProfileService, public dialog: MatDialog) {
     this.profile = new Profile(this.route.parent.snapshot.data.profile);
     this.profiles = this.route.parent.snapshot.data.profiles;
@@ -22,6 +28,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = TokenPreference.MR_MONOPOLY
   }
 
   addFriend() {
@@ -29,6 +36,22 @@ export class ProfileComponent implements OnInit {
       data: { profiles: this.profiles },
       width: '450px',
       height: '600px',
+    }).afterClosed().subscribe(async () => {
+      this.friends = await this.service.friends();
     });
+  }
+
+  async removeFriend(uid: string) {
+    await this.service.removeFriend(uid);
+    this.friends = await this.service.friends();
+  }
+
+  popupProfile(uid: string) {
+    console.log('popupProfile');
+  }
+
+  async updateToken() {
+    await this.service.updateToken(this.token);
+    this.profile = new Profile(await this.service.profile());
   }
 }

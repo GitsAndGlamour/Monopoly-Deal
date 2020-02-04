@@ -1,8 +1,8 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="full-width">
     <h1 mat-dialog-title>Add a Friend</h1>
 </mat-toolbar>
 <div id="content">
-    <mat-form-field>
+    <mat-form-field class="full-width">
         <mat-chip-list #chipList aria-label="Friend selection">
             <mat-chip
                     *ngFor="let profile of profiles"
@@ -29,6 +29,6 @@
     </mat-form-field>
 </div>
 <mat-dialog-actions id="actions" class="flex-row flex-end">
-    <button mat-button>Cancel</button>
+    <button mat-button matDialogClose>Cancel</button>
     <button mat-flat-button color="primary" (click)="submit()">Submit</button>
 </mat-dialog-actions>

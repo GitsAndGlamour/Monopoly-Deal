@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {MatAutocomplete} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
 import {IProfileReadOnly} from '../../../classes/profile';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {ProfileService} from '../../../services/profile/profile.service';
 
 @Component({
@@ -25,7 +25,8 @@ export class AddFriendComponent implements OnInit {
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public data: {profiles: IProfileReadOnly[]}, private service: ProfileService
+      @Inject(MAT_DIALOG_DATA) public data: {profiles: IProfileReadOnly[]}, private service: ProfileService,
+      public dialog: MatDialog
   ) {
     console.log(this.data.profiles);
     this.filteredProfiles = this.profileCtrl.valueChanges.pipe(
@@ -67,6 +68,7 @@ export class AddFriendComponent implements OnInit {
   async submit() {
     console.log(this.profiles);
     await this.service.addFriends(this.profiles.map(profile => profile.uid));
+    this.dialog.closeAll();
   }
 
 }

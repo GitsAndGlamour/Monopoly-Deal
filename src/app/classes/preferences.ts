@@ -4,40 +4,46 @@ export enum InvitePreference {
 }
 
 export enum TokenPreference {
-    SCOTTISH_TERRIER,
-    BATTLESHIP,
-    RACE_CAR_MID_CENTURY,
-    TOP_HAT,
-    PENGUIN,
-    T_REX,
-    CAT,
-    RUBBER_DUCKY,
-    THIMBLE,
-    WHEELBARROW,
-    SHOE,
-    HORSE_AND_RIDER,
-    HOWITZER,
-    SACK_OF_MONEY,
-    IRON_,
-    TRAIN,
-    CANNON,
-    CAR_WITH_DRIVER,
-    AIRPLANE,
-    LANTERN_LATE,
-    ROCKING_HORSE_LATE,
-    PURSE_MID_CENTURY,
+    MR_MONOPOLY = 'Mr. Monopoly',
+    SCOTTISH_TERRIER = 'Scottish Terrier',
+    SHIP = 'Ship',
+    CAR = 'Car',
+    TOP_HAT = 'Top Hat',
+    PENGUIN = 'Penguin',
+    CHESS_PIECE = 'Chess Piece',
+    CAT = 'Cat',
+    THEATRE_FACES = 'Theatre Faces',
+    NEEDLE_AND_THREAD = 'Needle and Thread',
+    COG = 'Cog',
+    HIGH_HEEL = 'High Heel',
+    SNEAKER = 'Sneaker',
+    HORSE = 'Horse',
+    BOW_AND_ARROW = 'Bow and Arrow',
+    SACK_OF_MONEY = 'Sack of Money',
+    IRON_ = 'Iron',
+    TRAIN = 'Train',
+    HAPPY_FACE = 'Happy Face',
+    POOP = 'Poop',
+    BOMB = 'Bomb',
+    AIRPLANE = 'Airplane',
+    LANTERN = 'Lantern',
+    MONEY_FACE = 'Money Face',
+    PURSE = 'Purse',
 }
 
 export interface IPreferences {
     invites: InvitePreference;
+    token: TokenPreference;
 }
 
 export class Preferences implements IPreferences {
     invites: InvitePreference;
+    token: TokenPreference;
 
     static get blank(): Preferences {
         return {
-            invites: InvitePreference.ANYONE
+            invites: InvitePreference.ANYONE,
+            token: TokenPreference.MR_MONOPOLY,
         }
     }
 }

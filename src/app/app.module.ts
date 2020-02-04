@@ -21,6 +21,7 @@ import {ComponentModule} from './components/component.module';
 import {CreateGameComponent} from './pages/game-list/create-game/create-game.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {AddFriendComponent} from './pages/profile/add-friend/add-friend.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {AddFriendComponent} from './pages/profile/add-friend/add-friend.componen
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

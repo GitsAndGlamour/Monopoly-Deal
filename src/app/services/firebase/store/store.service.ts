@@ -5,7 +5,7 @@ import WhereFilterOp = firebase.firestore.WhereFilterOp;
 import FieldPath = firebase.firestore.FieldPath;
 import FieldValue = firebase.firestore.FieldValue;
 
-export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, value: string | string[]};
+export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, value: string | string[] | boolean };
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,15 @@ export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, va
 export class StoreService<T> {
 
   constructor(public firestore: AngularFirestore) { }
+
+  async getId(collection: string): Promise<string> {
+    try {
+      const ref = await this.firestore.collection<T>(collection).ref;
+      return ref.doc().id;
+    } catch(error) {
+      return null;
+    }
+  }
 
   async getCollection(collection: string): Promise<T[]> {
     try {
@@ -57,6 +66,15 @@ export class StoreService<T> {
   async updateDocument(collection: string, document: string, data: Partial<T>): Promise<void> {
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(data);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+
+  async updateSubCollectionDocument(collection: string, document: string, subCollection: string, subDocument: string, data: any): Promise<void> {
+    try {
+      return await this.firestore.collection<T>(collection).doc<T>(document).collection(subCollection).doc(subDocument).update(data);
     } catch (error) {
       console.log(error);
       return;

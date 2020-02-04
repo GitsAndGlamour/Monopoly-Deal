@@ -75,7 +75,9 @@ export class RegistrationComponent implements OnInit {
       await this.profileService.create(profile)
           .then(() => this.router.navigate(['/lobby']));
     } else {
-      await this.auth.signIn(email, password).then(() => this.router.navigate(['/lobby']));
+      await this.auth.signIn(email, password)
+          .then(() => this.profileService.showOnline())
+          .then(() => this.router.navigate(['/lobby']));
     }
   }
 

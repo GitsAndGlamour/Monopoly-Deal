@@ -1,8 +1,7 @@
 <div id="container">
     <mat-card id="action-header" class="mat-elevation-z5">
         <mat-card-header>
-            <img mat-card-avatar *ngIf="profile.image" [src]="profile?.image">
-            <img mat-card-avatar *ngIf="!profile.image" src="assets/img/layout/person.svg">
+            <img mat-card-avatar [src]="'assets/img/tokens/' + profile.preferences.token + '.svg'">
             <mat-card-title><small>Display Name:</small> {{profile.displayName}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-title>
             <mat-card-subtitle><small>Username:</small> {{profile.username}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-subtitle>
         </mat-card-header>
@@ -13,12 +12,41 @@
     <mat-card class="mat-elevation-z5">
         <mat-toolbar  color="primary">
             <h2 class="card-header-title">Friends</h2>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="addFriend()"><mat-icon>add</mat-icon></button>
         </mat-toolbar>
         <mat-card-content class="profile-card">
             <h3 id="no-friend-prompt" *ngIf="!profile.friends.length">You have no friends! :( <button mat-raised-button color="red" (click)="addFriend()">Make some!</button></h3>
-            <mat-list>
-                <mat-list-item *ngFor="let friend of friends">{{friend.displayName}} ({{friend.username}})</mat-list-item>
-            </mat-list>
+            <mat-chip-list>
+                <mat-chip color="warn" *ngFor="let friend of friends" removable selected
+                          (removed)="removeFriend(friend.uid)">
+                    {{friend.displayName}} ({{friend.username}})
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="mat-elevation-z5">
+        <mat-toolbar color="primary">Token</mat-toolbar>
+        <mat-card-content id="token-content">
+            <div class="flex-row flex-space-between">
+                <div class="flex-column">
+                    <img [src]="'assets/img/tokens/' + profile.preferences.token + '.svg'" height="200">
+                    <h4 id="current-token-caption"><small>Current Token: </small>{{profile.preferences.token}}</h4>
+                </div>
+                <div class="flex-column">
+                    <mat-form-field class="full-width">
+                        <mat-select [formControl]="tokenCtrl" placeholder="Choose Token" (selectionChange)="token = $event.value">
+                            <mat-option *ngFor="let token of tokens" [value]="token">{{token}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="flex-row flex-end">
+                        <img [src]="'assets/img/tokens/' + token + '.svg'" height="100"/>
+                        &nbsp;
+                        <div><button mat-flat-button color="warn" (click)="updateToken()">Update Token</button></div>
+                    </div>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

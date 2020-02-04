@@ -1,10 +1,10 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from '@angular/core';
-import {Game} from '../classes/game';
+import {IGame} from '../classes/game';
 import {GameService} from '../services/game/game.service';
 
 @Injectable({ providedIn: 'root' })
-export class GameResolver implements Resolve<Game> {
+export class GameResolver implements Resolve<IGame> {
     constructor(private service: GameService) {}
 
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -14,7 +14,7 @@ export class GameResolver implements Resolve<Game> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class GameListResolver implements Resolve<Game[]> {
+export class GameListResolver implements Resolve<IGame[]> {
     constructor(private service: GameService) {}
 
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

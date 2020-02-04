@@ -2,13 +2,13 @@ import {Base, IBase} from './base';
 
 export enum GameStatus {
     CANCELED = 'Canceled',
-    READY = 'Waiting for more players to join',
+    READY = 'Ready',
     STARTED = 'Started',
     DONE = 'Done',
 }
 
 export interface IGame extends IBase {
-    id: number;
+    id: string;
     name: string;
     owner: string;
     seats: number;
@@ -27,7 +27,7 @@ export type IGameReadOnly = Omit<IGame, 'owner' | 'seats' | 'bots' | 'public' | 
 export type IGameWrite = Omit<IGame, 'id' | 'ranked' | 'status' | 'owner' | 'created'>;
 
 export class Game extends Base implements IGame {
-    id: number;
+    id: string;
     name: string;
     owner: string; // Profile ID
     seats: number;

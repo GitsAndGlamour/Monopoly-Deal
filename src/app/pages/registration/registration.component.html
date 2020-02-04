@@ -10,21 +10,21 @@
                     <mat-tab-group [selectedIndex]="tab" (selectedTabChange)="toggle()">
                         <mat-tab label="Sign Up" formGroupName="0">
                             <div class="form-group">
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" class="full-width">
                                     <span class="input-icon" matPrefix><mat-icon color="gold">email</mat-icon></span>
                                     <input matInput type="email" placeholder="E-mail" formControlName="email">
                                 </mat-form-field>
-                                <mat-form-field appearance="outline" id="username" [color]="!signUp.get('username').errors ? 'primary' : 'warn'" hintLabel="Alphanumeric characters only. Alpha characters will be converted to lowercase. 20 characters max.">
+                                <mat-form-field appearance="outline" class="full-width" id="username" [color]="!signUp.get('username').errors ? 'primary' : 'warn'" hintLabel="Alphanumeric characters only. Alpha characters will be converted to lowercase. 20 characters max.">
                                     <span class="input-icon" matPrefix><mat-icon color="gold">person</mat-icon></span>
                                     <input matInput type="text" [placeholder]="'Username' + (!!signUp.get('username').pending ? ' (checking availability...)' : '')" formControlName="username">
                                     <mat-icon matsuffix *ngIf="!signUp.get('username').errors" color="success">check_circle</mat-icon>
                                 </mat-form-field>
                                 <mat-error *ngIf="!!signUp.get('username').errors?.usernameTaken">Username already exists!</mat-error>
-                                <mat-form-field appearance="outline" hintLabel="Alphanumeric characters, spaces( ), and periods(.) allowed. 20 characters max.">
+                                <mat-form-field appearance="outline" class="full-width" hintLabel="Alphanumeric characters, spaces( ), and periods(.) allowed. 20 characters max.">
                                     <span class="input-icon" matPrefix><mat-icon color="gold">person</mat-icon></span>
                                     <input matInput type="text" placeholder="Display Name" formControlName="displayName">
                                 </mat-form-field>
-                                <mat-form-field appearance="outline" hintLabel="At least one capital letter, one lowercase letter, one number, and one special character. Must be at least 8 characters long.">
+                                <mat-form-field appearance="outline" class="full-width" hintLabel="At least one capital letter, one lowercase letter, one number, and one special character. Must be at least 8 characters long.">
                                     <span class="input-icon" matPrefix><mat-icon color="gold">lock</mat-icon></span>
                                     <input matInput type="password" placeholder="Password" formControlName="password">
                                 </mat-form-field>
@@ -32,11 +32,11 @@
                         </mat-tab>
                         <mat-tab label="Login" formGroupName="1">
                             <div class="form-group">
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" class="full-width">
                                     <span matPrefix><mat-icon color="gold">email</mat-icon>&nbsp;&nbsp;&nbsp;</span>
                                     <input matInput type="email" placeholder="E-mail" formControlName="email" [required]="tab === 1">
                                 </mat-form-field>
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" class="full-width">
                                     <span matPrefix><mat-icon color="gold">lock</mat-icon>&nbsp;&nbsp;&nbsp;</span>
                                     <input matInput type="password" placeholder="Password" formControlName="password" [required]="tab === 1">
                                 </mat-form-field>

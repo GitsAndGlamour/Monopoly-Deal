@@ -28,3 +28,16 @@ mat-card {
     text-align: center;
   }
 }
+
+#token-content {
+  margin-top: 1rem;
+  img {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 0.25rem;
+  }
+}
+
+#current-token-caption small {
+  color: #919098;
+}

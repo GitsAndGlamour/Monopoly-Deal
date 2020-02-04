@@ -4,6 +4,30 @@
   justify-content: space-between;
 }
 #container {
-  padding: 5% 30%;
+  padding: 5% 20%;
   background-color: whitesmoke;
+  height: 100vh;
+}
+
+#card-container {
+  display: grid;
+  mat-card:first-of-type {
+    margin-right: 1rem;
+  }
+  mat-card:last-of-type {
+    margin-left: 1rem;
+  }
+}
+
+mat-expansion-panel {
+  border-radius: 10px;
+  margin: 0.5rem 0;
+}
+
+mat-panel-title {
+  margin-top: 0.35rem;
+}
+
+.expansion-action-panel {
+  padding: 1rem 0;
 }

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 import {IProfile, IProfileReadOnly} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
+import {TokenPreference} from '../../classes/preferences';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ProfileService {
   }
 
   async online(): Promise<IProfileReadOnly[]> {
-    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: 'true'})
+    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: true})
   }
 
   async friends(): Promise<IProfileReadOnly[]> {
@@ -38,9 +39,14 @@ export class ProfileService {
     await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid);
   }
 
-  async addFriends(uidList: string[]): Promise<void> {
+  async removeFriend(uid: string): Promise<void> {
     const user = this.auth.localUser;
-    await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uidList);
+    await this.storage.removeFromArrayInDocument('profiles', user.uid, 'friends', uid);
+  }
+
+  async addFriends(uidList: string[]): Promise<void[]> {
+    const user = this.auth.localUser;
+    return Promise.all(await uidList.map(async uid => await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid)));
   }
 
   async create(profile: IProfile): Promise<void> {
@@ -56,5 +62,15 @@ export class ProfileService {
   async usernameExists(value: string): Promise<boolean> {
     const results = await this.storage.getCollectionWhere('profiles', {fieldPath: 'username', opStr: '==', value});
     return results && results.length > 0;
+  }
+
+  async showOnline(): Promise<void> {
+    const user = this.auth.localUser;
+    return await this.storage.updateDocument('profiles', user.uid, { online: true });
+  }
+
+  async updateToken(token: TokenPreference) {
+    const user = this.auth.localUser;
+    await this.storage.updateDocument('profiles', user.uid, { preferences: { token }} as unknown as IProfile)
   }
 }
