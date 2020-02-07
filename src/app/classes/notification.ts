@@ -1,8 +1,11 @@
+import {IInvite} from './invite';
 
 export enum NotificationType {
-    INVITE = 'invite',
-    MESSAGE = 'message',
-    FRIEND = 'friend'
+    GAME_INVITE = 'Game Invite',
+    GAME_UPDATE = 'Game Activity Update',
+    MESSAGE = 'New Message',
+    FRIEND_INVITE = 'Friend Invite',
+    FRIEND_ACCEPT = 'Friend Invite Accept',
 }
 
 export enum NotificationStatus {
@@ -16,6 +19,10 @@ export interface INotification {
     message: string;
     link: string;
     status: NotificationStatus;
+}
+
+export interface IInviteNotification extends INotification {
+    invite: IInvite;
 }
 
 export class Notification implements INotification {

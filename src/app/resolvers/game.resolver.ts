@@ -22,3 +22,13 @@ export class GameListResolver implements Resolve<IGame[]> {
     }
 }
 
+@Injectable({ providedIn: 'root' })
+export class PlayerGameListResolver implements Resolve<IGame[]> {
+    constructor(private service: GameService) {}
+
+    async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const id = route.params.player;
+        return await this.service.gamesByProfile(id);
+    }
+}
+

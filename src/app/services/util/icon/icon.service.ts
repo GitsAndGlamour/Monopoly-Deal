@@ -5,12 +5,14 @@ import {Injectable} from '@angular/core';
 
 export const ICON_LIST = [
     'bot',
+    'crown',
     'friend',
     'game',
+    'okay',
     'public',
     'ranked',
-    'viewable',
     'unviewable',
+    'viewable',
 ];
 
 @Injectable({

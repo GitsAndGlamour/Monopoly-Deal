@@ -29,7 +29,7 @@
                 <mat-slide-toggle class="flex-row-item flex-1" color="warn" formControlName="viewable">Anyone can <b>watch</b></mat-slide-toggle>
             </div>
         </mat-list-item>
-        <mat-list-item id="invitees">
+        <mat-list-item id="invites">
             <mat-form-field class="full-width">
                 <mat-chip-list #chipList aria-label="Invite friends">
                     <mat-chip
@@ -43,7 +43,7 @@
                     <input
                             placeholder="Invite friends..."
                             #friendInput
-                            formControlName="invitees"
+                            formControlName="invites"
                             [matAutocomplete]="auto"
                             [matChipInputFor]="chipList"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

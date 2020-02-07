@@ -1,6 +1,7 @@
-import {IPreferences, Preferences} from './preferences';
+import {IPreferences, Preferences, TokenPreference} from './preferences';
 import {Base, IBase} from './base';
 import {INotification} from './notification';
+import {IInvite} from './invite';
 
 export interface  IProfile extends IBase {
     uid: string;
@@ -8,14 +9,14 @@ export interface  IProfile extends IBase {
     displayName: string;
     online: boolean;
     friends: string[]; // Profile IDs
-    pendingFriends: string[]; // Profile IDs
-    friendInvitesSent: string[]; // Profile IDs
-    declinedFriendInvites: string[]; // Profile IDs
+    friendInvitesReceived: IInvite[]; // Profile IDs
+    friendInvitesSent: IInvite[]; // Profile IDs
     preferences: IPreferences;
+    token: TokenPreference;
     notifications: {[p: string]: INotification};
 }
 
-export type IProfileReadOnly = Omit<IProfile, 'friends' | 'pendingFriends' | 'friendInvitesSent' | 'declinedFriendInvites' | 'preferences' | 'online' | 'notifications'>;
+export type IProfileReadOnly = Omit<IProfile, 'friends' | 'friendInvitesReceived' | 'friendInvitesSent' | 'preferences' | 'online' | 'notifications'>;
 
 export type IProfileWrite = Omit<string, 'uid' | 'username' | 'notifications'>;
 
@@ -27,11 +28,11 @@ export class Profile extends Base implements IProfile {
     username: string;
     preferences: IPreferences;
     friends: string[]; // Profile IDs
-    pendingFriends: string[]; // Profile IDs
-    friendInvitesSent: string[]; // Profile IDs
+    friendInvitesReceived: IInvite[]; // Profile IDs
+    friendInvitesSent: IInvite[]; // Profile IDs
     declinedFriendInvites: string[]; // Profile IDs
     online: boolean;
-    image: string;
+    token: TokenPreference;
     notifications: {[p: string]: INotification};
 
     constructor(props) {
@@ -45,10 +46,10 @@ export class Profile extends Base implements IProfile {
             username: props.username,
             displayName: props.displayName,
             preferences: Preferences.blank,
+            token: TokenPreference.MR_MONOPOLY,
             friends: [],
-            pendingFriends: [],
+            friendInvitesReceived: [],
             friendInvitesSent: [],
-            declinedFriendInvites: [],
             online: true,
             created: new Date(),
             notifications: {}

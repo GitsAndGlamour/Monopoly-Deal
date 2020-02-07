@@ -79,6 +79,11 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
   color: mat-color($mat-green, 400);
 }
 
+.mat-go {
+  background-color: mat-color($mat-green, 400);
+  color: $monopoly-white;
+}
+
 .mat-info {
   background-color: mat-color($mat-blue, A200);
   color: $monopoly-white;
@@ -105,7 +110,7 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
 
 .mat-signup {
   background-color: $monopoly-white;
-  color: $monopoly-select-red;
+  color: #f4511e;
 }
 
 /* Card Colors */

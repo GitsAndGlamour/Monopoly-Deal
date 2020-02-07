@@ -23,6 +23,7 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {AddFriendComponent} from './pages/profile/add-friend/add-friend.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatBadgeModule} from '@angular/material/badge';
+import {PlayerComponent} from './pages/player/player.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     AboutComponent,
     ProfileComponent,
     AddFriendComponent,
+    PlayerComponent,
   ],
     imports: [
         BrowserModule,

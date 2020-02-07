@@ -62,6 +62,18 @@
   text-shadow: #81c784;
 }
 
+.shrink-2x {
+  transform: scale(0.5);
+}
+
+.shrink {
+  transform: scale(0.75);
+}
+
+.enlarge-2x {
+  transform: scale(1.5);
+}
+
 /* One-offs */
 
 #username .mat-form-field-infix {
@@ -71,3 +83,8 @@
 .mat-menu-panel {
   margin-top: 1rem;
 }
+
+.mat-expansion-panel-content {
+  background-color: #b0cbb1;
+}
+

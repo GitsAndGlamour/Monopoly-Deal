@@ -16,7 +16,10 @@ import {
   ProfileListResolver,
   ProfileResolver
 } from './resolvers/profile.resolver';
-import {GameListResolver, GameResolver} from './resolvers/game.resolver';
+import {GameListResolver, GameResolver, PlayerGameListResolver} from './resolvers/game.resolver';
+import {InviteListResolver} from './resolvers/invite.resolver';
+import {PlayerComponent} from './pages/player/player.component';
+import {PlayerResolver} from './resolvers/player.resolver';
 
 
 export const routes: Routes = [
@@ -27,7 +30,8 @@ export const routes: Routes = [
       { path: 'rules', component: GameRulesComponent },
       { path: 'game/:game', component: GameComponent, resolve: { game: GameResolver } },
       { path: 'about', component: AboutComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent, resolve: { invites: InviteListResolver } },
+      { path: 'player/:player', component: PlayerComponent, outlet: 'popup', resolve: { player: PlayerResolver, games: PlayerGameListResolver } },
 
     ] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [WelcomeGuard],
@@ -40,7 +44,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
+  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

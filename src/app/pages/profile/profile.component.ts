@@ -7,6 +7,7 @@ import {AddFriendComponent} from './add-friend/add-friend.component';
 import {TokenPreference} from '../../classes/preferences';
 import {getEnumValues} from '../../helpers/functions';
 import {FormControl} from '@angular/forms';
+import {IInvite} from '../../classes/invite';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,8 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
   profiles: IProfileReadOnly[];
   friends: IProfileReadOnly[];
+  sentInvites: IInvite[];
+  receivedInvites: IInvite[];
   token: TokenPreference;
   tokens: TokenPreference[] = getEnumValues(TokenPreference);
   tokenCtrl = new FormControl(TokenPreference.MR_MONOPOLY);
@@ -24,6 +27,8 @@ export class ProfileComponent implements OnInit {
     this.profile = new Profile(this.route.parent.snapshot.data.profile);
     this.profiles = this.route.parent.snapshot.data.profiles;
     this.friends = this.route.parent.snapshot.data.friends;
+    this.sentInvites = this.route.snapshot.data.invites.sent;
+    this.receivedInvites = this.route.snapshot.data.invites.received;
   }
 
   ngOnInit() {
@@ -48,5 +53,17 @@ export class ProfileComponent implements OnInit {
   async updateToken() {
     await this.service.updateToken(this.token);
     this.profile = new Profile(await this.service.profile());
+  }
+
+  async unsendInvite(uid: string) {
+
+  }
+
+  async declineInvite(uid: string) {
+
+  }
+
+  async approveInvite(uid: string) {
+
   }
 }

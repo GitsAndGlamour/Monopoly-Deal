@@ -23,7 +23,10 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
     }
 
     async sendInvites(game: IGame): Promise<void> {
-        await Promise.all(game.invitees.map(async invitee => await this.notificationService.sendInvite(game, invitee.profile)));
+        await Promise.all(game.invites.map(async invite => {
+            await this.inviteService.sendGameInvite(invite);
+            await this.notificationService.sendGameInviteNotification(invite);
+        }));
     }
 
     async createBots(count: number, position): Promise<IPlayer[]> {
@@ -40,7 +43,7 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
         let position = 0;
         const owner = await this.profileService.profile();
         const players = new Array(count);
-        const ownerPlayer: IPlayer = { created: new Date(), name: owner.displayName, owner: true, position };
+        const ownerPlayer: IPlayer = { created: new Date(), name: owner.displayName, owner: true, position, profile: owner, profileId: owner.uid };
         const createdPlayers = [ownerPlayer, ...[...players].map((player, index) => {
             const additionalPlayer: IPlayer = {
                 created: new Date(), name: `Player ${index + 1}`, owner: false, position: ++position,

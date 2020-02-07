@@ -14,17 +14,21 @@ import {IconService} from '../../services/util/icon/icon.service';
 })
 export class LobbyComponent implements OnInit {
   profile: IProfile;
-  notifications: INotification[] = [];
+  new: INotification[] = [];
+  all: INotification[] = [];
   notificationTypes = NotificationType;
+  notificationStatuses = NotificationStatus;
   constructor(private auth: AuthService, private profileService: ProfileService, private router: Router,
               private route: ActivatedRoute, private notificationService: NotificationService, private icon: IconService) {
     this.profile = route.snapshot.data.profile;
   }
 
   async ngOnInit() {
-    this.notifications = await this.notificationService.new();
+    this.new = await this.notificationService.new();
+    this.all = await this.notificationService.all();
     this.profileService.profileChanges().subscribe(async (value: IProfile) => {
-      this.notifications = await this.notificationService.newFromProfile(value);
+      this.new = await this.notificationService.newFromProfile(value);
+      this.all = await this.notificationService.all();
     });
   }
 
@@ -36,6 +40,11 @@ export class LobbyComponent implements OnInit {
 
   async markNotificationsAsRead() {
     await this.notificationService.markAllAsRead();
+    this.all = await this.notificationService.all();
+  }
+
+  showAllNotifications() {
+
   }
 
 }

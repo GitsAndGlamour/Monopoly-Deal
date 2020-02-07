@@ -1,3 +1,31 @@
 .mat-menu-item {
   word-wrap: break-word;
 }
+mat-list-item {
+  padding: 0.5rem;
+}
+.text-wrap {
+  text-wrap: normal;
+}
+
+p {
+  color: #9fa8da;
+}
+
+#notifications-menu-header {
+  padding-top: 1rem;
+}
+
+small {
+  font-size: small;
+}
+
+#container {
+  padding: 1.5rem;
+}
+
+#popup {
+  position: absolute;
+  z-index: 1000;
+  margin: 20%;
+}

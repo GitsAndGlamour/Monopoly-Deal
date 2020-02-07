@@ -86,7 +86,7 @@ export class StoreService<T> {
     }
   }
 
-  async addToArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[]>): Promise<void> {
+  async addToArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
 
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(
@@ -98,7 +98,7 @@ export class StoreService<T> {
     }
   }
 
-  async removeFromArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[]>): Promise<void> {
+  async removeFromArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
 
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(

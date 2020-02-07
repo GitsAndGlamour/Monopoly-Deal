@@ -1,14 +1,16 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatAutocomplete} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {IProfile, IProfileReadOnly} from '../../../classes/profile';
 import {map, startWith} from 'rxjs/operators';
-import {GameStatus, IGame, InvitationStatus} from '../../../classes/game';
+import {GameStatus, IGame} from '../../../classes/game';
 import {GameService} from '../../../services/game/game.service';
 import {ReadyGameStatusTrigger} from '../../../triggers/game/ready-game-status.trigger';
+import {InvitationStatus} from '../../../classes/invite';
+import {InviteService} from '../../../services/invite/invite.service';
 
 @Component({
   selector: 'app-create-game',
@@ -26,18 +28,18 @@ export class CreateGameComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<CreateGameComponent>, private builder: FormBuilder,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: { index: number, friends: IProfileReadOnly[], profile: IProfile },
-              private service: GameService, private trigger: ReadyGameStatusTrigger) {
+              private service: GameService, private trigger: ReadyGameStatusTrigger, private inviteService: InviteService) {
     this.form = this.builder.group({
       name: `Game #${data.index}`,
       seats: 2,
       bots: 0,
-      invitees: '',
+      invites: '',
       public: true,
       viewable: true,
       ranked: false,
       friends: false,
     });
-    this.filteredFriends = this.form.get('invitees').valueChanges.pipe(
+    this.filteredFriends = this.form.get('invites').valueChanges.pipe(
         startWith(null),
         map((friend: IProfileReadOnly | null) => friend ? this._filter(friend) : this.allFriends));
   }
@@ -48,13 +50,26 @@ export class CreateGameComponent implements OnInit {
   async submit(event: MouseEvent): Promise<void> {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
-
+    const gameId = await this.service.generateId();
     const game: IGame = {
       bots: this.form.get('bots').value,
       created: new Date(),
       friends: this.form.get('friends').value,
-      id: await this.service.generateId(),
-      invitees: this.friends.map(friend => ({profile: friend.uid, status: InvitationStatus.SENT, created: new Date()})),
+      id: gameId,
+      attendees: [this.data.profile.uid],
+      invites: await Promise.all(this.friends.map(async friend => ({
+        id: await this.inviteService.getId(),
+        toId: friend.uid,
+        to: friend,
+        fromId: this.data.profile.uid,
+        from: this.data.profile,
+        status: InvitationStatus.SENT,
+        game: {
+          id: gameId,
+          name: this.form.get('name').value,
+          status: GameStatus.READY,
+        },
+        created: new Date()}))),
       name: this.form.get('name').value,
       owner: this.data.profile.uid,
       players: [],
@@ -80,7 +95,7 @@ export class CreateGameComponent implements OnInit {
     if (!this.friends.some(selected => selected.username === friend.username)) {
       this.friends.push(friend);
       this.friendInput.nativeElement.value = '';
-      this.form.get('invitees').setValue(null);
+      this.form.get('invites').setValue(null);
     }
   }
 

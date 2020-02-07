@@ -24,4 +24,8 @@ export class GameService {
   async create(game: IGame): Promise<void> {
     return this.storage.addDocument('games', game.id, game);
   }
+
+  async gamesByProfile(id: string): Promise<IGame[]> {
+    return this.storage.getCollectionWhere('games', {fieldPath: 'attendees', opStr: "array-contains", value: id})
+  }
 }

@@ -33,17 +33,14 @@ export enum TokenPreference {
 
 export interface IPreferences {
     invites: InvitePreference;
-    token: TokenPreference;
 }
 
 export class Preferences implements IPreferences {
     invites: InvitePreference;
-    token: TokenPreference;
 
     static get blank(): Preferences {
         return {
             invites: InvitePreference.ANYONE,
-            token: TokenPreference.MR_MONOPOLY,
         }
     }
 }

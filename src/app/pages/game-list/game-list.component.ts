@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Game, GameStatus, IGame} from '../../classes/game';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {CreateGameComponent} from './create-game/create-game.component';
 import {IProfile, IProfileReadOnly, Profile} from '../../classes/profile';
@@ -19,7 +19,7 @@ export class GameListComponent implements OnInit {
   online: IProfileReadOnly[];
   statuses = GameStatus;
   constructor(private route: ActivatedRoute, private service: GameService, private _bottomSheet: MatBottomSheet,
-              private icon: IconService) {
+              private icon: IconService, private router: Router) {
     this.games = route.snapshot.data.games ? route.snapshot.data.games.map(game => new Game(game)) : [];
     this.friends = route.parent.snapshot.data.friends;
     this.online = route.snapshot.data.online;
@@ -50,4 +50,10 @@ export class GameListComponent implements OnInit {
     return game.players.filter(player => (!player.owner && player.name.includes('Player'))).length;
   }
 
+  showPlayerPopup(event, profile: string) {
+    const x = event.pageX;
+    const y = event.pageY;
+    console.log(x, y);
+    this.router.navigate(['/lobby', {outlets: {popup: ['player', profile]}}], { queryParams: {x, y}});
+  }
 }
