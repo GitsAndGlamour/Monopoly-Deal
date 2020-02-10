@@ -98,5 +98,6 @@ export class ProfileComponent implements OnInit {
   async approveInvite(uid: string) {
     await this.inviteService.acceptFriendInvite(uid);
     this.invites = await this.inviteService.invites();
+    this.friends = await this.service.friends();
   }
 }

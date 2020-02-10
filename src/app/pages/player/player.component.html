@@ -12,6 +12,7 @@
                 <mat-chip color="primary" selected>{{count.wins}} won</mat-chip><mat-chip color="warn" selected>{{count.losses}} lost</mat-chip><mat-chip>{{count.total}} total</mat-chip>
             </mat-chip-list>
             <span class="spacer"></span>
+            <button mat-flat-button color="go" *ngIf="isFriend"><mat-icon svgIcon="friend" matTooltip="friend"></mat-icon></button>
             <button mat-flat-button color="primary" disabled *ngIf="isPending && !isSelf">Pending Request</button>
             <button *ngIf="!isFriend && !isPending && !isSelf" mat-flat-button color="go" matTooltip="Send friend request" (click)="sendFriendRequest()"><mat-icon>person_add</mat-icon></button>
         </div>
