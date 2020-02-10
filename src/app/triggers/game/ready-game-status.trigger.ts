@@ -10,7 +10,7 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
     async after(game: IGame): Promise<any> {
         await this.sendInvites(game);
         console.log('sent invites');
-        return this.router.navigate(['lobby','game', game.id]);
+        return this.router.navigate(['lobby','game', game.id], { queryParams: { action: 'play' }});
     }
 
     async before(game: IGame): Promise<any> {

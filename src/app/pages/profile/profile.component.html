@@ -2,8 +2,34 @@
     <mat-card id="action-header" class="mat-elevation-z5">
         <mat-card-header>
             <img mat-card-avatar [src]="'assets/img/tokens/' + profile.token + '.svg'">
-            <mat-card-title><small>Display Name:</small> {{profile.displayName}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-title>
-            <mat-card-subtitle><small>Username:</small> {{profile.username}} <button mat-button color="accent"><mat-icon>edit</mat-icon></button></mat-card-subtitle>
+            <mat-card-title><small>Display Name: </small>
+                <span *ngIf="field !== 'displayName'">{{profile.displayName}}</span>
+                <button mat-button color="accent" (click)="field = 'displayName'" *ngIf="field !== 'displayName'">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <div *ngIf="field === 'displayName'">
+                    <mat-form-field>
+                        <input matInput [placeholder]="profile.displayName" [formControl]="displayNameCtrl">
+                    </mat-form-field>
+                    <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
+                    <button mat-icon-button color="success" (click)="edit(displayNameCtrl)"><mat-icon>check_circle</mat-icon></button>
+                </div>
+            </mat-card-title>
+            <mat-card-subtitle><small>Username: </small>
+                <span *ngIf="field !== 'username'">{{profile.username}}</span>
+                <button mat-button color="accent" (click)="field = 'username'" *ngIf="field !== 'username'">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <div *ngIf="field === 'username'">
+                    <mat-form-field>
+                        <input matInput [placeholder]="profile.username" [formControl]="usernameCtrl">
+                        <mat-error *ngIf="!!usernameCtrl.errors?.usernameTaken">Username already exists!</mat-error>
+                        <mat-hint *ngIf="!!usernameCtrl.pending">Checking availability...</mat-hint>
+                    </mat-form-field>
+                    <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
+                    <button mat-icon-button color="success" (click)="edit(usernameCtrl)"><mat-icon>check_circle</mat-icon></button>
+                </div>
+            </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p><small>Member Since:</small> {{profile._created | date}}</p>

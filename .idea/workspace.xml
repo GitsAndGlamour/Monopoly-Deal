@@ -3,21 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/profile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/player/player.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/player/player.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/player/player.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/player/player.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/player/player.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/add-friend/add-friend.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/game/game.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/game/game.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/invite/invite.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/invite/invite.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/player/player.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/player/player.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/profile/profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/profile/profile.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/triggers/game/ready-game-status.trigger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/triggers/game/ready-game-status.trigger.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +120,7 @@
       <workItem from="1580255923137" duration="12000" />
       <workItem from="1580255945121" duration="2834000" />
       <workItem from="1580260133713" duration="35714000" />
-      <workItem from="1580826664218" duration="79864000" />
+      <workItem from="1580826664218" duration="85460000" />
     </task>
     <servers />
   </component>
@@ -160,25 +149,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="627" y="298" key="FileChooserDialogImpl/0.23.1680.1027@0.23.1680.1027" timestamp="1580115575704" />
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1581099197683">
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1581301213477">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581099197683" />
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213477" />
     <state width="1638" height="275" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565213" />
-    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1581099197682">
+    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1581301213475">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581099197682" />
+    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213475" />
     <state width="1638" height="275" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1581099197681">
+    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1581301213474">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581099197681" />
+    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213474" />
     <state width="1638" height="275" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1581099197683">
+    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1581301213476">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581099197683" />
+    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213476" />
     <state width="1638" height="275" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565212" />
     <state width="1638" height="344" key="GridCell.Tab.1.bottom" timestamp="1580255304622">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -271,20 +260,20 @@
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1580162899417" />
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1580852791729" />
     <state x="622" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093776462" />
-    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581262128046">
+    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581358129861">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581262128046" />
+    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581358129861" />
     <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580118196594" />
     <state x="489" y="262" width="701" height="526" key="find.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093440552" />
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog" timestamp="1580168307747">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1580168307747" />
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1581300233182">
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1581358087032">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581300233182" />
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581358087032" />
     <state x="518" y="228" width="670" height="692" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1581207522830" />
     <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093240841" />
   </component>

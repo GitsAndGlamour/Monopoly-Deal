@@ -41,6 +41,10 @@ export class ProfileService {
     return [];
   }
 
+  async updateProfile(profile: Partial<IProfileReadOnly>) {
+    return this.storage.updateDocument('profiles', profile.uid, profile);
+  }
+
   async addFriendToProfile(uid: string): Promise<void> {
     const user = this.auth.localUser;
     await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid);

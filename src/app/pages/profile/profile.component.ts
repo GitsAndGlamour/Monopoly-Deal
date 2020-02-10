@@ -6,9 +6,11 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddFriendComponent} from './add-friend/add-friend.component';
 import {TokenPreference} from '../../classes/preferences';
 import {getEnumValues} from '../../helpers/functions';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {IInvite} from '../../classes/invite';
 import {InviteService} from '../../services/invite/invite.service';
+import {DISPLAY_NAME_REGEX, USERNAME_REGEX} from '../../helpers/constants';
+import {UsernameValidator} from '../../validators/username.validator';
 
 @Component({
   selector: 'app-profile',
@@ -23,15 +25,38 @@ export class ProfileComponent implements OnInit {
   token: TokenPreference;
   tokens: TokenPreference[] = getEnumValues(TokenPreference);
   tokenCtrl = new FormControl(TokenPreference.MR_MONOPOLY);
-  constructor(private route: ActivatedRoute, private service: ProfileService, public dialog: MatDialog, private inviteService: InviteService) {
+  displayNameCtrl: FormControl;
+  usernameCtrl: FormControl;
+  field: string;
+  constructor(private route: ActivatedRoute, private service: ProfileService, public dialog: MatDialog, private inviteService: InviteService,
+              private usernameValidator: UsernameValidator) {
     this.profile = new Profile(this.route.parent.snapshot.data.profile);
     this.profiles = this.route.parent.snapshot.data.profiles;
     this.friends = this.route.parent.snapshot.data.friends;
     this.invites = this.route.snapshot.data.invites;
+    this.displayNameCtrl = new FormControl(this.profile.displayName, [
+      Validators.minLength(4),
+      Validators.pattern(DISPLAY_NAME_REGEX)
+    ]);
+    this.usernameCtrl = new FormControl(this.profile.username, [
+      Validators.minLength(4),
+      Validators.pattern(USERNAME_REGEX),
+    ],
+    [this.usernameValidator.usernameValidator()]);
   }
 
   ngOnInit() {
     this.token = TokenPreference.MR_MONOPOLY;
+  }
+
+  async edit(control: FormControl) {
+    if (!control.errors && !control.pending) {
+      const profile: Partial<IProfileReadOnly> = { uid: this.profile.uid };
+      profile[this.field] = control.value;
+      await this.service.updateProfile(profile);
+      this.profile = new Profile(await this.service.profile());
+      this.field = null;
+    }
   }
 
   addFriend() {
