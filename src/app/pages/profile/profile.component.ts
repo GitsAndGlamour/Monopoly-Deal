@@ -8,6 +8,7 @@ import {TokenPreference} from '../../classes/preferences';
 import {getEnumValues} from '../../helpers/functions';
 import {FormControl} from '@angular/forms';
 import {IInvite} from '../../classes/invite';
+import {InviteService} from '../../services/invite/invite.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,30 +19,34 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
   profiles: IProfileReadOnly[];
   friends: IProfileReadOnly[];
-  sentInvites: IInvite[];
-  receivedInvites: IInvite[];
+  invites: { sent: IInvite[], received: IInvite[]} = { sent: [], received: [] };
   token: TokenPreference;
   tokens: TokenPreference[] = getEnumValues(TokenPreference);
   tokenCtrl = new FormControl(TokenPreference.MR_MONOPOLY);
-  constructor(private route: ActivatedRoute, private service: ProfileService, public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, private service: ProfileService, public dialog: MatDialog, private inviteService: InviteService) {
     this.profile = new Profile(this.route.parent.snapshot.data.profile);
     this.profiles = this.route.parent.snapshot.data.profiles;
     this.friends = this.route.parent.snapshot.data.friends;
-    this.sentInvites = this.route.snapshot.data.invites.sent;
-    this.receivedInvites = this.route.snapshot.data.invites.received;
+    this.invites = this.route.snapshot.data.invites;
   }
 
   ngOnInit() {
-    this.token = TokenPreference.MR_MONOPOLY
+    this.token = TokenPreference.MR_MONOPOLY;
   }
 
   addFriend() {
     this.dialog.open(AddFriendComponent, {
-      data: { profiles: this.profiles },
+      data: {
+        profile: this.profile,
+        profiles: this.profiles,
+        friends: this.friends,
+        invites: [...this.invites.sent.map(invite => invite.to),
+          ...this.invites.received.map(invite => invite.from)]
+      },
       width: '450px',
       height: '600px',
     }).afterClosed().subscribe(async () => {
-      this.friends = await this.service.friends();
+      this.invites = await this.inviteService.invites();
     });
   }
 
@@ -56,14 +61,17 @@ export class ProfileComponent implements OnInit {
   }
 
   async unsendInvite(uid: string) {
-
+    await this.inviteService.unsendFriendInvite(uid);
+    this.invites = await this.inviteService.invites();
   }
 
   async declineInvite(uid: string) {
-
+    await this.inviteService.declineFriendInvite(uid);
+    this.invites = await this.inviteService.invites();
   }
 
   async approveInvite(uid: string) {
-
+    await this.inviteService.acceptFriendInvite(uid);
+    this.invites = await this.inviteService.invites();
   }
 }

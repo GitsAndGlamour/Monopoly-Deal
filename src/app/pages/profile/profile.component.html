@@ -19,7 +19,7 @@
             <mat-tab-group>
                 <mat-tab label="Friends">
                     <br>
-                    <h3 id="no-friend-prompt" *ngIf="!profile.friends.length">You have no friends! :( <button mat-raised-button color="red" (click)="addFriend()">Make some!</button></h3>
+                    <h3 id="no-friend-prompt" *ngIf="!profile.friends?.length">You have no friends! :( <button mat-raised-button color="red" (click)="addFriend()">Make some!</button></h3>
                     <mat-chip-list>
                         <mat-chip color="warn" *ngFor="let friend of friends" removable selected
                                   (removed)="removeFriend(friend.uid)">
@@ -27,26 +27,33 @@
                             <mat-icon matChipRemove>cancel</mat-icon>
                         </mat-chip>
                     </mat-chip-list>
+                    <br>
                 </mat-tab>
                 <mat-tab label="Invites Sent">
-                    <h3 id="no-invite-sent-prompt" *ngIf="!profile.friends.length">You haven't sent any invites! :( <button mat-raised-button color="red" (click)="addFriend()">Send some!</button></h3>
+                    <br>
+                    <h3 id="no-invite-sent-prompt" *ngIf="!invites?.sent?.length">No invites pending! &nbsp; <button mat-raised-button color="red" (click)="addFriend()">Send some!</button></h3>
                     <mat-chip-list>
-                        <mat-chip color="warn" *ngFor="let invite of sentInvites" removable selected
+                        <mat-chip color="warn" *ngFor="let invite of invites?.sent" removable selected
                                   (removed)="unsendInvite(invite.to.uid)">
                             {{invite.to.displayName}} ({{invite.to.username}})
-                            <mat-icon matChipRemove>cancel</mat-icon>
+                            <mat-icon matChipRemove (click)="unsendInvite(invite.to.uid)">cancel</mat-icon>
                         </mat-chip>
                     </mat-chip-list>
+                    <br>
                 </mat-tab>
                 <mat-tab label="Invites Received">
-                    <h3 id="no-invite-received-prompt" *ngIf="!profile.friends.length">You haven't received any invites yet!</h3>
+                    <br>
+                    <h3 id="no-invite-received-prompt" *ngIf="!invites?.received?.length">Your inbox is empty!</h3>
                     <mat-list>
-                        <mat-list-item *ngFor="let invite of receivedInvites">
-                            {{invite.from.displayName}} ({{invite.from.username}})
+                        <mat-list-item *ngFor="let invite of invites?.received">
+                            <span>{{invite.from.displayName}} ({{invite.from.username}})</span>
+                            &nbsp;
                             <button mat-flat-button color="warn" (click)="declineInvite(invite.from.uid)">Decline</button>
-                            <button mat-flat-button color="success" (click)="approveInvite(invite.from.uid)">Approve</button>
+                            &nbsp;
+                            <button mat-flat-button color="go" (click)="approveInvite(invite.from.uid)">Approve</button>
                         </mat-list-item>
                     </mat-list>
+                    <br>
                 </mat-tab>
             </mat-tab-group>
         </mat-card-content>

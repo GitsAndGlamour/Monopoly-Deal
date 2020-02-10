@@ -9,14 +9,12 @@ export interface  IProfile extends IBase {
     displayName: string;
     online: boolean;
     friends: string[]; // Profile IDs
-    friendInvitesReceived: IInvite[]; // Profile IDs
-    friendInvitesSent: IInvite[]; // Profile IDs
     preferences: IPreferences;
     token: TokenPreference;
     notifications: {[p: string]: INotification};
 }
 
-export type IProfileReadOnly = Omit<IProfile, 'friends' | 'friendInvitesReceived' | 'friendInvitesSent' | 'preferences' | 'online' | 'notifications'>;
+export type IProfileReadOnly = Omit<IProfile, 'friends' | 'preferences' | 'online' | 'notifications'>;
 
 export type IProfileWrite = Omit<string, 'uid' | 'username' | 'notifications'>;
 
@@ -28,9 +26,6 @@ export class Profile extends Base implements IProfile {
     username: string;
     preferences: IPreferences;
     friends: string[]; // Profile IDs
-    friendInvitesReceived: IInvite[]; // Profile IDs
-    friendInvitesSent: IInvite[]; // Profile IDs
-    declinedFriendInvites: string[]; // Profile IDs
     online: boolean;
     token: TokenPreference;
     notifications: {[p: string]: INotification};
@@ -48,8 +43,6 @@ export class Profile extends Base implements IProfile {
             preferences: Preferences.blank,
             token: TokenPreference.MR_MONOPOLY,
             friends: [],
-            friendInvitesReceived: [],
-            friendInvitesSent: [],
             online: true,
             created: new Date(),
             notifications: {}

@@ -13,4 +13,12 @@ export class PlayerService {
   async player(uid: string): Promise<IProfileReadOnly> {
     return this.storage.getDocument('profiles', uid);
   }
+
+  async online(): Promise<IProfileReadOnly[]> {
+    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: true})
+  }
+
+  onlineChanges() {
+    return this.storage.getCollectionChanges('profiles');
+  }
 }

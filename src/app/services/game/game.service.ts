@@ -2,6 +2,7 @@ import moment from 'moment';
 import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 import {IGame} from '../../classes/game';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class GameService {
 
   async game(id: string): Promise<IGame> {
     return this.storage.getDocument('games', id);
+  }
+
+  gameChanges(): Observable<any> {
+    return this.storage.getCollectionChanges('games');
   }
 
   async generateId(): Promise<string> {

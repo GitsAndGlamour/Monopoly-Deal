@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, CollectionReference} from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import WhereFilterOp = firebase.firestore.WhereFilterOp;
 import FieldPath = firebase.firestore.FieldPath;
@@ -14,6 +14,10 @@ export interface Clause {fieldPath: string | FieldPath, opStr: WhereFilterOp, va
 export class StoreService<T> {
 
   constructor(public firestore: AngularFirestore) { }
+
+  getCollectionChanges(collection: string): Observable<any> {
+    return this.firestore.collection<T>(collection).valueChanges()
+  }
 
   getDocumentChanges(collection: string, document: string): Observable<any> {
     return this.firestore.collection<T>(collection).doc(document).valueChanges()
@@ -46,6 +50,24 @@ export class StoreService<T> {
     } catch (error) {
       console.log(error);
       return [];
+    }
+  }
+
+  async getCollectionRef(collection: string): Promise<CollectionReference> {
+    try {
+      return await this.firestore.collection<T>(collection).ref;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async where(collection: CollectionReference, clause: Clause) {
+    try {
+      return await collection.where(clause.fieldPath, clause.opStr, clause.value);
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   }
 

@@ -31,8 +31,7 @@ export const routes: Routes = [
       { path: 'game/:game', component: GameComponent, resolve: { game: GameResolver } },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: ProfileComponent, resolve: { invites: InviteListResolver } },
-      { path: 'player/:player', component: PlayerComponent, outlet: 'popup', resolve: { player: PlayerResolver, games: PlayerGameListResolver } },
-
+      { path: 'player/:player', component: PlayerComponent, outlet: 'popup', resolve: { player: PlayerResolver, games: PlayerGameListResolver, invites: InviteListResolver } },
     ] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [WelcomeGuard],
     children: [
@@ -44,7 +43,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

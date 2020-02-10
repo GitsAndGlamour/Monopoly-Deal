@@ -12,12 +12,13 @@
                 <mat-chip color="primary" selected>{{count.wins}} won</mat-chip><mat-chip color="warn" selected>{{count.losses}} lost</mat-chip><mat-chip>{{count.total}} total</mat-chip>
             </mat-chip-list>
             <span class="spacer"></span>
-            <button mat-flat-button color="go" matTooltip="Send friend request"><mat-icon>person_add</mat-icon></button>
+            <button mat-flat-button color="primary" disabled *ngIf="isPending && !isSelf">Pending Request</button>
+            <button *ngIf="!isFriend && !isPending && !isSelf" mat-flat-button color="go" matTooltip="Send friend request" (click)="sendFriendRequest()"><mat-icon>person_add</mat-icon></button>
         </div>
         <table class="full-width">
             <tr>
                 <td><small>Member since:</small></td>
-                <td>{{player._created | date}}</td>
+                <td>{{player.created.toDate() | date}}</td>
             </tr>
             <tr>
                 <td colspan="2"><mat-toolbar color="primary" id="active-games-header">Active Games</mat-toolbar></td>

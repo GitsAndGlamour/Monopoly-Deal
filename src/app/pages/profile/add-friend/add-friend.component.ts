@@ -7,6 +7,7 @@ import {map, startWith} from 'rxjs/operators';
 import {IProfileReadOnly} from '../../../classes/profile';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {ProfileService} from '../../../services/profile/profile.service';
+import {InviteService} from '../../../services/invite/invite.service';
 
 @Component({
   selector: 'app-add-friend',
@@ -18,14 +19,17 @@ export class AddFriendComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   profileCtrl = new FormControl();
   filteredProfiles: Observable<IProfileReadOnly[]>;
+  profile: IProfileReadOnly = this.data.profile;
   profiles: IProfileReadOnly[] = [];
-  allProfiles: IProfileReadOnly[] = this.data.profiles;
-
+  friends: IProfileReadOnly[] = this.data.friends;
+  invites: IProfileReadOnly[] = this.data.invites;
+  allProfiles: IProfileReadOnly[] = this.data.profiles.filter(profile => !this.friends.some(friend => friend.uid === profile.uid) &&
+      !this.invites.some(invite => invite.uid === profile.uid) && this.profile.uid !== profile.uid);
   @ViewChild('profileInput', {static: false}) profileInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) public data: {profiles: IProfileReadOnly[]}, private service: ProfileService,
+      @Inject(MAT_DIALOG_DATA) public data: {profile: IProfileReadOnly, profiles: IProfileReadOnly[], friends: IProfileReadOnly[], invites: IProfileReadOnly[]}, private service: InviteService,
       public dialog: MatDialog
   ) {
     console.log(this.data.profiles);
@@ -67,7 +71,7 @@ export class AddFriendComponent implements OnInit {
 
   async submit() {
     console.log(this.profiles);
-    await this.service.addFriends(this.profiles.map(profile => profile.uid));
+    await Promise.all(this.profiles.map(async profile => this.service.sendFriendInvite(profile)));
     this.dialog.closeAll();
   }
 

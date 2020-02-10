@@ -6,6 +6,7 @@ import {CreateGameComponent} from './create-game/create-game.component';
 import {IProfile, IProfileReadOnly, Profile} from '../../classes/profile';
 import {GameService} from '../../services/game/game.service';
 import {IconService} from '../../services/util/icon/icon.service';
+import {PlayerService} from '../../services/player/player.service';
 
 @Component({
   selector: 'app-game-list',
@@ -19,7 +20,7 @@ export class GameListComponent implements OnInit {
   online: IProfileReadOnly[];
   statuses = GameStatus;
   constructor(private route: ActivatedRoute, private service: GameService, private _bottomSheet: MatBottomSheet,
-              private icon: IconService, private router: Router) {
+              private icon: IconService, private router: Router, private playerService: PlayerService) {
     this.games = route.snapshot.data.games ? route.snapshot.data.games.map(game => new Game(game)) : [];
     this.friends = route.parent.snapshot.data.friends;
     this.online = route.snapshot.data.online;
@@ -28,6 +29,12 @@ export class GameListComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.games);
+    this.service.gameChanges().subscribe(async () => {
+      this.games = await this.service.games();
+    })
+    this.playerService.onlineChanges().subscribe(async () => {
+      this.online = await this.playerService.online();
+    });
   }
 
   openBottomSheet(): void {

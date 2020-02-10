@@ -41,9 +41,14 @@ export class ProfileService {
     return [];
   }
 
-  async addFriend(uid: string): Promise<void> {
+  async addFriendToProfile(uid: string): Promise<void> {
     const user = this.auth.localUser;
     await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid);
+  }
+
+  async addProfileToFriend(uid: string): Promise<void> {
+    const user = this.auth.localUser;
+    await this.storage.addToArrayInDocument('profiles', uid, 'friends', user.uid);
   }
 
   async removeFriend(uid: string): Promise<void> {
