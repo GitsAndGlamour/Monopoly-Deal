@@ -29,3 +29,12 @@ small {
   z-index: 1000;
   margin: 20%;
 }
+
+#chat {
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  height: fit-content;
+  width: fit-content;
+}

@@ -6,7 +6,7 @@
 #container {
   padding: 5% 15%;
   background-color: whitesmoke;
-  height: 100vh;
+  height: 70vh;
 }
 
 #card-container {
@@ -37,4 +37,12 @@ mat-panel-title {
 
 .player-name {
   color: #cbcbcb;
+}
+
+::ng-deep.mat-expansion-panel-content {
+  background-color: whitesmoke;
+}
+
+.game-list-panel-body {
+  margin: 1rem;
 }

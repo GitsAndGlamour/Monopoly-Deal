@@ -5,6 +5,8 @@ import {DeckComponent} from './game/deck/deck/deck.component';
 import { MenuHeaderComponent } from './menus/menu-header/menu-header.component';
 import { MenuFooterComponent } from './menus/menu-footer/menu-footer.component';
 import {MenuComponent} from './menus/menu.component';
+import { ChatComponent } from './chat/chat.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -12,14 +14,17 @@ import {MenuComponent} from './menus/menu.component';
         MenuHeaderComponent,
         MenuFooterComponent,
         MenuComponent,
+        ChatComponent,
     ],
     imports: [
         BrowserModule,
         MaterialModule,
+        ReactiveFormsModule,
     ],
     exports: [
         DeckComponent,
-        MenuComponent
+        MenuComponent,
+        ChatComponent
     ]
 })
 export class ComponentModule { }

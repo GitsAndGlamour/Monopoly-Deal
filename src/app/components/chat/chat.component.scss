@@ -1,0 +1,42 @@
+#container {
+  width: 600px;
+}
+
+#chat-window {
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  height: 250px;
+  overflow: scroll;
+}
+
+.timestamp {
+  color: #b0b0b0;
+}
+
+#chat-list {
+  max-height: 350px;
+  overflow: scroll;
+  padding: 0.5rem 0;
+
+}
+
+::ng-deep.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+::ng-deep mat-button-toggle, mat-button-toggle-group {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+mat-form-field {
+  margin: 0 0.5rem;
+}
+
+#message-bar {
+  padding: 1rem;
+}
+
+::ng-deep mat-expansion-panel-header {
+  box-shadow: none !important;
+}

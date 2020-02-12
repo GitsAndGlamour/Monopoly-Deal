@@ -53,15 +53,6 @@ export class StoreService<T> {
     }
   }
 
-  async getCollectionRef(collection: string): Promise<CollectionReference> {
-    try {
-      return await this.firestore.collection<T>(collection).ref;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
   async where(collection: CollectionReference, clause: Clause) {
     try {
       return await collection.where(clause.fieldPath, clause.opStr, clause.value);
@@ -75,6 +66,15 @@ export class StoreService<T> {
     try {
       const ref = await this.firestore.collection(collection).doc(document).get().toPromise();
       return ref.data() as T;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async getDocumentRef(collection: string, document: string): Promise<any> {
+    try {
+      return this.firestore.collection(collection).doc(document);
     } catch (error) {
       console.log(error);
       return null;
@@ -139,5 +139,9 @@ export class StoreService<T> {
       console.log(error);
       return;
     }
+  }
+
+  get serverTimestamp() {
+    return FieldValue.serverTimestamp();
   }
 }

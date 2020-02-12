@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/classes/message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/services/chat/chat.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/player/player.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/player/player.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/component.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/component.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/game-list/game-list.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/profile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/registration/registration.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/registration/registration.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/registration/registration.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/registration/registration.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/firebase/store/store.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/sass/layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/sass/layout.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +129,7 @@
       <workItem from="1580255923137" duration="12000" />
       <workItem from="1580255945121" duration="2834000" />
       <workItem from="1580260133713" duration="35714000" />
-      <workItem from="1580826664218" duration="86027000" />
+      <workItem from="1580826664218" duration="111924000" />
     </task>
     <servers />
   </component>
@@ -135,10 +146,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="528" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580160111642" />
-    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1580868391579">
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser" timestamp="1581444996250">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580868391579" />
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1581438902106" />
+    <state x="653" y="248" key="#com.intellij.ide.util.MemberChooser/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581444996250" />
     <state x="528" y="260" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580255193535">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -147,25 +159,25 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="627" y="298" key="FileChooserDialogImpl/0.23.1680.1027@0.23.1680.1027" timestamp="1580115575704" />
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1581301213477">
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom" timestamp="1581438754957">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213477" />
+    <state width="1638" height="270" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581438754957" />
     <state width="1638" height="275" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565213" />
-    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1581301213475">
+    <state width="1638" height="270" key="GridCell.Tab.0.center" timestamp="1581438754956">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213475" />
+    <state width="1638" height="270" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581438754956" />
     <state width="1638" height="275" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1581301213474">
+    <state width="1638" height="270" key="GridCell.Tab.0.left" timestamp="1581438754956">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213474" />
+    <state width="1638" height="270" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581438754956" />
     <state width="1638" height="275" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565211" />
-    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1581301213476">
+    <state width="1638" height="270" key="GridCell.Tab.0.right" timestamp="1581438754957">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581301213476" />
+    <state width="1638" height="270" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581438754957" />
     <state width="1638" height="275" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1580235565212" />
     <state width="1638" height="344" key="GridCell.Tab.1.bottom" timestamp="1580255304622">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -248,31 +260,32 @@
     </state>
     <state x="341" y="155" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1580402669123" />
     <state x="341" y="175" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1580135903989" />
-    <state x="100" y="102" width="1480" height="846" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1580886177005">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="100" y="81" width="1480" height="865" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581443471137">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="100" y="102" width="1480" height="846" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1580886177005" />
+    <state x="100" y="81" width="1480" height="865" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581443471137" />
     <state x="622" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581093776462">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1580162899417" />
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1580852791729" />
     <state x="622" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093776462" />
-    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581358129861">
+    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581443952618">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581358129861" />
+    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581385072011" />
     <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580118196594" />
-    <state x="489" y="262" width="701" height="526" key="find.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093440552" />
+    <state x="489" y="262" width="701" height="526" key="find.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581443952618" />
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog" timestamp="1580168307747">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1580168307747" />
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1581358817477">
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup" timestamp="1581445656889">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581358817477" />
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581439612937" />
     <state x="518" y="228" width="670" height="692" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1581207522830" />
-    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093240841" />
+    <state x="505" y="232" width="670" height="692" key="search.everywhere.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581445656889" />
   </component>
 </project>

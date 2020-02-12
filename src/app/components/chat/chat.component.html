@@ -1,0 +1,57 @@
+<mat-accordion class="mat-elevation-z6">
+    <mat-expansion-panel id="container">
+        <mat-expansion-panel-header id="container-header" class="flex-row flex-space-between">
+            <mat-panel-title>Chat</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="flex-row flex-space-between">
+            <div #chatWindow class="flex-2" id="chat-window">
+                <h5>{{selected?.name}} Chat!</h5>
+                <div>
+                    <ng-container *ngFor="let message of selected?.messages">
+                        <p *ngIf="message"><b>{{message?.from?.displayName}}: </b>{{message?.value}}
+                            <br>
+                            <small class="timestamp">{{getDate(message?.sent) | date:'short'}}</small>
+                        </p>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="flex-1" id="chat-list">
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header (click)="select(lobby)">
+                            <mat-panel-title>Lobby</mat-panel-title>
+                        </mat-expansion-panel-header>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Games</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div id="games-list">
+                            <mat-button-toggle-group vertical class="full-width">
+                                <mat-button-toggle *ngFor="let chat of games" (click)="select(chat)">{{chat.game.name}}</mat-button-toggle>
+                                <mat-button-toggle disabled *ngIf="!games.length">No active games</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Rooms</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div id="rooms-list">
+                            <mat-button-toggle-group vertical class="full-width">
+                                <mat-button-toggle *ngFor="let chat of rooms" (click)="select(chat)">{{chat.room.name}}</mat-button-toggle>
+                                <mat-button-toggle disabled *ngIf="!rooms.length">No open rooms</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+        <div id="message-bar" class="flex-row">
+            <mat-form-field class="full-width baseline-middle">
+                <input matInput placeholder="Send a message..." [formControl]="messageCtrl" (keypress)="onKeyPress($event)">
+            </mat-form-field>
+            <div><button mat-raised-button color="warn" (click)="send()">Send</button></div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

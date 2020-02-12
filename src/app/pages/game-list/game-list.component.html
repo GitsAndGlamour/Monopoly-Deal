@@ -42,10 +42,10 @@
                             </div>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <div class="flex-row flex-space-between expansion-action-panel">
+                    <div class="game-list-panel-body flex-row flex-space-between expansion-action-panel">
                         <div>
                             <h5>Players</h5>
-                            <mat-chip-list class="game-player-list">
+                            <mat-chip-list id="game-player-list">
                                 <ng-container *ngFor="let player of game.players">
                                     <mat-chip *ngIf="player.profileId" selectable
                                               (click)="showPlayerPopup($event, player.profile.uid)">
