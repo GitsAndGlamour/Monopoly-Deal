@@ -9,7 +9,7 @@
         <mat-list-item>
             <div class="flex-row flex-space-between full-width">
                 <mat-form-field class="flex-row-item flex-1" hintLabel="Must have at least one seat and more seats than you have bots.">
-                    <input type="number" min="2" [max]="8" matInput placeholder="Seats" formControlName="seats">
+                    <input type="number" min="2" [max]="4" matInput placeholder="Seats" formControlName="seats">
                 </mat-form-field>
                 <mat-form-field class="flex-row-item flex-1" hintLabel="Must have less bots than you have seats.">
                     <input type="number" [min]="0" [max]="form.get('seats').value - 1" matInput placeholder="Bots" formControlName="bots">

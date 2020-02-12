@@ -5,6 +5,7 @@ import {ChatService} from '../../services/chat/chat.service';
 import {Chat, ChatLevel, IChat, IMessage} from '../../classes/message';
 import {FormControl, Validators} from '@angular/forms';
 import Timestamp = firebase.firestore.Timestamp;
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -15,21 +16,22 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   chats: IChat[] = [];
   lobby: IChat;
   selected: Chat;
-  toggle = 'down';
   messageCtrl = new FormControl('', [
     Validators.minLength(1)
   ]);
   @ViewChild('chatWindow', {static: true}) private scrollContainer: ElementRef;
 
-  constructor(private profileService: ProfileService, private chatService: ChatService) {
+  constructor(private profileService: ProfileService, private chatService: ChatService, private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.selected = new Chat(await this.chatService.chat(this.route.snapshot.params.game || 'lobby'));
+    console.log(this.selected);
     this.chatService.chatChanges().subscribe(async changes => {
       this.lobby = await this.chatService.lobby();
       this.chats = await this.chatService.chats();
       this.selected = new Chat(await this.chatService.chat(this.selected ? this.selected.id : 'lobby'));
-    })
+    });
   }
 
   ngAfterViewChecked() {
@@ -46,10 +48,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   get rooms() {
     return this.chats.filter(chat => chat.level === ChatLevel.ROOM);
-  }
-
-  toggleChat() {
-    this.toggle = this.toggle === 'down' ? 'up' : 'down';
   }
 
   async send() {

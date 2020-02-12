@@ -57,8 +57,7 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
     }
 
     async createChat(game: IGame) {
-        const id = await this.chatService.id();
-        const chat: IChat = { game, id, level: ChatLevel.GAME, messages: [], owner: game.owner, participants: [] };
+        const chat: IChat = { game, id: game.id, level: ChatLevel.GAME, messages: [], owner: game.owner, participants: [] };
         await this.chatService.create(chat);
     }
 
