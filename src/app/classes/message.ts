@@ -59,4 +59,5 @@ export interface IMessage {
     from: IProfileReadOnly;
     value: string;
     sent: Date | Timestamp;
+    read: Map<string, boolean>;
 }

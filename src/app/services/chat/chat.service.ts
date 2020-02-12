@@ -33,7 +33,8 @@ export class ChatService {
         const profile = await this.profileService.profile();
         const participating = await this.storage.getCollectionWhere('chat', { fieldPath: 'participants', opStr: 'array-contains', value: profile.uid });
         const allowed = await this.storage.getCollectionWhere('chat', { fieldPath: 'allowed', opStr: 'array-contains', value: profile.uid });
-        return [...participating, ...allowed];
+        const owned = await this.storage.getCollectionWhere('chat', { fieldPath: 'owner', opStr: '==', value: profile.uid});
+        return [...owned, ...participating, ...allowed];
     }
 
     async sendMessage(chat: string, message: IMessage) {

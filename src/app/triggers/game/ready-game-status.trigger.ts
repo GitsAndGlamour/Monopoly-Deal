@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {StatusTrigger} from '../status.trigger';
 import {IGame} from '../../classes/game';
 import {IPlayer} from '../../classes/player';
+import {ChatLevel, IChat} from '../../classes/message';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,9 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
         const bots = await this.createBots(game.bots, position);
         game.players = game.players.concat([...bots, ...players]);
         console.log(players, bots);
-        return this.generateGame(game);
+        await this.generateGame(game);
+        await this.createChat(game);
+        return game;
     }
 
     async sendInvites(game: IGame): Promise<void> {
@@ -50,14 +53,17 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
             };
             return additionalPlayer;
         })];
-        console.log(players, createdPlayers);
         return {players: createdPlayers, position};
     }
 
-    async generateGame(game: IGame): Promise<IGame> {
-        console.log(game);
+    async createChat(game: IGame) {
+        const id = await this.chatService.id();
+        const chat: IChat = { game, id, level: ChatLevel.GAME, messages: [], owner: game.owner, participants: [] };
+        await this.chatService.create(chat);
+    }
+
+    async generateGame(game: IGame): Promise<void> {
         await this.gameService.create(game);
-        return game;
     }
 
 }
