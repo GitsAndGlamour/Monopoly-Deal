@@ -20,6 +20,7 @@ import {GameListResolver, GameResolver, PlayerGameListResolver} from './resolver
 import {InviteListResolver} from './resolvers/invite.resolver';
 import {PlayerComponent} from './pages/player/player.component';
 import {PlayerResolver} from './resolvers/player.resolver';
+import {GameGuard} from './guards/game.guard';
 
 
 export const routes: Routes = [
@@ -28,7 +29,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: GameListComponent, resolve: { games: GameListResolver, friends: FriendListResolver, online: OnlineListResolver } },
       { path: 'rules', component: GameRulesComponent },
-      { path: 'game/:game', component: GameComponent, resolve: { game: GameResolver } },
+      { path: 'game/:game', component: GameComponent, resolve: { game: GameResolver }, canActivate: [GameGuard] },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: ProfileComponent, resolve: { invites: InviteListResolver } },
       { path: 'player/:player', component: PlayerComponent, outlet: 'popup', resolve: { player: PlayerResolver, games: PlayerGameListResolver, invites: InviteListResolver } },

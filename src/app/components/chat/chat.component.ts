@@ -25,9 +25,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   async ngOnInit() {
-    this.selected = new Chat(await this.chatService.chat(this.route.snapshot.params.game || 'lobby'));
-    console.log(this.selected);
-    this.chatService.chatChanges().subscribe(async changes => {
+    this.chatService.chatChanges().subscribe(async () => {
       this.lobby = await this.chatService.lobby();
       this.chats = await this.chatService.chats();
       this.selected = new Chat(await this.chatService.chat(this.selected ? this.selected.id : 'lobby'));
