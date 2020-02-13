@@ -22,6 +22,7 @@ export interface IGame extends IBase {
     friends: boolean;
     players: IPlayer[];
     invites: IGameInvite[];
+    requests?: IGameInvite[];
     attendees: string[];
     status: GameStatus;
     ranked: boolean;
@@ -56,6 +57,7 @@ export class Game extends Base implements IGame {
     friends: boolean;
     players: IPlayer[];
     invites: IGameInvite[];
+    requests: IGameInvite[];
     status: GameStatus;
     ranked: boolean;
     attendees: string[];

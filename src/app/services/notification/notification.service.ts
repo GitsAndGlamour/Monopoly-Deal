@@ -67,6 +67,21 @@ export class NotificationService {
         await this.profileService.addNotification(invite.toId, notifications);
     }
 
+    async sendGameRequestNotification(invite: IGameInvite) {
+        const id = await this.getId();
+        const notification: IInviteNotification = {
+            id,
+            link: `game/${invite.game.id}`,
+            type: NotificationType.GAME_REQUEST,
+            message: `${invite.from.displayName} requested to join ${invite.game.name}!`,
+            status: NotificationStatus.NEW,
+            invite
+        };
+        const notifications = await this.notifications();
+        notifications[id] = notification;
+        await this.profileService.addNotification(invite.toId, notifications);
+    }
+
     async markAllAsRead() {
         let notifications: { [p: string]: INotification } = {};
         const profile = await this.profileService.profile();

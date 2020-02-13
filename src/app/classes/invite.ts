@@ -19,4 +19,5 @@ export interface IInvite extends IBase {
 
 export interface IGameInvite extends IInvite {
     game: IGameReadOnly;
+    request?: boolean;
 }

@@ -4,6 +4,7 @@ import {StoreService} from '../firebase/store/store.service';
 import {IGame} from '../../classes/game';
 import {Observable} from 'rxjs';
 import {IPlayer} from '../../classes/player';
+import {IGameInvite} from '../../classes/invite';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class GameService {
 
   async addPlayer(game: IGame, player: IPlayer): Promise<void> {
     return this.storage.addToArrayInDocument('games', game.id, 'players', player);
+  }
+
+  async addRequest(game: IGame, request: IGameInvite): Promise<void> {
+    return this.storage.addToArrayInDocument('games', game.id, 'requests', request);
   }
 }

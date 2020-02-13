@@ -10,6 +10,11 @@ export class NotificationProfileService extends ProfileService {
         await this.storage.updateDocument('profiles', to, { notifications } as unknown);
     }
 
+    async clearNotifications() {
+        const user = this.auth.localUser;
+        await this.storage.updateDocument('profiles', user.uid, {notifications: {}});
+    }
+
     async updateNotifications(notifications: { [p: string]: INotification }) {
         const user = this.auth.localUser;
         await this.storage.updateDocument('profiles', user.uid, { notifications } as unknown);

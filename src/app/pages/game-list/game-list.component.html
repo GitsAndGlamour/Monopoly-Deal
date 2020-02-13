@@ -59,7 +59,7 @@
                                         <mat-icon svgIcon="viewable"></mat-icon>
                                     </mat-chip>
 <!--                                    Public -->
-                                    <mat-chip matTooltip="anyone can join" *ngIf="game.public" selected>
+                                    <mat-chip matTooltip="anyone can join" *ngIf="game.public && !game.friends" selected>
                                         <mat-icon svgIcon="public"></mat-icon>
                                     </mat-chip>
 <!--                                    Ranked -->
@@ -97,6 +97,7 @@
 <!--                        Game Actions -->
                         <div>
                             <button
+                                    *ngIf="game.viewable && !isOwnerOf(game)"
                                     mat-raised-button
                                     color="highlight"
                                     [routerLink]="['game', game.id]"
@@ -105,10 +106,19 @@
                             </button>
                             &nbsp;
                             <button
+                                    *ngIf="(!!game.public && !game.friends) || !!isApproved(game)"
                                     mat-raised-button
                                     [routerLink]="['game', game.id]"
                                     color="warn" [queryParams]="{action:'play'}">
                                 Play!
+                            </button>
+                            <button
+                                    *ngIf="!game.public && !isApproved(game)"
+                                    [disabled]="isRequested(game)"
+                                    mat-raised-button
+                                    color="primary"
+                                    (click)="sendRequest(game)">
+                                Request!
                             </button>
                         </div>
                     </div>

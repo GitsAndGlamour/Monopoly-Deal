@@ -22,7 +22,9 @@ export class GameGuard implements CanActivate {
             const game = await this.gameService.game(next.params.game);
             if (game.public) { // If game is public
                 if (game.seats - game.players.length) { // If game has open seats
-                    return true;
+                    if (!game.friends) { // If the game isn't friends only
+                        return true;
+                    }
                 }
             }
             if (game.owner === profile.uid) { // If owner
@@ -32,6 +34,9 @@ export class GameGuard implements CanActivate {
                 return true;
             }
             if (profile.friends.some(friend => friend === game.owner)) { // If friend
+                return true;
+            }
+            if (game.invites.some(invite => invite.toId === profile.uid)) { // If invited
                 return true;
             }
             if (game.viewable && next.params.action === 'watch') { // If game is watchable

@@ -61,6 +61,7 @@ export class CreateGameComponent implements OnInit {
 
     const gameId = await this.service.generateId();
     const game: IGame = {
+      requests: [],
       bots: this.form.get('bots').value,
       created: new Date(),
       friends: this.form.get('friends').value,
@@ -89,6 +90,7 @@ export class CreateGameComponent implements OnInit {
           id: gameId,
           name: this.form.get('name').value,
           status: GameStatus.READY,
+          requests: [],
         },
         created: new Date()}))),
       name: this.form.get('name').value,

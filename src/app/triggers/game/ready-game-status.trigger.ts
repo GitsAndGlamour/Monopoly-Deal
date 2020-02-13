@@ -43,13 +43,17 @@ export class ReadyGameStatusTrigger extends StatusTrigger {
 
     async createBots(game: IGame): Promise<IPlayer[]> {
         const bots = new Array(game.bots);
-        return [...bots].map((bot, index) => {
+        let position = 1;
+        let players: IPlayer[] = [];
+        [...bots].map(bot => {
             const player: IPlayer = {
-                created: new Date(), name: `Bot ${index + 1}`, owner: false, position: game.players.length
+                created: new Date(), name: `Bot ${position}`, owner: false, position
             };
-            game.players.push(player);
+            players.push(player);
+            position++;
             return player;
         });
+        return players;
     }
 
     async createChat(game: IGame, owner: IProfileReadOnly) {

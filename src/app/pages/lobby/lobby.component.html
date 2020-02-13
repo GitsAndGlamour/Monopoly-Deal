@@ -19,6 +19,8 @@
                                <mat-icon matListAvatar color="accent"
                                          *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
                                <mat-icon matListAvatar color="accent"
+                                         *ngSwitchCase="notificationTypes.GAME_REQUEST" svgIcon="game"></mat-icon>
+                               <mat-icon matListAvatar color="accent"
                                          *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
                                <mat-icon matListAvatar color="accent"
                                          *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
@@ -26,6 +28,7 @@
                            <h4 matLine>
                                <span class="text-wrap" [ngSwitch]="notification.type">
                                    <span *ngSwitchCase="notificationTypes.GAME_INVITE">You Received a Game Invite</span>
+                                   <span *ngSwitchCase="notificationTypes.GAME_REQUEST">You Received a Game Request</span>
                                    <span *ngSwitchCase="notificationTypes.MESSAGE">You Have a New Message</span>
                                    <span *ngSwitchCase="notificationTypes.FRIEND_INVITE">You Have a Friend Invite</span>
                                </span>
@@ -83,6 +86,8 @@
                         <mat-icon matListAvatar color="accent"
                                   *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
                         <mat-icon matListAvatar color="accent"
+                                  *ngSwitchCase="notificationTypes.GAME_REQUEST" svgIcon="game"></mat-icon>
+                        <mat-icon matListAvatar color="accent"
                                   *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
                         <mat-icon matListAvatar color="accent"
                                   *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
@@ -90,6 +95,7 @@
                     <h4 matLine>
                        <span class="text-wrap" [ngSwitch]="notification.type">
                            <span *ngSwitchCase="notificationTypes.GAME_INVITE">You Received a Game Invite</span>
+                           <span *ngSwitchCase="notificationTypes.GAME_REQUEST">You Received a Game Request</span>
                            <span *ngSwitchCase="notificationTypes.MESSAGE">You Have a New Message</span>
                            <span *ngSwitchCase="notificationTypes.FRIEND_INVITE">You Have a Friend Invite</span>
                        </span>

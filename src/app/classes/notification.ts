@@ -2,6 +2,7 @@ import {IInvite} from './invite';
 
 export enum NotificationType {
     GAME_INVITE = 'Game Invite',
+    GAME_REQUEST = 'Game Request',
     GAME_UPDATE = 'Game Activity Update',
     MESSAGE = 'New Message',
     FRIEND_INVITE = 'Friend Invite',
