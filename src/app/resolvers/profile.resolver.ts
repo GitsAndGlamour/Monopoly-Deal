@@ -2,6 +2,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Injectable} from '@angular/core';
 import {IProfile, IProfileReadOnly} from '../classes/profile';
 import {ProfileService} from '../services/profile/profile.service';
+import {FriendProfileService} from '../services/profile/friend-profile.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileResolver implements Resolve<IProfile> {
@@ -23,7 +24,7 @@ export class ProfileListResolver implements Resolve<IProfile[]> {
 
 @Injectable({ providedIn: 'root' })
 export class FriendListResolver implements Resolve<IProfileReadOnly[]> {
-    constructor(private service: ProfileService) {}
+    constructor(private service: FriendProfileService) {}
 
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return await this.service.friends();

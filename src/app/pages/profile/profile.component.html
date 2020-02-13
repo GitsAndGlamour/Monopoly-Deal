@@ -12,7 +12,9 @@
                         <input matInput [placeholder]="profile.displayName" [formControl]="displayNameCtrl">
                     </mat-form-field>
                     <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
-                    <button mat-icon-button color="success" (click)="edit(displayNameCtrl)"><mat-icon>check_circle</mat-icon></button>
+                    <button mat-icon-button color="success" (click)="edit(displayNameCtrl)">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
                 </div>
             </mat-card-title>
             <mat-card-subtitle><small>Username: </small>
@@ -27,7 +29,9 @@
                         <mat-hint *ngIf="!!usernameCtrl.pending">Checking availability...</mat-hint>
                     </mat-form-field>
                     <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
-                    <button mat-icon-button color="success" (click)="edit(usernameCtrl)"><mat-icon>check_circle</mat-icon></button>
+                    <button mat-icon-button color="success" (click)="edit(usernameCtrl)">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
                 </div>
             </mat-card-subtitle>
         </mat-card-header>
@@ -45,7 +49,9 @@
             <mat-tab-group>
                 <mat-tab label="Friends">
                     <br>
-                    <h3 id="no-friend-prompt" *ngIf="!profile.friends?.length">You have no friends! :( <button mat-raised-button color="red" (click)="addFriend()">Make some!</button></h3>
+                    <h3 id="no-friend-prompt" *ngIf="!profile.friends?.length">You have no friends! :(
+                        <button mat-raised-button color="red" (click)="addFriend()">Make some!</button>
+                    </h3>
                     <mat-chip-list>
                         <mat-chip color="warn" *ngFor="let friend of friends" removable selected
                                   (removed)="removeFriend(friend.uid)">

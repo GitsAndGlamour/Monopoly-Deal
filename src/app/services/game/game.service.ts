@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {StoreService} from '../firebase/store/store.service';
 import {IGame} from '../../classes/game';
 import {Observable} from 'rxjs';
+import {IPlayer} from '../../classes/player';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class GameService {
 
   async games(): Promise<IGame[]> {
     return this.storage.getCollection('games');
+  }
+
+  async gamesByProfile(id: string): Promise<IGame[]> {
+    return this.storage.getCollectionWhere('games', {fieldPath: 'attendees', opStr: "array-contains", value: id})
   }
 
   async game(id: string): Promise<IGame> {
@@ -30,7 +35,7 @@ export class GameService {
     return this.storage.addDocument('games', game.id, game);
   }
 
-  async gamesByProfile(id: string): Promise<IGame[]> {
-    return this.storage.getCollectionWhere('games', {fieldPath: 'attendees', opStr: "array-contains", value: id})
+  async addPlayer(game: IGame, player: IPlayer): Promise<void> {
+    return this.storage.addToArrayInDocument('games', game.id, 'players', player);
   }
 }

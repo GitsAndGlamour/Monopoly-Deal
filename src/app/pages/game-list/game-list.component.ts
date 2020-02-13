@@ -54,7 +54,7 @@ export class GameListComponent implements OnInit {
   }
 
   availableSeating(game: IGame): number {
-    return game.players.filter(player => (!player.owner && player.name.includes('Player'))).length;
+    return game.seats - game.bots - 1;
   }
 
   showPlayerPopup(event, profile: string) {

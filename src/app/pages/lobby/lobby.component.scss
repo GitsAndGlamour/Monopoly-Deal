@@ -38,3 +38,7 @@ small {
   height: fit-content;
   width: fit-content;
 }
+
+::ng-deep .mat-menu-panel {
+  margin-top: 1rem;
+}

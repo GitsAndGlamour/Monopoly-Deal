@@ -15,8 +15,12 @@ import {DISPLAY_NAME_REGEX, PASSWORD_REGEX, USERNAME_REGEX} from '../../helpers/
 export class RegistrationComponent implements OnInit {
   tab: number;
   form: FormGroup;
-  constructor(private route: ActivatedRoute, private builder: FormBuilder, private auth: AuthService, private router: Router,
-              private profileService: ProfileService, private usernameValidator: UsernameValidator) {
+  constructor(private route: ActivatedRoute,
+              private builder: FormBuilder,
+              private auth: AuthService,
+              private router: Router,
+              private profileService: ProfileService,
+              private usernameValidator: UsernameValidator) {
     this.tab = route.snapshot.data.tab;
     this.form = this.builder.group({
       // Sign Up
@@ -40,6 +44,7 @@ export class RegistrationComponent implements OnInit {
           Validators.minLength(4),
           Validators.pattern(DISPLAY_NAME_REGEX)]),
       }),
+
       // Log In
       1: this.builder.group({
         email: new FormControl('', [Validators.email]),
@@ -79,9 +84,5 @@ export class RegistrationComponent implements OnInit {
           .then(() => this.profileService.showOnline())
           .then(() => this.router.navigate(['/lobby']));
     }
-  }
-
-  log() {
-    console.log(this.form);
   }
 }

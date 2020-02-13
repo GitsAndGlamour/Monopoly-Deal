@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from '../services/firebase/auth/auth.service';
-import {Observable} from 'rxjs';
 import {GameService} from '../services/game/game.service';
-import {IGame} from '../classes/game';
 import {ProfileService} from '../services/profile/profile.service';
 
 @Injectable({
@@ -22,7 +19,9 @@ export class GameGuard implements CanActivate {
             const profile = await this.profileService.profile()
             const game = await this.gameService.game(next.params.game);
             if (game.public) { // If game is public
-                return true;
+                if (game.seats - game.players.length) { // If game has open seats
+                    return true;
+                }
             }
             if (game.owner === profile.uid) { // If owner
                 return true;
@@ -31,6 +30,9 @@ export class GameGuard implements CanActivate {
                 return true;
             }
             if (profile.friends.some(friend => friend === game.owner)) { // If friend
+                return true;
+            }
+            if (game.viewable && next.params.action === 'watch') { // If game is watchable
                 return true;
             }
             this.router.navigate(['/lobby']);

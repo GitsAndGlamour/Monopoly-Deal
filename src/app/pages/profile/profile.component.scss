@@ -2,23 +2,6 @@ mat-card {
   width: 45%;
   margin: 1%;
 }
-#friends-card-avatar {
-  margin-right: 1rem;
-}
-
-#container {
-  padding: 1.5%;
-  display: grid;
-}
-
-#no-friend-prompt {
-  text-align: center;
-  margin-top: 4%;
-}
-
-#action-header {
-  width: inherit;
-}
 
 .profile-card {
   background-color: #c8e6c9;
@@ -27,6 +10,28 @@ mat-card {
     margin: auto;
     text-align: center;
   }
+}
+
+#action-header {
+  width: inherit;
+}
+
+#container {
+  padding: 1.5%;
+  display: grid;
+}
+
+#current-token-caption small {
+  color: #919098;
+}
+
+#friends-card-avatar {
+  margin-right: 1rem;
+}
+
+#no-friend-prompt {
+  text-align: center;
+  margin-top: 4%;
 }
 
 #token-content {
@@ -38,6 +43,3 @@ mat-card {
   }
 }
 
-#current-token-caption small {
-  color: #919098;
-}

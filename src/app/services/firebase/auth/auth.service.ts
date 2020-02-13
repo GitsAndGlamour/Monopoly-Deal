@@ -40,14 +40,14 @@ export class AuthService {
     return this.userService.update(user);
   }
 
-  // Returns true if user is logged in
-  get authenticated(): boolean {
-    return !!this.user || !!this.firebase.auth.currentUser;
-  }
-
   // Returns current user
   get currentUser(): User {
     return this.authenticated ? this.user : this.firebase.auth.currentUser;
+  }
+
+  // Returns true if user is logged in
+  get authenticated(): boolean {
+    return !!this.user || !!this.firebase.auth.currentUser;
   }
 
   async signUp(email: string, password: string, displayName: string): Promise<void> {
@@ -96,5 +96,4 @@ Please verify your e-mail.`);
     this.clearLocalUser();
     return this.firebase.auth.signOut();
   }
-
 }

@@ -10,9 +10,12 @@ import {ChatService} from '../services/chat/chat.service';
     providedIn: 'root'
 })
 export abstract class StatusTrigger {
-    constructor(protected gameService: GameService, protected profileService: ProfileService,
-                protected notificationService: NotificationService, protected router: Router,
-                protected inviteService: InviteService, protected chatService: ChatService) { }
+    constructor(protected gameService: GameService,
+                protected profileService: ProfileService,
+                protected notificationService: NotificationService,
+                protected router: Router,
+                protected inviteService: InviteService,
+                protected chatService: ChatService) { }
 
     execute(inputs: any) {
         this.before(inputs).then(async result => {

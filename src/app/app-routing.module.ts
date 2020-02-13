@@ -16,7 +16,12 @@ import {
   ProfileListResolver,
   ProfileResolver
 } from './resolvers/profile.resolver';
-import {GameListResolver, GameResolver, PlayerGameListResolver} from './resolvers/game.resolver';
+import {
+  GameChatResolver,
+  GameListResolver,
+  GameResolver,
+  PlayerGameListResolver
+} from './resolvers/game.resolver';
 import {InviteListResolver} from './resolvers/invite.resolver';
 import {PlayerComponent} from './pages/player/player.component';
 import {PlayerResolver} from './resolvers/player.resolver';
@@ -25,14 +30,26 @@ import {GameGuard} from './guards/game.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/welcome/signup', pathMatch: 'full' },
-  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard], resolve: { profile: ProfileResolver, profiles: ProfileListResolver, friends: FriendListResolver },
+  { path: 'lobby', component: LobbyComponent, canActivate: [AuthGuard],
+    resolve: { profile: ProfileResolver, profiles: ProfileListResolver, friends: FriendListResolver },
     children: [
-      { path: '', component: GameListComponent, resolve: { games: GameListResolver, friends: FriendListResolver, online: OnlineListResolver } },
+      { path: '', component: GameListComponent,
+        resolve: { games: GameListResolver, friends: FriendListResolver, online: OnlineListResolver } },
+
       { path: 'rules', component: GameRulesComponent },
-      { path: 'game/:game', component: GameComponent, resolve: { game: GameResolver }, canActivate: [GameGuard] },
+
+      { path: 'game/:game', component: GameComponent,
+        canActivate: [GameGuard],
+        resolve: { game: GameResolver, chat: GameChatResolver } },
+
       { path: 'about', component: AboutComponent },
-      { path: 'profile', component: ProfileComponent, resolve: { invites: InviteListResolver } },
-      { path: 'player/:player', component: PlayerComponent, outlet: 'popup', resolve: { player: PlayerResolver, games: PlayerGameListResolver, invites: InviteListResolver } },
+
+      { path: 'profile', component: ProfileComponent,
+        resolve: { invites: InviteListResolver } },
+
+      { path: 'player/:player', component: PlayerComponent,
+        outlet: 'popup',
+        resolve: { player: PlayerResolver, games: PlayerGameListResolver, invites: InviteListResolver } },
     ] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [WelcomeGuard],
     children: [

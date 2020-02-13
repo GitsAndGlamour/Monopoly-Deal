@@ -4,14 +4,13 @@ import {StoreService} from '../firebase/store/store.service';
 import {IProfile, IProfileReadOnly} from '../../classes/profile';
 import {AuthService} from '../firebase/auth/auth.service';
 import {TokenPreference} from '../../classes/preferences';
-import {INotification} from '../../classes/notification';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  constructor(public storage: StoreService<IProfile>, public auth: AuthService) {
+  constructor(protected storage: StoreService<IProfile>, protected auth: AuthService) {
   }
 
   async profile(): Promise<IProfile> {
@@ -19,55 +18,22 @@ export class ProfileService {
     return this.storage.getDocument('profiles', user.uid);
   }
 
+  async profiles() {
+    return this.storage.getCollection('profiles');
+  }
+
   profileChanges(): Observable<any> {
     const user: User = this.auth.localUser;
     return this.storage.getDocumentChanges('profiles', user.uid);
   }
 
-  async profiles() {
-    return this.storage.getCollection('profiles');
-  }
-
-  async online(): Promise<IProfileReadOnly[]> {
-    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: true})
-  }
-
-  async friends(): Promise<IProfileReadOnly[]> {
-    const user = this.auth.localUser;
-    const profile: IProfile = await this.storage.getDocument('profiles', user.uid);
-    if (!!profile) {
-      return await this.storage.getCollectionWhere('profiles', { fieldPath: 'uid', opStr: 'in', value: profile.friends })
-    }
-    return [];
-  }
-
-  async updateProfile(profile: Partial<IProfileReadOnly>) {
-    return this.storage.updateDocument('profiles', profile.uid, profile);
-  }
-
-  async addFriendToProfile(uid: string): Promise<void> {
-    const user = this.auth.localUser;
-    await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid);
-  }
-
-  async addProfileToFriend(uid: string): Promise<void> {
-    const user = this.auth.localUser;
-    await this.storage.addToArrayInDocument('profiles', uid, 'friends', user.uid);
-  }
-
-  async removeFriend(uid: string): Promise<void> {
-    const user = this.auth.localUser;
-    await this.storage.removeFromArrayInDocument('profiles', user.uid, 'friends', uid);
-  }
-
-  async addFriends(uidList: string[]): Promise<void[]> {
-    const user = this.auth.localUser;
-    return Promise.all(await uidList.map(async uid => await this.storage.addToArrayInDocument('profiles', user.uid, 'friends', uid)));
-  }
-
   async create(profile: IProfile): Promise<void> {
     const data = Object.assign({}, profile) as unknown as IProfile;
     return await this.storage.addDocument('profiles', profile.uid, data);
+  }
+
+  async update(profile: Partial<IProfileReadOnly>) {
+    return this.storage.updateDocument('profiles', profile.uid, profile);
   }
 
   async usernames(): Promise<string[]> {
@@ -80,26 +46,21 @@ export class ProfileService {
     return results && results.length > 0;
   }
 
+  async online(): Promise<IProfileReadOnly[]> {
+    return this.storage.getCollectionWhere('profiles', { fieldPath: 'online', opStr: '==', value: true})
+  }
+
   async showOnline(): Promise<void> {
     const user = this.auth.localUser;
     return await this.storage.updateDocument('profiles', user.uid, { online: true });
   }
 
+  async showOffline() {
+    await this.storage.updateDocument('profiles', this.auth.localUser.uid, { online: false });
+  }
+
   async updateToken(token: TokenPreference) {
     const user = this.auth.localUser;
     await this.storage.updateDocument('profiles', user.uid, { token } as unknown as IProfile)
-  }
-
-  async addNotification(to: string, notifications: { [p: string]: INotification }) {
-    await this.storage.updateDocument('profiles', to, { notifications } as unknown);
-  }
-
-  async updateNotifications(notifications: { [p: string]: INotification }) {
-    const user = this.auth.localUser;
-    await this.storage.updateDocument('profiles', user.uid, { notifications } as unknown);
-  }
-
-  async showOffline() {
-    await this.storage.updateDocument('profiles', this.auth.localUser.uid, { online: false });
   }
 }

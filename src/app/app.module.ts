@@ -56,6 +56,9 @@ import {PlayerComponent} from './pages/player/player.component';
     ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateGameComponent, AddFriendComponent]
+  entryComponents: [
+      CreateGameComponent,
+      AddFriendComponent
+  ]
 })
 export class AppModule { }

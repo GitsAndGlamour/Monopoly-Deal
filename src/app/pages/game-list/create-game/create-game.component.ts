@@ -60,9 +60,21 @@ export class CreateGameComponent implements OnInit {
       invites: await Promise.all(this.friends.map(async friend => ({
         id: await this.inviteService.getId(),
         toId: friend.uid,
-        to: friend,
+        to: {
+          uid: friend.uid,
+          displayName: friend.displayName,
+          username: friend.username,
+          created: friend.created,
+          token: friend.token,
+        },
         fromId: this.data.profile.uid,
-        from: this.data.profile,
+        from: {
+          uid: this.data.profile.uid,
+          displayName: this.data.profile.displayName,
+          username: this.data.profile.username,
+          created: this.data.profile.created,
+          token: this.data.profile.token,
+        },
         status: InvitationStatus.SENT,
         game: {
           id: gameId,

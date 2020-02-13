@@ -10,6 +10,8 @@ export interface IChat {
     level: ChatLevel;
     messages: IMessage[];
     participants: IProfileReadOnly[];
+    participantIds: string[];
+    allowed?: string[];
     owner?: string;
     game?: IGameReadOnly;
     room?: IRoom;
@@ -20,6 +22,7 @@ export class Chat extends Base implements IChat {
     level: ChatLevel;
     messages: IMessage[];
     participants: IProfileReadOnly[];
+    participantIds: string[];
     allowed?: string[];
     owner?: string;
     game?: IGameReadOnly;

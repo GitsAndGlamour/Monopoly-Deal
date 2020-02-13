@@ -9,6 +9,10 @@ export class UserService {
 
   constructor(public storage: StoreService<User>) { }
 
+  async user(uid: string): Promise<User> {
+    return await this.storage.getDocument('users', uid);
+  }
+
   async create(user: User): Promise<void> {
     const data = {
       uid: user.uid,
@@ -23,9 +27,5 @@ export class UserService {
       email: user.email,
     } as unknown as User;
     return await this.storage.updateDocument('users', user.uid, data);
-  }
-
-  async user(uid: string): Promise<User> {
-    return await this.storage.getDocument('users', uid);
   }
 }

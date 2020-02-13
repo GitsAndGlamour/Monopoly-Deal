@@ -44,7 +44,8 @@ export class StoreService<T> {
 
   async getCollectionWhere(collection: string, clause: Clause): Promise<T[]> {
     try {
-      const ref = await this.firestore.collection<T>(collection, ref => ref.where(clause.fieldPath, clause.opStr, clause.value))
+      const ref = await this.firestore
+          .collection<T>(collection, ref => ref.where(clause.fieldPath, clause.opStr, clause.value))
           .get().toPromise();
       return ref.docs.map<T>(doc => doc.data() as T);
     } catch (error) {
@@ -72,15 +73,6 @@ export class StoreService<T> {
     }
   }
 
-  async getDocumentRef(collection: string, document: string): Promise<any> {
-    try {
-      return this.firestore.collection(collection).doc(document);
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
   async addDocument(collection: string, document: string, data: T): Promise<void> {
     try {
       return await this.firestore.collection<T>(collection).doc(document).set(data);
@@ -99,17 +91,8 @@ export class StoreService<T> {
     }
   }
 
-  async updateSubCollectionDocument(collection: string, document: string, subCollection: string, subDocument: string, data: any): Promise<void> {
-    try {
-      return await this.firestore.collection<T>(collection).doc<T>(document).collection(subCollection).doc(subDocument).update(data);
-    } catch (error) {
-      console.log(error);
-      return;
-    }
-  }
-
-  async addToArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
-
+  async addToArrayInDocument(
+      collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(
           {[array]: FieldValue.arrayUnion(value)} as unknown as Partial<T>
@@ -120,8 +103,8 @@ export class StoreService<T> {
     }
   }
 
-  async removeFromArrayInDocument(collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
-
+  async removeFromArrayInDocument(
+      collection: string, document: string, array: string, value: Partial<string | string[] | object>): Promise<void> {
     try {
       return await this.firestore.collection<T>(collection).doc<T>(document).update(
           {[array]: FieldValue.arrayRemove(value)} as unknown as Partial<T>

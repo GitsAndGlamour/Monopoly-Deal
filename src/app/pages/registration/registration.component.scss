@@ -1,28 +1,32 @@
-img {
-  align-self: center;
-  margin: auto;
-}
-
 mat-card {
   background-color: #c8e6c9;
   border: 10px solid white;
   width: 30%;
   margin: auto;
+
+  img {
+    align-self: center;
+    margin: auto;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
     padding: 1rem 2rem;
+
     mat-form-field {
       margin-top: 1rem;
     }
   }
 }
+
 #container {
   background-color: #cfd8dc;
   padding: 2% 0;
   height: 100vh;
 }
 
+/* Overrides */
 ::ng-deep #username .mat-form-field-infix {
   display: flex !important; // Makes the green check next to validated name appear on the right side of the input field instead of below the input text.
 }

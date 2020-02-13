@@ -1,9 +1,12 @@
-.spacer {
-  flex: 1 1 auto;
-}
-
+/* Dimensions */
 .full-width {
   width: 100%;
+}
+
+/* Flex */
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 .baseline-middle {
@@ -43,9 +46,7 @@
   margin-left: 0 !important;
 }
 
-/**
-  Color styling
- */
+/* Coloring */
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
   background-color: white;
@@ -62,6 +63,8 @@
   text-shadow: #81c784;
 }
 
+/* Sizing */
+
 .shrink-2x {
   transform: scale(0.5);
 }
@@ -72,16 +75,6 @@
 
 .enlarge-2x {
   transform: scale(1.5);
-}
-
-/* One-offs */
-
-#username .mat-form-field-infix {
-  display: flex !important; // Makes the green check next to validated name appear on the right side of the input field instead of below the input text.
-}
-
-.mat-menu-panel {
-  margin-top: 1rem;
 }
 
 
