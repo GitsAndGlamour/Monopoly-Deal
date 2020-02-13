@@ -6,6 +6,9 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * Checks authentication and redirects to sign-up screen if not logged in.
+ */
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 

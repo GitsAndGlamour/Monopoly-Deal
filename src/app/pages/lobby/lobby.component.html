@@ -4,7 +4,11 @@
     <button mat-flat-button color="primary" routerLink="rules">Rules</button>
     <button mat-flat-button color="primary" routerLink="/lobby">Lobby</button>
     <span class="spacer"></span>
-    <mat-icon color="accent" [matMenuTriggerFor]="notificationMenu" [matBadge]="(new?.length || 0).toString()" matBadgeColor="warn">notifications</mat-icon>
+<!--    Notification Menu -->
+    <mat-icon color="accent"
+              [matMenuTriggerFor]="notificationMenu"
+              [matBadge]="(new?.length || 0).toString()"
+              matBadgeColor="warn">notifications</mat-icon>
     <mat-menu #notificationMenu="matMenu">
        <app-menu>
                <div id="notifications-menu-header" app-menu-header class="mat-subheading-2">Notifications</div>
@@ -12,9 +16,12 @@
                    <ng-container *ngFor="let notification of new">
                        <a mat-list-item [routerLink]="[notification.link]">
                            <ng-container [ngSwitch]="notification.type">
-                               <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
-                               <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
-                               <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
+                               <mat-icon matListAvatar color="accent"
+                                         *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
+                               <mat-icon matListAvatar color="accent"
+                                         *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
+                               <mat-icon matListAvatar color="accent"
+                                         *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
                            </ng-container>
                            <h4 matLine>
                                <span class="text-wrap" [ngSwitch]="notification.type">
@@ -43,10 +50,13 @@
     <button mat-flat-button color="primary" routerLink="profile">Profile</button>
     <button mat-flat-button color="signup" (click)="signOut()">Sign Out</button>
 </mat-toolbar>
+<!-- Notification Drawer Menu -->
 <mat-menu #drawerMenu="matMenu">
     <app-menu>
         <mat-nav-list>
-            <a mat-list-item (click)="markNotificationsAsRead()"><mat-icon>playlist_add_check</mat-icon> &nbsp; Mark All As Read</a>
+            <a mat-list-item (click)="markNotificationsAsRead()">
+                <mat-icon>playlist_add_check</mat-icon> &nbsp; Mark All As Read
+            </a>
         </mat-nav-list>
         <a mat-button app-menu-footer (click)="drawer.toggle()">
             <mat-icon color="warn">close</mat-icon> &nbsp; Close Drawer
@@ -65,11 +75,17 @@
         </mat-toolbar>
         <mat-nav-list dense>
             <ng-container *ngFor="let notification of all">
-                <a mat-list-item [routerLink]="[notification.link]" [ngStyle]="{backgroundColor: notification.status === notificationStatuses.READ ? 'whitesmoke' : 'white'}">
+                <a mat-list-item
+                   [routerLink]="[notification.link]"
+                   [ngStyle]="{backgroundColor: notification.status === notificationStatuses.READ ?
+                   'whitesmoke' : 'white'}">
                     <ng-container [ngSwitch]="notification.type">
-                        <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
-                        <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
-                        <mat-icon matListAvatar color="accent" *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
+                        <mat-icon matListAvatar color="accent"
+                                  *ngSwitchCase="notificationTypes.GAME_INVITE" svgIcon="game"></mat-icon>
+                        <mat-icon matListAvatar color="accent"
+                                  *ngSwitchCase="notificationTypes.MESSAGE">email</mat-icon>
+                        <mat-icon matListAvatar color="accent"
+                                  *ngSwitchCase="notificationTypes.FRIEND_INVITE">people_alt</mat-icon>
                     </ng-container>
                     <h4 matLine>
                        <span class="text-wrap" [ngSwitch]="notification.type">
@@ -84,14 +100,20 @@
             </ng-container>
             <a mat-list-item *ngIf="!all.length">
                 <mat-icon matListIcon matListAvatar>notifications_none</mat-icon>
-                <h4 matLine><span class="text-wrap">No Notifications!</span></h4>
+                <h4 matLine>
+                    <span class="text-wrap">No Notifications!</span>
+                </h4>
                 <p matLine>You don't have any notifications at the moment.</p>
             </a>
         </mat-nav-list>
     </mat-drawer>
+<!--    Lobby Container -->
     <div id="container">
+<!--        Primary Outlet -->
         <router-outlet></router-outlet>
+<!--        Popup Outlet -->
         <router-outlet id="popup" name="popup"></router-outlet>
+<!--        Chat Accordion -->
         <app-chat id="chat"></app-chat>
     </div>
 </mat-drawer-container>

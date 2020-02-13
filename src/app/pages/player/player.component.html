@@ -1,20 +1,33 @@
-<mat-card class="mat-elevation-z6" [ngStyle]="{'top.px': top, 'left.px': left}" (mouseleave)="closePopup()">
+<mat-card class="mat-elevation-z6" [ngStyle]="{'top.px': top, 'left.px': left}" (mouseleave)="close()">
         <mat-card-header class="flex-row flex-space-between">
+<!--            Player Name -->
             <mat-card-title>
-                <img  matCardAvatar [src]="'assets/img/tokens/' + player.token + '.svg'">
+                <img  matCardAvatar [src]="'assets/img/tokens/' + player.token + '.svg'" alt="Player Token">
                 {{player.displayName}} ({{player.username}})
             </mat-card-title>
             <mat-icon [routerLink]="['/lobby', {outlets: {popup: null}}]">close</mat-icon>
         </mat-card-header>
     <mat-card-content>
         <div class="flex-row flex-space-between">
+<!--            Win Spread -->
             <mat-chip-list>
-                <mat-chip color="primary" selected>{{count.wins}} won</mat-chip><mat-chip color="warn" selected>{{count.losses}} lost</mat-chip><mat-chip>{{count.total}} total</mat-chip>
+                <mat-chip color="primary" selected>{{spread.wins}} won</mat-chip>
+                <mat-chip color="warn" selected>{{spread.losses}} lost</mat-chip>
+                <mat-chip>{{spread.total}} total</mat-chip>
             </mat-chip-list>
             <span class="spacer"></span>
-            <button mat-flat-button color="go" *ngIf="isFriend"><mat-icon svgIcon="friend" matTooltip="friend"></mat-icon></button>
-            <button mat-flat-button color="primary" disabled *ngIf="isPending && !isSelf">Pending Request</button>
-            <button *ngIf="!isFriend && !isPending && !isSelf" mat-flat-button color="go" matTooltip="Send friend request" (click)="sendFriendRequest()"><mat-icon>person_add</mat-icon></button>
+<!--            Friend Indicator -->
+            <button mat-flat-button color="go" *ngIf="isFriend">
+                <mat-icon svgIcon="friend" matTooltip="friend"></mat-icon>
+            </button>
+            <button mat-flat-button color="primary" disabled *ngIf="isPending && !isSelf && !isFriend">Pending Request</button>
+            <button *ngIf="!isFriend && !isPending && !isSelf"
+                    mat-flat-button
+                    color="go"
+                    matTooltip="Send friend request"
+                    (click)="sendFriendRequest()">
+                <mat-icon>person_add</mat-icon>
+            </button>
         </div>
         <table class="full-width">
             <tr>
@@ -22,19 +35,29 @@
                 <td>{{player.created.toDate() | date}}</td>
             </tr>
             <tr>
-                <td colspan="2"><mat-toolbar color="primary" id="active-games-header">Active Games</mat-toolbar></td>
+                <td colspan="2">
+                    <mat-toolbar color="primary" id="active-games-header">Active Games</mat-toolbar>
+                </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <span *ngIf="!active.length">No active games</span>
+                    <span *ngIf="!activeGames.length">No active games</span>
                     <mat-list>
-                        <mat-list-item *ngFor="let game of active">
+                        <mat-list-item *ngFor="let game of activeGames">
                             <p>{{game.name}}</p>
                             <span class="spacer"></span>
-                                <button mat-flat-button class="shrink" color="highlight" [routerLink]="['/lobby', {outlets: {popup: null, primary: ['game', game.id]}}]" [queryParams]="{action:'watch'}">Watch</button>
-                                <button mat-flat-button class="shrink" color="warn" [routerLink]="['/lobby', {outlets: {popup: null, primary: ['game', game.id]}}]" [queryParams]="{action:'play'}">Play!</button>
-                        <mat-divider></mat-divider>
-                    </mat-list-item>
+                            <button mat-flat-button
+                                    class="shrink"
+                                    color="highlight"
+                                    [routerLink]="['/lobby', {outlets: {popup: null, primary: ['game', game.id]}}]"
+                                    [queryParams]="{action:'watch'}">Watch</button>
+                            <button mat-flat-button
+                                    class="shrink"
+                                    color="warn"
+                                    [routerLink]="['/lobby', {outlets: {popup: null, primary: ['game', game.id]}}]"
+                                    [queryParams]="{action:'play'}">Play!</button>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
                     </mat-list>
                 </td>
             </tr>

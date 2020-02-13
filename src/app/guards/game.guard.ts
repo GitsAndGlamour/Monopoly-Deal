@@ -6,11 +6,13 @@ import {ProfileService} from '../services/profile/profile.service';
 @Injectable({
     providedIn: 'root',
 })
+/**
+ * Checks if player has access to game.
+ */
 export class GameGuard implements CanActivate {
     constructor(private profileService: ProfileService, private gameService: GameService, private router: Router) {
 
     }
-
 
     async canActivate(
         next: ActivatedRouteSnapshot,

@@ -1,4 +1,5 @@
 $app-menu-spacing: 8px !default;
+
 :host {
   margin-top: -$app-menu-spacing;
   margin-bottom: -$app-menu-spacing;
@@ -8,6 +9,13 @@ $app-menu-spacing: 8px !default;
   // [layout="column"]
   flex-direction: column;
 }
+
+.app-menu-content {
+  max-height: calc(50vh);
+  overflow-y: auto;
+}
+
+/* Overrides */
 :host ::ng-deep {
   [app-menu-header] {
     padding: $app-menu-spacing;
@@ -36,8 +44,4 @@ $app-menu-spacing: 8px !default;
       }
     }
   }
-}
-.app-menu-content {
-  max-height: calc(50vh);
-  overflow-y: auto;
 }

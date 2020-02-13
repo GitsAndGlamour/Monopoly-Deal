@@ -58,10 +58,15 @@ export class GameComponent implements OnInit {
   }
 
   async addPlayerToGame() {
-    const newPlayer: IPlayer = {
-      name: this.profile.displayName, owner: false, position: this.game.players.length, profile: this.profile, profileId: this.profile.uid, created: new Date()
+    const player: IPlayer = {
+      name: this.profile.displayName,
+      owner: false,
+      position: this.game.players.length,
+      profile: this.profile,
+      profileId: this.profile.uid,
+      created: new Date()
     };
-    await this.gameService.addPlayer(this.game, newPlayer);
+    await this.gameService.addPlayer(this.game, player);
   }
 
   async addPlayerToChat() {

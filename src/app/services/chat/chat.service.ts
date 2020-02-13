@@ -43,6 +43,7 @@ export class ChatService {
     }
 
     async addParticipant(chat: string, participant: IProfileReadOnly) {
-        return await this.storage.addToArrayInDocument('chat', chat, 'participants', participant);
+        await this.storage.addToArrayInDocument('chat', chat, 'participants', participant);
+        return await this.storage.addToArrayInDocument('chat', chat, 'participantIds', participant.uid);
     }
 }

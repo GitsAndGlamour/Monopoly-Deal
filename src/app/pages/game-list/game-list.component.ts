@@ -19,8 +19,12 @@ export class GameListComponent implements OnInit {
   friends: IProfileReadOnly[];
   online: IProfileReadOnly[];
   statuses = GameStatus;
-  constructor(private route: ActivatedRoute, private service: GameService, private _bottomSheet: MatBottomSheet,
-              private icon: IconService, private router: Router, private playerService: PlayerService) {
+  constructor(private route: ActivatedRoute,
+              private service: GameService,
+              private _bottomSheet: MatBottomSheet,
+              private icon: IconService,
+              private router: Router,
+              private playerService: PlayerService) {
     this.games = route.snapshot.data.games ? route.snapshot.data.games.map(game => new Game(game)) : [];
     this.friends = route.parent.snapshot.data.friends;
     this.online = route.snapshot.data.online;
@@ -31,7 +35,7 @@ export class GameListComponent implements OnInit {
     console.log(this.games);
     this.service.gameChanges().subscribe(async () => {
       this.games = await this.service.games();
-    })
+    });
     this.playerService.onlineChanges().subscribe(async () => {
       this.online = await this.playerService.online();
     });
@@ -44,7 +48,14 @@ export class GameListComponent implements OnInit {
     });
   }
 
-  status(game: IGame) {
+  showPlayerPopup(event, profile: string) {
+    const x = event.pageX;
+    const y = event.pageY;
+    console.log(x, y);
+    this.router.navigate(['/lobby', {outlets: {popup: ['player', profile]}}], { queryParams: {x, y}});
+  }
+
+  getStatusColor(game: IGame) {
     switch(game.status) {
       case GameStatus.CANCELED: return 'gainsboro';
       case GameStatus.READY: return '#c8e6c9';
@@ -53,14 +64,7 @@ export class GameListComponent implements OnInit {
     }
   }
 
-  availableSeating(game: IGame): number {
+  getAvailableSeatingCount(game: IGame): number {
     return game.seats - game.bots - 1;
-  }
-
-  showPlayerPopup(event, profile: string) {
-    const x = event.pageX;
-    const y = event.pageY;
-    console.log(x, y);
-    this.router.navigate(['/lobby', {outlets: {popup: ['player', profile]}}], { queryParams: {x, y}});
   }
 }

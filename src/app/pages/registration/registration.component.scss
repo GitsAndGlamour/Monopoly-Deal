@@ -27,6 +27,6 @@ mat-card {
 }
 
 /* Overrides */
-::ng-deep #username .mat-form-field-infix {
+:host::ng-deep #username .mat-form-field-infix {
   display: flex !important; // Makes the green check next to validated name appear on the right side of the input field instead of below the input text.
 }

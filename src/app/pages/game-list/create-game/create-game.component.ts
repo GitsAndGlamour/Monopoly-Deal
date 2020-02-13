@@ -26,9 +26,16 @@ export class CreateGameComponent implements OnInit {
   @ViewChild('friendInput', {static: false}) friendInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<CreateGameComponent>, private builder: FormBuilder,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: { index: number, friends: IProfileReadOnly[], profile: IProfile },
-              private service: GameService, private trigger: ReadyGameStatusTrigger, private inviteService: InviteService) {
+  constructor(private _bottomSheetRef: MatBottomSheetRef<CreateGameComponent>,
+              private builder: FormBuilder,
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: {
+                index: number,
+                friends: IProfileReadOnly[],
+                profile: IProfile
+              },
+              private service: GameService,
+              private trigger: ReadyGameStatusTrigger,
+              private inviteService: InviteService) {
     this.form = this.builder.group({
       name: `Game #${data.index}`,
       seats: 2,
@@ -39,6 +46,7 @@ export class CreateGameComponent implements OnInit {
       ranked: false,
       friends: false,
     });
+
     this.filteredFriends = this.form.get('invites').valueChanges.pipe(
         startWith(null),
         map((friend: IProfileReadOnly | null) => friend ? this._filter(friend) : this.allFriends));
@@ -50,6 +58,7 @@ export class CreateGameComponent implements OnInit {
   async submit(event: MouseEvent): Promise<void> {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
+
     const gameId = await this.service.generateId();
     const game: IGame = {
       bots: this.form.get('bots').value,
@@ -91,16 +100,8 @@ export class CreateGameComponent implements OnInit {
       status: GameStatus.READY,
       viewable: this.form.get('viewable').value
     };
-    console.log(game);
-    await this.trigger.execute(game);
-  }
 
-  remove(profile: IProfileReadOnly): void {
-    const index = this.friends.indexOf(profile);
-
-    if (index >= 0) {
-      this.friends.splice(index, 1);
-    }
+  await this.trigger.execute(game);
   }
 
   selected(friend: IProfileReadOnly): void {
@@ -108,6 +109,14 @@ export class CreateGameComponent implements OnInit {
       this.friends.push(friend);
       this.friendInput.nativeElement.value = '';
       this.form.get('invites').setValue(null);
+    }
+  }
+
+  remove(profile: IProfileReadOnly): void {
+    const index = this.friends.indexOf(profile);
+
+    if (index >= 0) {
+      this.friends.splice(index, 1);
     }
   }
 

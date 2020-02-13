@@ -32,11 +32,11 @@ export class PlayerComponent implements OnInit {
     console.log(this.player);
   }
 
-  closePopup() {
+  close() {
     this.router.navigate(['/lobby', {outlets: {popup: null}}]);
   }
 
-  get count(): {wins: number, losses: number, total: number} {
+  get spread(): {wins: number, losses: number, total: number} {
     const games = this.games || [];
     return {
       wins: games.filter(game => game.status === GameStatus.DONE && game.winner === this.player.uid).length,
@@ -45,25 +45,25 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  get active(): IGame[] {
+  get activeGames(): IGame[] {
     return this.games.filter(game => game.status === GameStatus.STARTED || game.status === GameStatus.READY);
   }
 
-  async sendFriendRequest() {
-    await this.inviteService.sendFriendInvite(this.player);
-    const invites = await this.inviteService.invites();
-    this.invites = [...invites.sent, ...invites.received];
-  }
-
-  get isFriend() {
-    return this.profile.friends.some(friend => friend === this.player.uid)
+  get isSelf() {
+    return this.player.uid === this.profile.uid;
   }
 
   get isPending() {
     return this.invites.some(invite => invite.toId === this.player.uid || invite.fromId === this.player.uid)
   }
 
-  get isSelf() {
-    return this.player.uid === this.profile.uid;
+  get isFriend() {
+    return this.profile.friends.some(friend => friend === this.player.uid)
+  }
+
+  async sendFriendRequest() {
+    await this.inviteService.sendFriendInvite(this.player);
+    const invites = await this.inviteService.invites();
+    this.invites = [...invites.sent, ...invites.received];
   }
 }

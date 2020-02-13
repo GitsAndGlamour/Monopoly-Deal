@@ -2,31 +2,66 @@
 <form *ngIf="form" [formGroup]="form">
     <mat-list>
         <mat-list-item>
+<!--            Game Name -->
             <mat-form-field class="full-width">
                 <input matInput placeholder="Game Name" formControlName="name">
             </mat-form-field>
         </mat-list-item>
         <mat-list-item>
             <div class="flex-row flex-space-between full-width">
-                <mat-form-field class="flex-row-item flex-1" hintLabel="Must have at least one seat and more seats than you have bots.">
-                    <input type="number" min="2" [max]="4" matInput placeholder="Seats" formControlName="seats">
+<!--                Seat Count -->
+                <mat-form-field class="flex-row-item flex-1"
+                                hintLabel="Must have at least one seat and more seats than you have bots.">
+                    <input type="number"
+                            min="2"
+                            max="4"
+                            matInput
+                            placeholder="Seats"
+                            formControlName="seats">
                 </mat-form-field>
-                <mat-form-field class="flex-row-item flex-1" hintLabel="Must have less bots than you have seats.">
-                    <input type="number" [min]="0" [max]="form.get('seats').value - 1" matInput placeholder="Bots" formControlName="bots">
+<!--                Bot Count -->
+                <mat-form-field class="flex-row-item flex-1"
+                                hintLabel="Must have less bots than you have seats.">
+                    <input type="number"
+                            [min]="0"
+                            [max]="form.get('seats').value - 1"
+                            matInput
+                            placeholder="Bots"
+                            formControlName="bots">
                 </mat-form-field>
             </div>
         </mat-list-item>
         <br>
         <mat-list-item>
             <div class="flex-row flex-space-between full-width">
-                <mat-checkbox class="flex-row-item flex-1" color="warn" formControlName="ranked"><b>Ranked</b> match</mat-checkbox>
-                <mat-slide-toggle class="flex-row-item flex-1" color="warn" formControlName="public">Anyone can <b>join</b></mat-slide-toggle>
+                <mat-checkbox
+                        class="flex-row-item flex-1"
+                        color="warn"
+                        formControlName="ranked">
+                    <b>Ranked</b> match
+                </mat-checkbox>
+                <mat-slide-toggle
+                        class="flex-row-item flex-1"
+                        color="warn"
+                        formControlName="public">
+                    Anyone can <b>join</b>
+                </mat-slide-toggle>
             </div>
         </mat-list-item>
         <mat-list-item>
             <div class="flex-row flex-space-between full-width">
-                <mat-checkbox class="flex-row-item flex-1" color="warn" formControlName="friends"><b>Friends</b> only</mat-checkbox>
-                <mat-slide-toggle class="flex-row-item flex-1" color="warn" formControlName="viewable">Anyone can <b>watch</b></mat-slide-toggle>
+                <mat-checkbox
+                        class="flex-row-item flex-1"
+                        color="warn"
+                        formControlName="friends">
+                    <b>Friends</b> only
+                </mat-checkbox>
+                <mat-slide-toggle
+                        class="flex-row-item flex-1"
+                        color="warn"
+                        formControlName="viewable">
+                    Anyone can <b>watch</b>
+                </mat-slide-toggle>
             </div>
         </mat-list-item>
         <mat-list-item id="invites">
@@ -40,6 +75,7 @@
                         {{friend.displayName}} ({{friend.username}})
                         <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
+                    <br>
                     <input
                             placeholder="Invite friends..."
                             #friendInput
@@ -57,6 +93,7 @@
             </mat-form-field>
         </mat-list-item>
     </mat-list>
+    <br>
     <div class="flex-row flex-end">
         <button mat-button>Clear</button>
         <button mat-raised-button color="red" (click)="submit($event)">Play!</button>

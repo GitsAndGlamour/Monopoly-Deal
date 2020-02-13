@@ -1,8 +1,12 @@
 <div id="container">
+<!--    Name Card -->
     <mat-card id="action-header" class="mat-elevation-z5">
         <mat-card-header>
-            <img mat-card-avatar [src]="'assets/img/tokens/' + profile.token + '.svg'">
-            <mat-card-title><small>Display Name: </small>
+<!--            Token -->
+            <img mat-card-avatar [src]="'assets/img/tokens/' + profile.token + '.svg'" alt="Token" />
+<!--            Display Name -->
+            <mat-card-title>
+                <small>Display Name: </small>
                 <span *ngIf="field !== 'displayName'">{{profile.displayName}}</span>
                 <button mat-button color="accent" (click)="field = 'displayName'" *ngIf="field !== 'displayName'">
                     <mat-icon>edit</mat-icon>
@@ -11,13 +15,17 @@
                     <mat-form-field>
                         <input matInput [placeholder]="profile.displayName" [formControl]="displayNameCtrl">
                     </mat-form-field>
-                    <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="field = null">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
                     <button mat-icon-button color="success" (click)="edit(displayNameCtrl)">
                         <mat-icon>check_circle</mat-icon>
                     </button>
                 </div>
             </mat-card-title>
-            <mat-card-subtitle><small>Username: </small>
+<!--            Username -->
+            <mat-card-subtitle>
+                <small>Username: </small>
                 <span *ngIf="field !== 'username'">{{profile.username}}</span>
                 <button mat-button color="accent" (click)="field = 'username'" *ngIf="field !== 'username'">
                     <mat-icon>edit</mat-icon>
@@ -28,32 +36,43 @@
                         <mat-error *ngIf="!!usernameCtrl.errors?.usernameTaken">Username already exists!</mat-error>
                         <mat-hint *ngIf="!!usernameCtrl.pending">Checking availability...</mat-hint>
                     </mat-form-field>
-                    <button mat-icon-button color="warn" (click)="field = null"><mat-icon>cancel</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="field = null">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
                     <button mat-icon-button color="success" (click)="edit(usernameCtrl)">
                         <mat-icon>check_circle</mat-icon>
                     </button>
                 </div>
             </mat-card-subtitle>
         </mat-card-header>
+<!--        Member Since -->
         <mat-card-content>
-            <p><small>Member Since:</small> {{profile._created | date}}</p>
+            <p>
+                <small>Member Since:</small> {{profile._created | date}}</p>
         </mat-card-content>
     </mat-card>
+<!--    Friends Card -->
     <mat-card class="mat-elevation-z5">
         <mat-toolbar  color="primary">
-            <h2 class="card-header-title">Friends</h2>
+            <h2>Friends</h2>
             <span class="spacer"></span>
-            <button mat-icon-button (click)="addFriend()"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button (click)="addFriend()">
+                <mat-icon>add</mat-icon>
+            </button>
         </mat-toolbar>
         <mat-card-content class="profile-card">
             <mat-tab-group>
+<!--                Friends -->
                 <mat-tab label="Friends">
                     <br>
                     <h3 id="no-friend-prompt" *ngIf="!profile.friends?.length">You have no friends! :(
                         <button mat-raised-button color="red" (click)="addFriend()">Make some!</button>
                     </h3>
                     <mat-chip-list>
-                        <mat-chip color="warn" *ngFor="let friend of friends" removable selected
+                        <mat-chip color="warn"
+                                  *ngFor="let friend of friends"
+                                  removable
+                                  selected
                                   (removed)="removeFriend(friend.uid)">
                             {{friend.displayName}} ({{friend.username}})
                             <mat-icon matChipRemove>cancel</mat-icon>
@@ -61,18 +80,25 @@
                     </mat-chip-list>
                     <br>
                 </mat-tab>
+<!--                Invites Sent -->
                 <mat-tab label="Invites Sent">
                     <br>
-                    <h3 id="no-invite-sent-prompt" *ngIf="!invites?.sent?.length">No invites pending! &nbsp; <button mat-raised-button color="red" (click)="addFriend()">Send some!</button></h3>
+                    <h3 id="no-invite-sent-prompt" *ngIf="!invites?.sent?.length">No invites pending! &nbsp;
+                        <button mat-raised-button color="red" (click)="addFriend()">Send some!</button>
+                    </h3>
                     <mat-chip-list>
-                        <mat-chip color="warn" *ngFor="let invite of invites?.sent" removable selected
+                        <mat-chip color="warn"
+                                  *ngFor="let invite of invites?.sent"
+                                  removable
+                                  selected
                                   (removed)="unsendInvite(invite.to.uid)">
                             {{invite.to.displayName}} ({{invite.to.username}})
-                            <mat-icon matChipRemove (click)="unsendInvite(invite.to.uid)">cancel</mat-icon>
+                            <mat-icon matChipRemove(click)="unsendInvite(invite.to.uid)">cancel</mat-icon>
                         </mat-chip>
                     </mat-chip-list>
                     <br>
                 </mat-tab>
+<!--               Invites Received -->
                 <mat-tab label="Invites Received">
                     <br>
                     <h3 id="no-invite-received-prompt" *ngIf="!invites?.received?.length">Your inbox is empty!</h3>
@@ -90,24 +116,30 @@
             </mat-tab-group>
         </mat-card-content>
     </mat-card>
+<!--    Token Card -->
     <mat-card class="mat-elevation-z5">
         <mat-toolbar color="primary">Token</mat-toolbar>
         <mat-card-content id="token-content">
             <div class="flex-row flex-space-between">
+<!--                Current Token -->
                 <div class="flex-column">
-                    <img [src]="'assets/img/tokens/' + profile.token + '.svg'" height="200">
+                    <img [src]="'assets/img/tokens/' + profile.token + '.svg'" height="200" alt="Current Token" />
                     <h4 id="current-token-caption"><small>Current Token: </small>{{profile.token}}</h4>
                 </div>
+<!--                Proposed Token -->
                 <div class="flex-column">
                     <mat-form-field class="full-width">
-                        <mat-select [formControl]="tokenCtrl" placeholder="Choose Token" (selectionChange)="token = $event.value">
+                        <mat-select [formControl]="tokenCtrl" placeholder="Choose Token"
+                                    (selectionChange)="token = $event.value">
                             <mat-option *ngFor="let token of tokens" [value]="token">{{token}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div class="flex-row flex-end">
-                        <img [src]="'assets/img/tokens/' + token + '.svg'" height="100"/>
+                        <img [src]="'assets/img/tokens/' + token + '.svg'" height="100" alt="Proposed Token" />
                         &nbsp;
-                        <div><button mat-flat-button color="warn" (click)="updateToken()">Update Token</button></div>
+                        <div>
+                            <button mat-flat-button color="warn" (click)="updateToken()">Update Token</button>
+                        </div>
                     </div>
                 </div>
             </div>

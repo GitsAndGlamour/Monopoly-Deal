@@ -1,64 +1,115 @@
 <div id="container">
     <div id="header">
         <h3>Lobby</h3>
-        <span><button mat-raised-button color="warn" (click)="openBottomSheet()">Create a new game</button></span>
+        <span>
+            <button mat-raised-button color="warn" (click)="openBottomSheet()">Create a new game</button>
+        </span>
     </div>
     <div id="card-container" class="flex-row flex-space-between">
+<!--        Online Player List -->
         <mat-card class="mat-elevation-z5 flex-1 full-width">
             <mat-toolbar color="primary">Online Players</mat-toolbar>
             <br>
             <mat-nav-list>
                 <mat-list-item *ngFor="let player of online">
                     <div class="flex-row flex-space-between full-width">
-                        <span>{{player.displayName}} <i><span class="player-name">({{player.username}})</span></i></span>
-                        <mat-icon class="more-icon" (mouseenter)="showPlayerPopup($event, player.uid)">more_horiz</mat-icon>
+                        <span>{{player.displayName}}
+                            <i>
+                                <span class="player-name">({{player.username}})</span>
+                            </i>
+                        </span>
+                        <mat-icon class="more-icon"
+                                  (mouseenter)="showPlayerPopup($event, player.uid)">
+                            more_horiz
+                        </mat-icon>
                     </div>
                     <mat-divider></mat-divider>
                 </mat-list-item>
             </mat-nav-list>
         </mat-card>
+<!--        Games List -->
         <mat-card class="mat-elevation-z5 flex-2 full-width">
             <mat-toolbar color="primary">Games</mat-toolbar>
             <br>
             <mat-accordion>
-                <mat-expansion-panel *ngFor="let game of games" [ngStyle]="{backgroundColor: status(game)}">
+                <mat-expansion-panel *ngFor="let game of games" [ngStyle]="{backgroundColor: getStatusColor(game)}">
                     <mat-expansion-panel-header class="baseline-middle mat-elevation-z3">
                         <mat-panel-title>{{game.name}}</mat-panel-title>
                         <mat-panel-description class="flex-space-between">
+<!--                            Game Status & Availability -->
                             <mat-chip-list>
-                                <mat-chip *ngIf="game.status === statuses.READY" selected color="warn">{{availableSeating(game)}} seat(s) available!</mat-chip>
-                                <mat-chip *ngIf="game.status !== statuses.READY" selected color="warn">{{game.status}}</mat-chip>
+                                <mat-chip *ngIf="game.status === statuses.READY"
+                                          selected color="warn">
+                                    {{getAvailableSeatingCount(game)}} seat(s) available!
+                                </mat-chip>
+                                <mat-chip *ngIf="game.status !== statuses.READY"
+                                          selected color="warn">{{game.status}}
+                                </mat-chip>
                             </mat-chip-list>
                             <div>
+<!--                                Game Indicators -->
                                 <mat-chip-list>
+<!--                                    Number of Bots -->
                                     <mat-chip matTooltip="bots" *ngIf="game.bots" selected>
-                                        {{game.bots}}&nbsp;<mat-icon svgIcon="bot"></mat-icon>
+                                        {{game.bots}}&nbsp;
+                                        <mat-icon svgIcon="bot"></mat-icon>
                                     </mat-chip>
-                                    <mat-chip matTooltip="viewable" *ngIf="game.viewable" selected><mat-icon svgIcon="viewable"></mat-icon></mat-chip>
-                                    <mat-chip matTooltip="anyone can join" *ngIf="game.public" selected><mat-icon svgIcon="public"></mat-icon></mat-chip>
-                                    <mat-chip matTooltip="ranked" *ngIf="game.ranked" selected><mat-icon svgIcon="ranked"></mat-icon></mat-chip>
-                                    <mat-chip matTooltip="friends only" *ngIf="game.friends" selected><mat-icon svgIcon="friend"></mat-icon></mat-chip>
+<!--                                    Viewable -->
+                                    <mat-chip matTooltip="viewable" *ngIf="game.viewable" selected>
+                                        <mat-icon svgIcon="viewable"></mat-icon>
+                                    </mat-chip>
+<!--                                    Public -->
+                                    <mat-chip matTooltip="anyone can join" *ngIf="game.public" selected>
+                                        <mat-icon svgIcon="public"></mat-icon>
+                                    </mat-chip>
+<!--                                    Ranked -->
+                                    <mat-chip matTooltip="ranked" *ngIf="game.ranked" selected>
+                                        <mat-icon svgIcon="ranked"></mat-icon>
+                                    </mat-chip>
+<!--                                    Friends Only -->
+                                    <mat-chip matTooltip="friends only" *ngIf="game.friends" selected>
+                                        <mat-icon svgIcon="friend"></mat-icon>
+                                    </mat-chip>
                                 </mat-chip-list>
                             </div>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
+<!--                    Game Drawer -->
                     <div class="game-list-panel-body flex-row flex-space-between expansion-action-panel">
                         <div>
+<!--                            Players List -->
                             <h5>Players</h5>
                             <mat-chip-list id="game-player-list">
                                 <ng-container *ngFor="let player of game.players">
                                     <mat-chip *ngIf="player.profileId" selectable
                                               (click)="showPlayerPopup($event, player.profile.uid)">
                                         {{player.profile.displayName}} ({{player.profile.username}})
-                                        <mat-icon matChipTrailingIcon *ngIf="player.owner" svgIcon="crown" matTooltip="host"></mat-icon>
+                                        <mat-icon
+                                                matChipTrailingIcon
+                                                *ngIf="player.owner"
+                                                svgIcon="crown"
+                                                matTooltip="host">
+                                        </mat-icon>
                                     </mat-chip>
                                 </ng-container>
                             </mat-chip-list>
                         </div>
+<!--                        Game Actions -->
                         <div>
-                            <button mat-raised-button color="highlight" [routerLink]="['game', game.id]" [queryParams]="{action:'watch'}">Watch</button>
+                            <button
+                                    mat-raised-button
+                                    color="highlight"
+                                    [routerLink]="['game', game.id]"
+                                    [queryParams]="{action:'watch'}">
+                                Watch
+                            </button>
                             &nbsp;
-                            <button mat-raised-button [routerLink]="['game', game.id]" color="warn" [queryParams]="{action:'play'}">Play!</button>
+                            <button
+                                    mat-raised-button
+                                    [routerLink]="['game', game.id]"
+                                    color="warn" [queryParams]="{action:'play'}">
+                                Play!
+                            </button>
                         </div>
                     </div>
                 </mat-expansion-panel>

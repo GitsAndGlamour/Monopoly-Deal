@@ -3,9 +3,14 @@
         <mat-expansion-panel-header id="container-header" class="flex-row flex-space-between">
             <mat-panel-title>Chat</mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="flex-row flex-space-between">
-            <div #chatWindow class="flex-2" id="chat-window">
+        <mat-drawer-container autosize>
+            <span class="flex-row flex-space-between">
                 <h5>{{selected?.name}} Chat!</h5>
+                <button mat-button (click)="drawer.toggle()">
+                    <mat-icon>{{drawer.opened ? 'keyboard_arrow_right' : 'menu_open'}}</mat-icon>
+                </button>
+            </span>
+            <div #chatWindow id="chat-window">
                 <div>
                     <ng-container *ngFor="let message of selected?.messages">
                         <p *ngIf="message"><b>{{message?.from?.displayName}}: </b>{{message?.value}}
@@ -15,7 +20,7 @@
                     </ng-container>
                 </div>
             </div>
-            <div class="flex-1" id="chat-list">
+            <mat-drawer #drawer id="chat-list" position="end" mode="side">
                 <mat-accordion>
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header (click)="select(lobby)">
@@ -45,8 +50,8 @@
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-            </div>
-        </div>
+            </mat-drawer>
+        </mat-drawer-container>
         <div id="message-bar" class="flex-row">
             <mat-form-field class="full-width baseline-middle">
                 <input matInput placeholder="Send a message..." [formControl]="messageCtrl" (keypress)="onKeyPress($event)">

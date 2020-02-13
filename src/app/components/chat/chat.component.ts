@@ -52,9 +52,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     const profile = await this.profileService.profile();
     const id = await this.chatService.id();
     const message: IMessage = {
-      from: profile, fromId: profile.uid, id, sent: new Date(), value: this.messageCtrl.value, read: new Map<string, boolean>()
+      id,
+      from: profile,
+      fromId: profile.uid,
+      sent: new Date(),
+      value: this.messageCtrl.value
     };
-    this.selected.participants.forEach(player => message.read.set(player.uid, false));
     await this.chatService.sendMessage(this.selected.id, message);
     this.messageCtrl.reset();
     this.scrollToBottom();

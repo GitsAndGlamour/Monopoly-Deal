@@ -85,11 +85,6 @@ export class ProfileComponent implements OnInit {
     this.friends = await this.service.friends();
   }
 
-  async unsendInvite(uid: string) {
-    await this.inviteService.unsendFriendInvite(uid);
-    this.invites = await this.inviteService.invites();
-  }
-
   async approveInvite(uid: string) {
     await this.inviteService.acceptFriendInvite(uid);
     this.invites = await this.inviteService.invites();
@@ -98,6 +93,11 @@ export class ProfileComponent implements OnInit {
 
   async declineInvite(uid: string) {
     await this.inviteService.declineFriendInvite(uid);
+    this.invites = await this.inviteService.invites();
+  }
+
+  async unsendInvite(uid: string) {
+    await this.inviteService.unsendFriendInvite(uid);
     this.invites = await this.inviteService.invites();
   }
 

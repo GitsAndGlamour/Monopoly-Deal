@@ -1,33 +1,21 @@
-.mat-menu-item {
-  word-wrap: break-word;
-}
-mat-list-item {
-  padding: 0.5rem;
-}
-.text-wrap {
-  text-wrap: normal;
-}
-
 p {
   color: #9fa8da;
 }
 
-#notifications-menu-header {
-  padding-top: 1rem;
+mat-list-item {
+  padding: 0.5rem;
 }
 
 small {
   font-size: small;
 }
 
-#container {
-  padding: 1.5rem;
+.mat-menu-item {
+  word-wrap: break-word;
 }
 
-#popup {
-  position: absolute;
-  z-index: 1000;
-  margin: 20%;
+.text-wrap {
+  text-wrap: normal;
 }
 
 #chat {
@@ -39,6 +27,21 @@ small {
   width: fit-content;
 }
 
-::ng-deep .mat-menu-panel {
+#container {
+  padding: 1.5rem;
+}
+
+#notifications-menu-header {
+  padding-top: 1rem;
+}
+
+#popup {
+  position: absolute;
+  z-index: 1000;
+  margin: 20%;
+}
+
+/* Overrides */
+:host :ng-deep .mat-menu-panel {
   margin-top: 1rem;
 }

@@ -1,23 +1,3 @@
-#header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-#container {
-  padding: 5% 15%;
-  background-color: whitesmoke;
-  height: 70vh;
-}
-
-#card-container {
-  display: grid;
-  mat-card:first-of-type {
-    margin-right: 1rem;
-  }
-  mat-card:last-of-type {
-    margin-left: 1rem;
-  }
-}
 
 mat-expansion-panel {
   margin: 0.5rem 0;
@@ -39,10 +19,32 @@ mat-panel-title {
   color: #cbcbcb;
 }
 
-::ng-deep.mat-expansion-panel-content {
-  background-color: whitesmoke;
-}
-
 .game-list-panel-body {
   margin: 1rem;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#container {
+  padding: 5% 15%;
+  background-color: whitesmoke;
+  height: 70vh;
+}
+
+#card-container {
+  display: grid;
+  mat-card:first-of-type {
+    margin-right: 1rem;
+  }
+  mat-card:last-of-type {
+    margin-left: 1rem;
+  }
+}
+
+/* Overrides */
+:host::ng-deep.mat-expansion-panel-content {
+  background-color: #b0cab1;
 }

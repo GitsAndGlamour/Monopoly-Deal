@@ -3,9 +3,13 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {AuthService} from '../services/firebase/auth/auth.service';
 import {Observable} from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * Routes logged-in user on home page. Returns true if user is not logged in.
+ */
 export class WelcomeGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 

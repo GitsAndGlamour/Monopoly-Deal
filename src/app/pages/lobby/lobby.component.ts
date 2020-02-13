@@ -18,8 +18,12 @@ export class LobbyComponent implements OnInit {
   all: INotification[] = [];
   notificationTypes = NotificationType;
   notificationStatuses = NotificationStatus;
-  constructor(private auth: AuthService, private profileService: ProfileService, private router: Router,
-              private route: ActivatedRoute, private notificationService: NotificationService, private icon: IconService) {
+  constructor(private auth: AuthService,
+              private profileService: ProfileService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private notificationService: NotificationService,
+              private icon: IconService) {
     this.profile = route.snapshot.data.profile;
   }
 
@@ -42,9 +46,4 @@ export class LobbyComponent implements OnInit {
     await this.notificationService.markAllAsRead();
     this.all = await this.notificationService.all();
   }
-
-  showAllNotifications() {
-
-  }
-
 }
