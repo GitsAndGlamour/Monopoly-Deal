@@ -60,6 +60,9 @@
             <a mat-list-item (click)="markNotificationsAsRead()">
                 <mat-icon>playlist_add_check</mat-icon> &nbsp; Mark All As Read
             </a>
+            <a mat-list-item (click)="clearNotifications()">
+                <mat-icon>delete_forever</mat-icon> &nbsp; Clear Notifications
+            </a>
         </mat-nav-list>
         <a mat-button app-menu-footer (click)="drawer.toggle()">
             <mat-icon color="warn">close</mat-icon> &nbsp; Close Drawer
