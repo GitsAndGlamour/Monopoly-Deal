@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e364f6c6-5e8b-42e6-bd7a-5c4d2c4ebb8e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/lobby/lobby.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/chat/chat.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +118,7 @@
       <workItem from="1580255945121" duration="2834000" />
       <workItem from="1580260133713" duration="35714000" />
       <workItem from="1580826664218" duration="122396000" />
-      <workItem from="1581537934552" duration="26159000" />
+      <workItem from="1581537934552" duration="27133000" />
     </task>
     <servers />
   </component>
@@ -262,10 +261,10 @@
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1580162899417" />
     <state x="622" y="442" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1580852791729" />
     <state x="622" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581093776462" />
-    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581635996397">
+    <state x="489" y="262" width="701" height="526" key="find.popup" timestamp="1581685087826">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581635996397" />
+    <state x="489" y="262" width="701" height="526" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581685087826" />
     <state x="489" y="279" width="701" height="514" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1580118196594" />
     <state x="489" y="262" width="701" height="526" key="find.popup/1680.0.1366.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1581443952618" />
     <state x="568" y="371" key="refactoring.ChangeSignatureDialog" timestamp="1580168307747">
